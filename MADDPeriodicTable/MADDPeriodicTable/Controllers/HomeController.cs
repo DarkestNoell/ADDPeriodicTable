@@ -14,4 +14,4 @@ namespace MADDPeriodicTable.Controllers
             return View();
         }
     }
-}
+} 
