@@ -67,3 +67,4 @@ C:\Users\Austin Fouty\Desktop\MADDPerioidcTable\PeriodicTable\PeriodicTable\bin\
 C:\Users\Austin Fouty\Desktop\MADDPerioidcTable\PeriodicTable\PeriodicTable\obj\Debug\PeriodicTable.csprojResolveAssemblyReference.cache
 C:\Users\Austin Fouty\Desktop\MADDPerioidcTable\PeriodicTable\PeriodicTable\obj\Debug\PeriodicTable.dll
 C:\Users\Austin Fouty\Desktop\MADDPerioidcTable\PeriodicTable\PeriodicTable\obj\Debug\PeriodicTable.pdb
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\PeriodicTable\PeriodicTable\obj\Debug\PeriodicTable.csprojResolveAssemblyReference.cache
