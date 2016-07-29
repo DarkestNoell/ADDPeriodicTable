@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PeriodicTableDBModelStoreContainer" CdmEntityContainer="PeriodicTableDBEntities">
+    <EntitySetMapping Name="Compounds">
+      <EntityTypeMapping TypeName="PeriodicTableDBModel.Compound">
+        <MappingFragment StoreEntitySet="Compounds">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CompoundName" ColumnName="CompoundName" />
+          <ScalarProperty Name="MolecularFormula" ColumnName="MolecularFormula" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Elements">
+      <EntityTypeMapping TypeName="PeriodicTableDBModel.Element">
+        <MappingFragment StoreEntitySet="Elements">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Atomic_Number" ColumnName="Atomic Number" />
+          <ScalarProperty Name="ElementAbbreviation" ColumnName="ElementAbbreviation" />
+          <ScalarProperty Name="ElementName" ColumnName="ElementName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
