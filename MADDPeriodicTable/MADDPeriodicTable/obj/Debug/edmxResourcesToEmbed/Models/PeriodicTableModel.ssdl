@@ -1,13 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="PeriodicTableModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Table">
+  <EntityType Name="Compounds">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="int" Nullable="false" />
-    <Property Name="SimpleColumn" Type="nchar" MaxLength="10" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Compound Name" Type="varchar(max)" />
+    <Property Name="Compound Formula" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Elements">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Element Abbreviation" Type="varchar(max)" Nullable="false" />
+    <Property Name="Element Name" Type="varchar(max)" Nullable="false" />
   </EntityType>
   <EntityContainer Name="PeriodicTableModelStoreContainer">
-    <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Compounds" EntityType="Self.Compounds" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Elements" EntityType="Self.Elements" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

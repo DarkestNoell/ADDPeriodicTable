@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MADDPeriodicTable.Models;
 
 namespace MADDPeriodicTable.Controllers
 {
@@ -10,8 +11,13 @@ namespace MADDPeriodicTable.Controllers
     {
         public ActionResult Index()
         {
-            
-            return View();
+            Random randy = new Random();
+            PeriodicTableEntities1 pte = new PeriodicTableEntities1();
+            int id = randy.Next(39) + 1;
+
+            Compound selectedCompound = pte.Compounds.Where(compound => compound.ID == id).First();
+            Console.WriteLine(selectedCompound.Compound_Name);
+            return View(selectedCompound);
         }
 
         public ActionResult About()

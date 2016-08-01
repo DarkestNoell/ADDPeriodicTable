@@ -12,9 +12,10 @@ namespace MADDPeriodicTable.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Table
+    public partial class Compound
     {
         public int ID { get; set; }
-        public string SimpleColumn { get; set; }
+        public string Compound_Name { get; set; }
+        public string Compound_Formula { get; set; }
     }
 }

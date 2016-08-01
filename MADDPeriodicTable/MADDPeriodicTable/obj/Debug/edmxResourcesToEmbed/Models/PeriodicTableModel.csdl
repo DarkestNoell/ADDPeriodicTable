@@ -1,13 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="PeriodicTableModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="Table">
+  <EntityType Name="Compound">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" />
-    <Property Name="SimpleColumn" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Compound_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Compound_Formula" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
-  <EntityContainer Name="PeriodicTableEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Tables" EntityType="Self.Table" />
+  <EntityType Name="Element">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Element_Abbreviation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Element_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="PeriodicTableEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Compounds" EntityType="Self.Compound" />
+    <EntitySet Name="Elements" EntityType="Self.Element" />
   </EntityContainer>
 </Schema>

@@ -204,6 +204,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Compound.cs">
+      <DependentUpon>PeriodicTableModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Element.cs">
+      <DependentUpon>PeriodicTableModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PeriodicTableModel.Context.cs">
@@ -220,9 +226,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PeriodicTableModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Table.cs">
-      <DependentUpon>PeriodicTableModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

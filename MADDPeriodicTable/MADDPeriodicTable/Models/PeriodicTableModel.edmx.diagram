@@ -4,8 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="210b1b3a1b0c47d488f1fd7722c5368c" Name="Diagram1">
-        <EntityTypeShape EntityType="PeriodicTableModel.Table" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="dbc819a7b6e3494cb5eb4733939d4390" Name="Diagram1">
+        <EntityTypeShape EntityType="PeriodicTableModel.Compound" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PeriodicTableModel.Element" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
