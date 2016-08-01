@@ -21,7 +21,7 @@ namespace MADDPeriodicTable.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("PeriodicTable1", throwIfV1Schema: false)
         {
         }
 
