@@ -1,11 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="PeriodicTableModelStoreContainer" CdmEntityContainer="PeriodicTableEntities">
-    <EntitySetMapping Name="Tables">
-      <EntityTypeMapping TypeName="PeriodicTableModel.Table">
-        <MappingFragment StoreEntitySet="Table">
+  <EntityContainerMapping StorageEntityContainer="PeriodicTableModelStoreContainer" CdmEntityContainer="PeriodicTableEntities1">
+    <EntitySetMapping Name="Compounds">
+      <EntityTypeMapping TypeName="PeriodicTableModel.Compound">
+        <MappingFragment StoreEntitySet="Compounds">
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="SimpleColumn" ColumnName="SimpleColumn" />
+          <ScalarProperty Name="Compound_Name" ColumnName="Compound Name" />
+          <ScalarProperty Name="Compound_Formula" ColumnName="Compound Formula" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Elements">
+      <EntityTypeMapping TypeName="PeriodicTableModel.Element">
+        <MappingFragment StoreEntitySet="Elements">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Element_Abbreviation" ColumnName="Element Abbreviation" />
+          <ScalarProperty Name="Element_Name" ColumnName="Element Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
