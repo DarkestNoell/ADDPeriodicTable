@@ -1,0 +1,28 @@
+﻿#periodic_table {
+    width: 100%;
+    min-width: 600px;
+    margin-left:30px;
+}
+
+#TopElements{
+    margin-top:20px;
+}
+#LaAc{
+    margin-top: 20px;
+    margin-bottom:20px;
+}
+
+#periodic_table > div > div {
+    width: 5.5%;
+    vertical-align:bottom;
+    display: inline-block;
+    margin-right: -7px;
+}
+
+#periodic_table > div > div > div {
+    border: 3px solid black;
+    text-align: center;
+    margin-top: -3px;
+    padding: 20% 0;
+    min-height:50px;
+}
