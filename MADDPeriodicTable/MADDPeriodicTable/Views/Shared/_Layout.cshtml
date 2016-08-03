@@ -26,9 +26,11 @@
             </div>
         </div>
     </div>
+    <div>
+        @Html.Partial("_PeriodicTablePartial")
+    </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
     </div>
 
     @Scripts.Render("~/bundles/jquery")

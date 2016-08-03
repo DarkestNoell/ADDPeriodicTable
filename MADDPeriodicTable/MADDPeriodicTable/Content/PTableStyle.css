@@ -1,0 +1,24 @@
+﻿#periodic_table {
+    width: 1000px;
+    margin:auto;
+    text-align: center;
+}
+#TopElements{
+    margin-top:20px;
+}
+#LaAc{
+    margin-top: 20px;
+    margin-bottom:20px;
+}
+#periodic_table > div > div {
+    width: 5.5%;
+    display: inline-block;
+    margin-right: -7px;
+}
+#periodic_table > div > div > div {
+    border: 3px solid black;
+    margin-top: -3px;
+    padding: 25% 0;
+    min-height:55px;
+    min-width:55px;
+}
