@@ -178,12 +178,18 @@ function canvasApp() {
     function mouseMoveListener(evt) {
         for (i = 0; i < shapes.length; i++) {
             if (shapes[i].y > theCanvas.height) {
-             
-                shapes2.push(shapes[i])
+                var tempX = origXs[i];
+                var tempY = 350;
+                var tempRad = shapes[i].rad;
+                var tempColor = shapes[i].color;
+                var tempShape2 = { x: tempX, y: tempY, rad: tempRad, color: tempColor };
+                shapes2.push(tempShape2);
                
                 shapes[i].x = origXs[i];
                 shapes[i].y = 50;
-                drawScreen();
+               
+
+              
               
                 
             }
