@@ -227,6 +227,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PeriodicTableModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_s_Com_Result.cs">
+      <DependentUpon>PeriodicTableModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_s_Ele_Result.cs">
+      <DependentUpon>PeriodicTableModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -305,6 +311,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_PeriodicTablePartial.cshtml" />
+    <Content Include="Views\Home\Elements.cshtml" />
+    <Content Include="Views\Home\Compounds.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
