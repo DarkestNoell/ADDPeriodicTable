@@ -130,3 +130,4 @@ C:\Users\mbench\Documents\GitHub\ADDPeriodicTable\MessinWithCanvas2\MessinWithCa
 C:\Users\mbench\Documents\GitHub\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\System.Web.Mvc.xml
 C:\Users\mbench\Documents\GitHub\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\obj\Debug\MessinWithCanvas2.dll
 C:\Users\mbench\Documents\GitHub\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\obj\Debug\MessinWithCanvas2.pdb
+C:\Users\dleiter\Documents\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\obj\Debug\MessinWithCanvas2.csprojResolveAssemblyReference.cache
