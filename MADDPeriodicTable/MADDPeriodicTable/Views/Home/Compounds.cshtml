@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Compounds";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/CheatSheet.css" />
+
+<h2>Compounds</h2>
+
+<div>
+    <table id="t01">
+        <thead>
+        <th>ID</th>
+        <th>Compound Name</th>
+        <th>Compound Formula</th>
+        </thead>
+        @foreach (var item in ViewBag.userdetail)
+        {
+            <tr>
+                <td>
+                    @item.ID
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Formula
+                </td>
+            </tr>
+        }
+    </table>
+</div>

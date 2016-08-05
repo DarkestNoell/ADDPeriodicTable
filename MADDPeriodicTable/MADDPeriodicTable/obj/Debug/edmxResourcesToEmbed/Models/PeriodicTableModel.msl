@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PeriodicTableModelStoreContainer" CdmEntityContainer="PeriodicTableEntities1">
+    <EntitySetMapping Name="Compounds">
+      <EntityTypeMapping TypeName="PeriodicTableModel.Compound">
+        <MappingFragment StoreEntitySet="Compounds">
+          <ScalarProperty Name="Formula" ColumnName="Formula" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Elements">
+      <EntityTypeMapping TypeName="PeriodicTableModel.Element">
+        <MappingFragment StoreEntitySet="Elements">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Element_Abbreviation" ColumnName="Element Abbreviation" />
+          <ScalarProperty Name="Element_Name" ColumnName="Element Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_s_Ele" FunctionName="PeriodicTableModel.Store.sp_s_Ele">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PeriodicTableModel.sp_s_Ele_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Element_Abbreviation" ColumnName="Element Abbreviation" />
+          <ScalarProperty Name="Element_Name" ColumnName="Element Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_s_Com" FunctionName="PeriodicTableModel.Store.sp_s_Com">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="PeriodicTableModel.sp_s_Com_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Formula" ColumnName="Formula" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>
