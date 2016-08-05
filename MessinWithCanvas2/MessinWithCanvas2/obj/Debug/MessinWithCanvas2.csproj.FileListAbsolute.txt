@@ -130,9 +130,7 @@ C:\Users\mbench\Documents\GitHub\ADDPeriodicTable\MessinWithCanvas2\MessinWithCa
 C:\Users\mbench\Documents\GitHub\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\System.Web.Mvc.xml
 C:\Users\mbench\Documents\GitHub\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\obj\Debug\MessinWithCanvas2.dll
 C:\Users\mbench\Documents\GitHub\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\obj\Debug\MessinWithCanvas2.pdb
-<<<<<<< HEAD
 C:\Users\dleiter\Documents\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\obj\Debug\MessinWithCanvas2.csprojResolveAssemblyReference.cache
-=======
 C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\obj\Debug\MessinWithCanvas2.csprojResolveAssemblyReference.cache
 C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\roslyn\Microsoft.CSharp.Core.targets
 C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\roslyn\Microsoft.VisualBasic.Core.targets
@@ -166,4 +164,3 @@ C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\
 C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\System.Web.Mvc.xml
 C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\obj\Debug\MessinWithCanvas2.dll
 C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\obj\Debug\MessinWithCanvas2.pdb
->>>>>>> a066cc5991a0dbb9450b89e671ad8789a4cb0b4b
