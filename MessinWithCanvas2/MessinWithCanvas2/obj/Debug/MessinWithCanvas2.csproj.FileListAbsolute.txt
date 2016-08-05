@@ -130,4 +130,40 @@ C:\Users\mbench\Documents\GitHub\ADDPeriodicTable\MessinWithCanvas2\MessinWithCa
 C:\Users\mbench\Documents\GitHub\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\System.Web.Mvc.xml
 C:\Users\mbench\Documents\GitHub\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\obj\Debug\MessinWithCanvas2.dll
 C:\Users\mbench\Documents\GitHub\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\obj\Debug\MessinWithCanvas2.pdb
+<<<<<<< HEAD
 C:\Users\dleiter\Documents\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\obj\Debug\MessinWithCanvas2.csprojResolveAssemblyReference.cache
+=======
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\obj\Debug\MessinWithCanvas2.csprojResolveAssemblyReference.cache
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\roslyn\csc.exe
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\roslyn\vbc.exe
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\roslyn\VBCSCompiler.exe
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\MessinWithCanvas2.dll.config
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\MessinWithCanvas2.dll
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\MessinWithCanvas2.pdb
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\System.Web.Helpers.dll
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\System.Web.Mvc.dll
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\System.Web.Razor.dll
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\System.Web.Webpages.dll
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\System.Web.Webpages.Razor.dll
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\System.Web.Razor.xml
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\System.Web.Webpages.xml
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\System.Web.Webpages.Razor.xml
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\System.Web.Helpers.xml
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\System.Web.Mvc.xml
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\obj\Debug\MessinWithCanvas2.dll
+C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\obj\Debug\MessinWithCanvas2.pdb
+>>>>>>> a066cc5991a0dbb9450b89e671ad8789a4cb0b4b
