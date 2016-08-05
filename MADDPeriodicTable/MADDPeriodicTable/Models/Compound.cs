@@ -15,7 +15,7 @@ namespace MADDPeriodicTable.Models
     public partial class Compound
     {
         public int ID { get; set; }
-        public string Compound_Name { get; set; }
-        public string Compound_Formula { get; set; }
+        public string Name { get; set; }
+        public string Formula { get; set; }
     }
 }

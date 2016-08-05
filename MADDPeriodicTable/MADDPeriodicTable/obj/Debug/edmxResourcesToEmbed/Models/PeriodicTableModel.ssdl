@@ -5,8 +5,8 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Compound Name" Type="varchar(max)" />
-    <Property Name="Compound Formula" Type="varchar(max)" />
+    <Property Name="Name" Type="varchar(max)" />
+    <Property Name="Formula" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Elements">
     <Key>
@@ -16,6 +16,8 @@
     <Property Name="Element Abbreviation" Type="varchar(max)" Nullable="false" />
     <Property Name="Element Name" Type="varchar(max)" Nullable="false" />
   </EntityType>
+  <Function Name="sp_s_Com" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_s_Ele" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="PeriodicTableModelStoreContainer">
     <EntitySet Name="Compounds" EntityType="Self.Compounds" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Elements" EntityType="Self.Elements" Schema="dbo" store:Type="Tables" />
