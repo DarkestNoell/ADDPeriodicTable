@@ -13,10 +13,10 @@ namespace MADDPeriodicTable.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PeriodicTableEntities1 : DbContext
+    public partial class PeriodicTableEntities : DbContext
     {
-        public PeriodicTableEntities1()
-            : base("name=PeriodicTableEntities1")
+        public PeriodicTableEntities()
+            : base("name=PeriodicTableEntities")
         {
         }
     
@@ -25,7 +25,13 @@ namespace MADDPeriodicTable.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Compound> Compounds { get; set; }
         public virtual DbSet<Element> Elements { get; set; }
+        public virtual DbSet<UserProgress> UserProgresses { get; set; }
     }
 }

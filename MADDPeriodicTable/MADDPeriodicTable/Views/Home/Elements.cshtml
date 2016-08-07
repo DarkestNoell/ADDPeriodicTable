@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Elements";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/CheatSheet.css" />
+
+<h2>Elements</h2>
+<div>
+    <table id="t01">
+        <thead>
+            <th>ID</th>
+            <th>Element Name</th>
+            <th>Element Abbreviation</th>
+        </thead>
+        @foreach (var item in ViewBag.userdetails)
+        {
+            <tr>
+                <td>
+                    @item.ID
+                </td>
+                <td>
+                    @item.Element_Name
+                </td>
+                <td>
+                    @item.Element_Abbreviation
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
