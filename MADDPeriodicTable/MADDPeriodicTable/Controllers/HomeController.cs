@@ -17,7 +17,7 @@ namespace MADDPeriodicTable.Controllers
 
             //Compound selectedCompound = pte.Compounds.Where(compound => compound.ID == id).First();
             //Console.WriteLine(selectedCompound.Compound_Name);
-            return View(/*selectedCompound*/);
+            return View("Dragging"/*selectedCompound*/);
         }
         public ActionResult Elements()
         {

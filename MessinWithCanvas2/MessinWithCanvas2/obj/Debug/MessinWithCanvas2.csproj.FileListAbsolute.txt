@@ -164,3 +164,4 @@ C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\
 C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\bin\System.Web.Mvc.xml
 C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\obj\Debug\MessinWithCanvas2.dll
 C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\obj\Debug\MessinWithCanvas2.pdb
+C:\Users\David Leiter\Documents\ADDPeriodicTable\MessinWithCanvas2\MessinWithCanvas2\obj\Debug\MessinWithCanvas2.csprojResolveAssemblyReference.cache
