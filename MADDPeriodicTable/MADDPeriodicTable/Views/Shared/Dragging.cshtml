@@ -74,6 +74,8 @@ function canvasApp() {
     var shapes2;
     var origXs;
     var origYs;
+    var positionsX;
+    var positionsY;
     var dragIndex;
     var dragging;
     var mouseX;
@@ -88,6 +90,15 @@ function canvasApp() {
         elementPlace = canvasOne.width / 36;
         origXs = [];
         origYs = [];
+        positionsX = [];
+        positionsY = [];
+      
+        positionsX.push(50);
+        positionsY.push(250);
+        positionsX.push(100);
+        positionsY.push(300);
+        positionsX.push(150);
+        positionsY.push(350);
         shapes = [];
         shapes2 = [];
 
@@ -371,7 +382,27 @@ function canvasApp() {
             for (i = 0; i < shapes.length; i++) {
                 shapes[i].x = origXs[i];
                 shapes[i].y = origYs[i];
+               
+                
             }
+            for (i = 0; i < shapes.length; i++) {
+                if (shapes[i].y > theCanvas.height) {
+                    var tempX = positionsX[i];
+                    var tempY = positionsY[i];
+                    var tempRad = shapes[i].size;
+                    var tempColor = shapes[i].color;
+                    var tempShape2 = { x: tempX, y: tempY, size: tempRad, color: tempColor };
+                    shapes2.push(tempShape2);
+
+                }
+            }
+            for (i = 0; i < shapes2.length; i++) {
+            
+                shapes2[i].x = positionsX[i];
+                shapes2[i].y = positionsY[i];
+
+            }
+           
             drawScreen();
         
             window.removeEventListener("mousemove", mouseMoveListener, false);
@@ -384,15 +415,13 @@ function canvasApp() {
     function mouseMoveListener(evt) {
         for (i = 0; i < shapes.length; i++) {
             if (shapes[i].y > theCanvas.height) {
-                var tempX = origXs[i];
-                var tempY = 350;
+                var tempX = positionsX[i];
+                var tempY = positionsY[i];
                 var tempRad = shapes[i].size;
                 var tempColor = shapes[i].color;
                 var tempShape2 = { x: tempX, y: tempY, size: tempRad, color: tempColor };
                 shapes2.push(tempShape2);
                
-               // shapes[i].x = origXs[i];
-                //shapes[i].y = origYs[i];
             }
 
         }
@@ -453,11 +482,13 @@ function canvasApp() {
             //context2.arc(shapes2[i].x, shapes2[i].y - theCanvas2.height / 2, shapes2[i].rad, 0, 2 * Math.PI, false);
             //context2.closePath();
             //context2.fill();
-            context2.fillStyle = shapes[i].color;
+            context2.fillStyle = shapes2[i].color;
             context2.beginPath();
             context2.rect(shapes2[i].x, shapes2[i].y - theCanvas2.height / 2, shapes[i].size, shapes[i].size);
             context2.closePath();
             context2.fill();
+            context2.font = "30px Arial";
+            context2.strokeText("H", shapes2[i].x, shapes2[i].y - theCanvas2.height / 2 + elementWidth);
       
         }
     }
