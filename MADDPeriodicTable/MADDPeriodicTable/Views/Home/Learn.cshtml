@@ -1,0 +1,21 @@
+﻿@using MADDPeriodicTable.Models
+<!--Item 1 = UserProgress, Item 2 = Compound-->
+@model Tuple<UserProgress, Compound>
+@{
+    ViewBag.Title = "Learn";
+   // Layout = "~/Views/Shared/_PeriodicTablePartial.cshtml";
+}
+
+<u><h2 align="center">You gon Learn!</h2></u>
+<h3 align="center">You are currently level: @Model.Item1.CurrentLevel</h3>
+<h3 align="center">You currently have: @Model.Item1.CurrentPoints Point(s)!</h3>
+
+<h2>Spoiler Alert: @Model.Item2.Formula</h2>
+<h2>Solve this compound: @Model.Item2.Name</h2>
+<h2>This compound is difficulty level: @Model.Item2.CompoundDifficulty</h2>
+<h3>You will earn 10x the difficulty level towards points! Difficulty Level: @Model.Item2.CompoundDifficulty</h3>
+
+<form method="post" action="@Url.Content("~/Home/CheckAnswer")">
+    <input type="text" name="answerText" />
+    <input type="submit" value="Submit">
+</form>

@@ -12,11 +12,15 @@ namespace MADDPeriodicTable.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Compound
+    public partial class UserProgress
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Formula { get; set; }
-        public int CompoundDifficulty { get; set; }
+        public string Id { get; set; }
+        public int CurrentLevel { get; set; }
+        public int CurrentPoints { get; set; }
+        public int CompoundsCorrect { get; set; }
+        public int CompoundsInARow { get; set; }
+        public bool NoviceChemistBadge { get; set; }
+        public bool ChemistsExplosionBadge { get; set; }
+        public bool HotStreakBadge { get; set; }
     }
 }

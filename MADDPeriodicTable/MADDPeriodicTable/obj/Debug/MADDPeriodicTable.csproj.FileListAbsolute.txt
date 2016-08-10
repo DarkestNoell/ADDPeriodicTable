@@ -77,7 +77,6 @@ C:\Users\Austin Fouty\Desktop\mmmm\MADDPeriodicTable\MADDPeriodicTable\bin\Micro
 C:\Users\Austin Fouty\Desktop\mmmm\MADDPeriodicTable\MADDPeriodicTable\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Austin Fouty\Desktop\mmmm\MADDPeriodicTable\MADDPeriodicTable\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Austin Fouty\Desktop\mmmm\MADDPeriodicTable\MADDPeriodicTable\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Austin Fouty\Desktop\mmmm\MADDPeriodicTable\MADDPeriodicTable\obj\Debug\MADDPeriodicTable.csprojResolveAssemblyReference.cache
 C:\Users\Austin Fouty\Desktop\mmmm\MADDPeriodicTable\MADDPeriodicTable\obj\Debug\MADDPeriodicTable.dll
 C:\Users\Austin Fouty\Desktop\mmmm\MADDPeriodicTable\MADDPeriodicTable\obj\Debug\MADDPeriodicTable.pdb
 C:\Users\Domingos Fernandes\OneDrive\Documents\Dynamic Web Lab\ADDPeriodicTable\MADDPeriodicTable\MADDPeriodicTable\bin\ApplicationInsights.config
@@ -490,3 +489,4 @@ C:\Users\dleiter\Documents\ADDPeriodicTable\MADDPeriodicTable\MADDPeriodicTable\
 C:\Users\dleiter\Documents\ADDPeriodicTable\MADDPeriodicTable\MADDPeriodicTable\obj\Debug\MADDPeriodicTable.csprojResolveAssemblyReference.cache
 C:\Users\dleiter\Documents\ADDPeriodicTable\MADDPeriodicTable\MADDPeriodicTable\obj\Debug\MADDPeriodicTable.dll
 C:\Users\dleiter\Documents\ADDPeriodicTable\MADDPeriodicTable\MADDPeriodicTable\obj\Debug\MADDPeriodicTable.pdb
+C:\Users\Austin Fouty\Desktop\mmmm\MADDPeriodicTable\MADDPeriodicTable\obj\Debug\MADDPeriodicTable.csprojResolveAssemblyReference.cache
