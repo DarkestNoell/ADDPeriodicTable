@@ -325,3 +325,4 @@ C:\Users\mbench\Documents\GitHub\ADDPeriodicTable\MADDPeriodicTable\MADDPeriodic
 C:\Users\mbench\Documents\GitHub\ADDPeriodicTable\MADDPeriodicTable\MADDPeriodicTable\obj\Debug\MADDPeriodicTable.csprojResolveAssemblyReference.cache
 C:\Users\mbench\Documents\GitHub\ADDPeriodicTable\MADDPeriodicTable\MADDPeriodicTable\obj\Debug\MADDPeriodicTable.dll
 C:\Users\mbench\Documents\GitHub\ADDPeriodicTable\MADDPeriodicTable\MADDPeriodicTable\obj\Debug\MADDPeriodicTable.pdb
+C:\Users\Austin Fouty\Desktop\mmmm\MADDPeriodicTable\MADDPeriodicTable\obj\Debug\MADDPeriodicTable.csprojResolveAssemblyReference.cache
