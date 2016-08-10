@@ -85,16 +85,17 @@ namespace MADDPeriodicTable.Controllers
         }
         public ActionResult Elements()
         {
-            //PeriodicTableEntities  pte = new PeriodicTableEntities();
-            //var data = pte.sp_s_Ele().ToList();
-            //ViewBag.userdetails = data;
+            PeriodicTableEntities pte = new PeriodicTableEntities();
+            var data = pte.sp_s_Ele().ToList();
+            ViewBag.userdetails = data;
             return View();
         }
+
         public ActionResult Compounds()
         {
-            //PeriodicTableEntities pte = new PeriodicTableEntities();
-            //var data = pte.sp_s_Com().ToList();
-            //ViewBag.userdetail = data;
+            PeriodicTableEntities pte = new PeriodicTableEntities();
+            var data = pte.sp_s_Com().ToList();
+            ViewBag.userdetail = data;
             return View();
         }
     }

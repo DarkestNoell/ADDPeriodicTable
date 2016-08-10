@@ -137,5 +137,17 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <FunctionImport Name="sp_s_Com" ReturnType="Collection(PeriodicTableModel.sp_s_Com_Result)" />
+    <FunctionImport Name="sp_s_Ele" ReturnType="Collection(PeriodicTableModel.sp_s_Ele_Result)" />
   </EntityContainer>
+  <ComplexType Name="sp_s_Com_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" />
+    <Property Type="String" Name="Formula" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_s_Ele_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Element_Abbreviation" Nullable="false" />
+    <Property Type="String" Name="Element_Name" Nullable="false" />
+  </ComplexType>
 </Schema>

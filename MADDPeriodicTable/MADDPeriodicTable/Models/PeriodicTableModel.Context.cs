@@ -12,6 +12,8 @@ namespace MADDPeriodicTable.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class PeriodicTableEntities : DbContext
     {
@@ -33,5 +35,15 @@ namespace MADDPeriodicTable.Models
         public virtual DbSet<Compound> Compounds { get; set; }
         public virtual DbSet<Element> Elements { get; set; }
         public virtual DbSet<UserProgress> UserProgresses { get; set; }
+    
+        public virtual ObjectResult<sp_s_Com_Result> sp_s_Com()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_s_Com_Result>("sp_s_Com");
+        }
+    
+        public virtual ObjectResult<sp_s_Ele_Result> sp_s_Ele()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_s_Ele_Result>("sp_s_Ele");
+        }
     }
 }

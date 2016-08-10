@@ -242,6 +242,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PeriodicTableModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_s_Com_Result.cs">
+      <DependentUpon>PeriodicTableModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_s_Ele_Result.cs">
+      <DependentUpon>PeriodicTableModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserProgress.cs">
       <DependentUpon>PeriodicTableModel.tt</DependentUpon>
     </Compile>

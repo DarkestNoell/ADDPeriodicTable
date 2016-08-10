@@ -147,6 +147,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_s_Com" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_s_Ele" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="PeriodicTableModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -316,7 +318,19 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <FunctionImport Name="sp_s_Com" ReturnType="Collection(PeriodicTableModel.sp_s_Com_Result)" />
+          <FunctionImport Name="sp_s_Ele" ReturnType="Collection(PeriodicTableModel.sp_s_Ele_Result)" />
         </EntityContainer>
+        <ComplexType Name="sp_s_Com_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Formula" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_s_Ele_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Element_Abbreviation" Nullable="false" />
+          <Property Type="String" Name="Element_Name" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -414,6 +428,24 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_s_Com" FunctionName="PeriodicTableModel.Store.sp_s_Com">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PeriodicTableModel.sp_s_Com_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Formula" ColumnName="Formula" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_s_Ele" FunctionName="PeriodicTableModel.Store.sp_s_Ele">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PeriodicTableModel.sp_s_Ele_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Element_Abbreviation" ColumnName="Element Abbreviation" />
+                <ScalarProperty Name="Element_Name" ColumnName="Element Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
