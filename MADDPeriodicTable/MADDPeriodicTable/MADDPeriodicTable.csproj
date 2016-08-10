@@ -204,7 +204,22 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>PeriodicTableModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>PeriodicTableModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>PeriodicTableModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>PeriodicTableModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Compound.cs">
+      <DependentUpon>PeriodicTableModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>PeriodicTableModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Element.cs">
@@ -232,6 +247,9 @@
       <DependentUpon>PeriodicTableModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_s_Ele_Result.cs">
+      <DependentUpon>PeriodicTableModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserProgress.cs">
       <DependentUpon>PeriodicTableModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -317,6 +335,8 @@
     <Content Include="Views\Home\Compounds.cshtml" />
     <Content Include="Views\Shared\Dragging.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Learn.cshtml" />
+    <Content Include="Views\Home\PointsEarned.cshtml" />
     <Content Include="Views\Home\ContactUs.cshtml" />
     <Content Include="Views\Home\Sent.cshtml" />
   </ItemGroup>

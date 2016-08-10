@@ -83,11 +83,11 @@
     <Property Name="Id" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="CurrentLevel" Type="Int32" Nullable="false" />
     <Property Name="CurrentPoints" Type="Int32" Nullable="false" />
-    <Property Name="CompoundsCorrect" Type="Int32" Nullable="false" />
-    <Property Name="CompoundsInARow" Type="Int32" Nullable="false" />
-    <Property Name="NoviceChemistBadge" Type="Boolean" Nullable="false" />
-    <Property Name="ChemistsExplosionBadge" Type="Boolean" Nullable="false" />
-    <Property Name="HotStreakBadge" Type="Boolean" Nullable="false" />
+    <Property Name="CompoundsCorrect" Type="Int32" />
+    <Property Name="CompoundsInARow" Type="Int32" />
+    <Property Name="NoviceChemistBadge" Type="Boolean" />
+    <Property Name="ChemistsExplosionBadge" Type="Boolean" />
+    <Property Name="HotStreakBadge" Type="Boolean" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">

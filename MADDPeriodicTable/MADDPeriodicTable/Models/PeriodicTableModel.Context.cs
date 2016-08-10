@@ -15,10 +15,10 @@ namespace MADDPeriodicTable.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class PeriodicTableEntities1 : DbContext
+    public partial class PeriodicTableEntities : DbContext
     {
-        public PeriodicTableEntities1()
-            : base("name=PeriodicTableEntities1")
+        public PeriodicTableEntities()
+            : base("name=PeriodicTableEntities")
         {
         }
     
@@ -27,17 +27,23 @@ namespace MADDPeriodicTable.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Compound> Compounds { get; set; }
         public virtual DbSet<Element> Elements { get; set; }
-    
-        public virtual ObjectResult<sp_s_Ele_Result> sp_s_Ele()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_s_Ele_Result>("sp_s_Ele");
-        }
+        public virtual DbSet<UserProgress> UserProgresses { get; set; }
     
         public virtual ObjectResult<sp_s_Com_Result> sp_s_Com()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_s_Com_Result>("sp_s_Com");
+        }
+    
+        public virtual ObjectResult<sp_s_Ele_Result> sp_s_Ele()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_s_Ele_Result>("sp_s_Ele");
         }
     }
 }
