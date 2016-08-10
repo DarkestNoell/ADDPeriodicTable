@@ -332,13 +332,10 @@
     <Content Include="Views\Shared\_PeriodicTablePartial.cshtml" />
     <Content Include="Views\Home\Elements.cshtml" />
     <Content Include="Views\Home\Compounds.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Shared\Dragging.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-=======
     <Content Include="Views\Home\Learn.cshtml" />
     <Content Include="Views\Home\PointsEarned.cshtml" />
->>>>>>> 0096d5805244e83cc6c18bcfd0924f77d19c804f
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
