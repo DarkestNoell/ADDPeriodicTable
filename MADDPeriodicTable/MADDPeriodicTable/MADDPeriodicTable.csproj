@@ -210,6 +210,7 @@
     <Compile Include="Models\Element.cs">
       <DependentUpon>PeriodicTableModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EmailFormModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PeriodicTableModel.Context.cs">
@@ -316,6 +317,8 @@
     <Content Include="Views\Home\Compounds.cshtml" />
     <Content Include="Views\Shared\Dragging.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\Home\Sent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
