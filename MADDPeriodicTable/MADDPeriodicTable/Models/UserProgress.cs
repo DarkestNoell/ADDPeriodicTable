@@ -17,5 +17,10 @@ namespace MADDPeriodicTable.Models
         public string Id { get; set; }
         public int CurrentLevel { get; set; }
         public int CurrentPoints { get; set; }
+        public int CompoundsCorrect { get; set; }
+        public int CompoundsInARow { get; set; }
+        public bool NoviceChemistBadge { get; set; }
+        public bool ChemistsExplosionBadge { get; set; }
+        public bool HotStreakBadge { get; set; }
     }
 }

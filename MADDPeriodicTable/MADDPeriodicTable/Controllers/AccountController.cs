@@ -159,7 +159,12 @@ namespace MADDPeriodicTable.Controllers
                     {
                         Id = user.UserName,
                         CurrentLevel = 1,
-                        CurrentPoints = 1
+                        CurrentPoints = 1,
+                        CompoundsCorrect = 0,
+                        CompoundsInARow = 0,
+                        NoviceChemistBadge = false,
+                        ChemistsExplosionBadge = false,
+                        HotStreakBadge = false                       
                     }
                     );
 

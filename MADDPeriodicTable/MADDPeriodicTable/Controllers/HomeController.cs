@@ -25,17 +25,53 @@ namespace MADDPeriodicTable.Controllers
 
             if (pte.Compounds.Where(compound => compound.Formula.Equals(answerText)).FirstOrDefault() == null)
             {
+                //No Match, no Points
+                up = pte.UserProgresses.Where(progress => progress.Id.Equals(currUser)).FirstOrDefault();
+                up.CompoundsInARow = 0;
+                if(up.ChemistsExplosionBadge)
+                {
+                    ViewBag.ChemistsExplosionBadge = "";
+                }
+                if(up.ChemistsExplosionBadge == false)
+                {
+                    ViewBag.ChemistsExplosionBadge = "Congratulations! You have earned the Hot Streak badge!";
+                    up.ChemistsExplosionBadge = true;
+                }
+
                 Tuple<UserProgress, Compound> tuple = new Tuple<UserProgress, Compound>(up, CompoundToPick);
                 return View("Learn", tuple);
             }
 
              var matchesCompound = pte.Compounds.Where(compound => compound.Formula.Equals(answerText)).First();
 
-            if(matchesCompound.Formula.Equals(CompoundToPick.Formula))
-            {    
+            if (matchesCompound.Formula.Equals(CompoundToPick.Formula))
+            {
                 //Earn Points
                 up = pte.UserProgresses.Where(progress => progress.Id.Equals(currUser)).FirstOrDefault();
                 up.CurrentPoints += 10 * matchesCompound.CompoundDifficulty;
+                up.CompoundsInARow += 1;
+                up.CompoundsCorrect += 1;
+
+                if (up.HotStreakBadge)
+                {
+                    ViewBag.HotStreakBadge = "";
+                }else if(up.NoviceChemistBadge)
+                {
+                    ViewBag.NoviceChemistBadge = "";
+                }
+        
+
+                if(up.CompoundsCorrect >= 1 && up.NoviceChemistBadge == false)
+                {
+                    up.NoviceChemistBadge = true;
+                    ViewBag.NoviceChemistBadge = "Congratulations! You have earned the novice chemist badge!";
+                }
+
+                if(up.CompoundsInARow == 3 && up.HotStreakBadge == false)
+                {
+                    up.HotStreakBadge = true;
+                    ViewBag.HotStreakBadge = "Congratulations! You have earned the Hot Streak badge!";
+                }
 
                 //Level up?
                 int level = up.CurrentPoints / 100;
@@ -48,7 +84,6 @@ namespace MADDPeriodicTable.Controllers
                 up.CurrentLevel = level;
                 pte.SaveChanges();
             }
-
 
              return View("PointsEarned");
         }

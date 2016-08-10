@@ -90,6 +90,11 @@
           <Property Name="Id" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="CurrentLevel" Type="int" Nullable="false" />
           <Property Name="CurrentPoints" Type="int" Nullable="false" />
+          <Property Name="CompoundsCorrect" Type="int" Nullable="false" />
+          <Property Name="CompoundsInARow" Type="int" Nullable="false" />
+          <Property Name="NoviceChemistBadge" Type="bit" Nullable="false" />
+          <Property Name="ChemistsExplosionBadge" Type="bit" Nullable="false" />
+          <Property Name="HotStreakBadge" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -264,6 +269,11 @@
           <Property Name="Id" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CurrentLevel" Type="Int32" Nullable="false" />
           <Property Name="CurrentPoints" Type="Int32" Nullable="false" />
+          <Property Name="CompoundsCorrect" Type="Int32" Nullable="false" />
+          <Property Name="CompoundsInARow" Type="Int32" Nullable="false" />
+          <Property Name="NoviceChemistBadge" Type="Boolean" Nullable="false" />
+          <Property Name="ChemistsExplosionBadge" Type="Boolean" Nullable="false" />
+          <Property Name="HotStreakBadge" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -417,6 +427,11 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CurrentLevel" ColumnName="CurrentLevel" />
                 <ScalarProperty Name="CurrentPoints" ColumnName="CurrentPoints" />
+                <ScalarProperty Name="CompoundsCorrect" ColumnName="CompoundsCorrect" />
+                <ScalarProperty Name="CompoundsInARow" ColumnName="CompoundsInARow" />
+                <ScalarProperty Name="NoviceChemistBadge" ColumnName="NoviceChemistBadge" />
+                <ScalarProperty Name="ChemistsExplosionBadge" ColumnName="ChemistsExplosionBadge" />
+                <ScalarProperty Name="HotStreakBadge" ColumnName="HotStreakBadge" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
