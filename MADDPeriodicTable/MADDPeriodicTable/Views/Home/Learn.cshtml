@@ -3,19 +3,598 @@
 @model Tuple<UserProgress, Compound>
 @{
     ViewBag.Title = "Learn";
-    Layout = "~/Views/Shared/_Dragging";
+   // Layout = "~/Views/Shared/Dragging";
 }
+<!doctype html>
+<html lang="en">
 
-<u><h2 align="center">You gon Learn!</h2></u>
-<h3 align="center">You are currently level: @Model.Item1.CurrentLevel</h3>
-<h3 align="center">You currently have: @Model.Item1.CurrentPoints Point(s)!</h3>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.0.6-development-only.js"></script>
+    <script type="text/javascript">
 
-<h2>Spoiler Alert: @Model.Item2.Formula</h2>
-<h2>Solve this compound: @Model.Item2.Name</h2>
-<h2>This compound is difficulty level: @Model.Item2.CompoundDifficulty</h2>
-<h3>You will earn 10x the difficulty level towards points! Difficulty Level: @Model.Item2.CompoundDifficulty</h3>
+        window.addEventListener("load", windowLoadHandler, false);
+        var Debugger = function () { };
+        Debugger.log = function (message) {
+            try {
+                console.log(message);
+            }
+            catch (exception) {
+                return;
+            }
+        }
 
-<form method="post" action="@Url.Content("~/Home/CheckAnswer")">
-    <input type="text" name="answerText" />
-    <input type="submit" value="Submit">
-</form>
+        function windowLoadHandler() {
+            canvasApp();
+        }
+
+        function canvasSupport() {
+            return Modernizr.canvas;
+        }
+
+        function canvasApp() {
+            if (!canvasSupport()) {
+                return;
+            }
+
+            var theCanvas = document.getElementById("canvasOne");
+         
+            var context = theCanvas.getContext("2d");
+         
+         
+
+            init();
+
+            var numShapes;
+            var numShapes2;
+            var shapes;
+
+            var origXs;
+            var origYs;
+            var positionsX;
+            var positionsY;
+            var dragIndex;
+            var dragging;
+            var mouseX;
+            var mouseY;
+            var dragHoldX;
+            var dragHoldY;
+            var elementWidth;
+            var elementPlace;
+
+            function init() {
+                numShapes2 = 0;
+                elementWidth = canvasOne.width / 18;
+                elementPlace = canvasOne.width / 36;
+                origXs = [];
+                origYs = [];
+                positionsX = [];
+                positionsY = [];
+
+                positionsX.push(50);
+                positionsY.push(250);
+                positionsX.push(100);
+                positionsY.push(300);
+                positionsX.push(150);
+                positionsY.push(350);
+                positionsX.push(200);
+                positionsY.push(350);
+                positionsX.push(250);
+                positionsY.push(300);
+                positionsX.push(300);
+                positionsY.push(250);
+                shapes = [];
+                shapes2 = [];
+
+                origXs.push(0);
+                origYs.push(0);
+                origXs.push(elementWidth * 17);
+                origYs.push(0);
+
+                origXs.push(0);
+                origYs.push(elementWidth);
+                origXs.push(elementWidth);
+                origYs.push(elementWidth);
+                origXs.push(elementWidth * 12);
+                origYs.push(elementWidth);
+                origXs.push(elementWidth * 13);
+                origYs.push(elementWidth);
+                origXs.push(elementWidth * 14);
+                origYs.push(elementWidth);
+                origXs.push(elementWidth * 15);
+                origYs.push(elementWidth);
+                origXs.push(elementWidth * 16);
+                origYs.push(elementWidth);
+                origXs.push(elementWidth * 17);
+                origYs.push(elementWidth);
+
+                origXs.push(0);
+                origYs.push(elementWidth * 2);
+                origXs.push(elementWidth);
+                origYs.push(elementWidth * 2);
+                origXs.push(elementWidth * 12);
+                origYs.push(elementWidth * 2);
+                origXs.push(elementWidth * 13);
+                origYs.push(elementWidth * 2);
+                origXs.push(elementWidth * 14);
+                origYs.push(elementWidth * 2);
+                origXs.push(elementWidth * 15);
+                origYs.push(elementWidth * 2);
+                origXs.push(elementWidth * 16);
+                origYs.push(elementWidth * 2);
+                origXs.push(elementWidth * 17);
+                origYs.push(elementWidth * 2);
+
+                origXs.push(0);
+                origYs.push(elementWidth * 3);
+                origXs.push(elementWidth);
+                origYs.push(elementWidth * 3);
+                origXs.push(elementWidth * 2);
+                origYs.push(elementWidth * 3);
+                origXs.push(elementWidth * 3);
+                origYs.push(elementWidth * 3);
+                origXs.push(elementWidth * 4);
+                origYs.push(elementWidth * 3);
+                origXs.push(elementWidth * 5);
+                origYs.push(elementWidth * 3);
+                origXs.push(elementWidth * 6);
+                origYs.push(elementWidth * 3);
+                origXs.push(elementWidth * 7);
+                origYs.push(elementWidth * 3);
+                origXs.push(elementWidth * 8);
+                origYs.push(elementWidth * 3);
+                origXs.push(elementWidth * 9);
+                origYs.push(elementWidth * 3);
+                origXs.push(elementWidth * 10);
+                origYs.push(elementWidth * 3);
+                origXs.push(elementWidth * 11);
+                origYs.push(elementWidth * 3);
+                origXs.push(elementWidth * 12);
+                origYs.push(elementWidth * 3);
+                origXs.push(elementWidth * 13);
+                origYs.push(elementWidth * 3);
+                origXs.push(elementWidth * 14);
+                origYs.push(elementWidth * 3);
+                origXs.push(elementWidth * 15);
+                origYs.push(elementWidth * 3);
+                origXs.push(elementWidth * 16);
+                origYs.push(elementWidth * 3);
+                origXs.push(elementWidth * 17);
+                origYs.push(elementWidth * 3);
+
+                origXs.push(0);
+                origYs.push(elementWidth * 4);
+                origXs.push(elementWidth);
+                origYs.push(elementWidth * 4);
+                origXs.push(elementWidth * 2);
+                origYs.push(elementWidth * 4);
+                origXs.push(elementWidth * 3);
+                origYs.push(elementWidth * 4);
+                origXs.push(elementWidth * 4);
+                origYs.push(elementWidth * 4);
+                origXs.push(elementWidth * 5);
+                origYs.push(elementWidth * 4);
+                origXs.push(elementWidth * 6);
+                origYs.push(elementWidth * 4);
+                origXs.push(elementWidth * 7);
+                origYs.push(elementWidth * 4);
+                origXs.push(elementWidth * 8);
+                origYs.push(elementWidth * 4);
+                origXs.push(elementWidth * 9);
+                origYs.push(elementWidth * 4);
+                origXs.push(elementWidth * 10);
+                origYs.push(elementWidth * 4);
+                origXs.push(elementWidth * 11);
+                origYs.push(elementWidth * 4);
+                origXs.push(elementWidth * 12);
+                origYs.push(elementWidth * 4);
+                origXs.push(elementWidth * 13);
+                origYs.push(elementWidth * 4);
+                origXs.push(elementWidth * 14);
+                origYs.push(elementWidth * 4);
+                origXs.push(elementWidth * 15);
+                origYs.push(elementWidth * 4);
+                origXs.push(elementWidth * 16);
+                origYs.push(elementWidth * 4);
+                origXs.push(elementWidth * 17);
+                origYs.push(elementWidth * 4);
+
+                origXs.push(0);
+                origYs.push(elementWidth * 5);
+                origXs.push(elementWidth);
+                origYs.push(elementWidth * 5);
+
+                origXs.push(elementWidth * 2);
+                origYs.push(elementWidth * 5);
+
+
+                origXs.push(elementWidth * 3);
+                origYs.push(elementWidth * 7);
+                origXs.push(elementWidth * 4);
+                origYs.push(elementWidth * 7);
+                origXs.push(elementWidth * 5);
+                origYs.push(elementWidth * 7);
+                origXs.push(elementWidth * 6);
+                origYs.push(elementWidth * 7);
+                origXs.push(elementWidth * 7);
+                origYs.push(elementWidth * 7);
+                origXs.push(elementWidth * 8);
+                origYs.push(elementWidth * 7);
+                origXs.push(elementWidth * 9);
+                origYs.push(elementWidth * 7);
+                origXs.push(elementWidth * 10);
+                origYs.push(elementWidth * 7);
+                origXs.push(elementWidth * 11);
+                origYs.push(elementWidth * 7);
+                origXs.push(elementWidth * 12);
+                origYs.push(elementWidth * 7);
+                origXs.push(elementWidth * 13);
+                origYs.push(elementWidth * 7);
+                origXs.push(elementWidth * 14);
+                origYs.push(elementWidth * 7);
+                origXs.push(elementWidth * 15);
+                origYs.push(elementWidth * 7);
+                origXs.push(elementWidth * 16);
+                origYs.push(elementWidth * 7);
+
+
+                origXs.push(elementWidth * 3);
+                origYs.push(elementWidth * 5);
+                origXs.push(elementWidth * 4);
+                origYs.push(elementWidth * 5);
+                origXs.push(elementWidth * 5);
+                origYs.push(elementWidth * 5);
+                origXs.push(elementWidth * 6);
+                origYs.push(elementWidth * 5);
+                origXs.push(elementWidth * 7);
+                origYs.push(elementWidth * 5);
+                origXs.push(elementWidth * 8);
+                origYs.push(elementWidth * 5);
+                origXs.push(elementWidth * 9);
+                origYs.push(elementWidth * 5);
+                origXs.push(elementWidth * 10);
+                origYs.push(elementWidth * 5);
+                origXs.push(elementWidth * 11);
+                origYs.push(elementWidth * 5);
+                origXs.push(elementWidth * 12);
+                origYs.push(elementWidth * 5);
+                origXs.push(elementWidth * 13);
+                origYs.push(elementWidth * 5);
+                origXs.push(elementWidth * 14);
+                origYs.push(elementWidth * 5);
+                origXs.push(elementWidth * 15);
+                origYs.push(elementWidth * 5);
+                origXs.push(elementWidth * 16);
+                origYs.push(elementWidth * 5);
+                origXs.push(elementWidth * 17);
+                origYs.push(elementWidth * 5);
+
+                origXs.push(0);
+                origYs.push(elementWidth * 6);
+                origXs.push(elementWidth);
+                origYs.push(elementWidth * 6);
+                origXs.push(elementWidth * 2);
+                origYs.push(elementWidth * 6);
+
+
+                origXs.push(elementWidth * 3);
+                origYs.push(elementWidth * 8);
+                origXs.push(elementWidth * 4);
+                origYs.push(elementWidth * 8);
+                origXs.push(elementWidth * 5);
+                origYs.push(elementWidth * 8);
+                origXs.push(elementWidth * 6);
+                origYs.push(elementWidth * 8);
+                origXs.push(elementWidth * 7);
+                origYs.push(elementWidth * 8);
+                origXs.push(elementWidth * 8);
+                origYs.push(elementWidth * 8);
+                origXs.push(elementWidth * 9);
+                origYs.push(elementWidth * 8);
+                origXs.push(elementWidth * 10);
+                origYs.push(elementWidth * 8);
+                origXs.push(elementWidth * 11);
+                origYs.push(elementWidth * 8);
+                origXs.push(elementWidth * 12);
+                origYs.push(elementWidth * 8);
+                origXs.push(elementWidth * 13);
+                origYs.push(elementWidth * 8);
+                origXs.push(elementWidth * 14);
+                origYs.push(elementWidth * 8);
+                origXs.push(elementWidth * 15);
+                origYs.push(elementWidth * 8);
+                origXs.push(elementWidth * 16);
+                origYs.push(elementWidth * 8);
+
+
+                origXs.push(elementWidth * 3);
+                origYs.push(elementWidth * 6);
+                origXs.push(elementWidth * 4);
+                origYs.push(elementWidth * 6);
+                origXs.push(elementWidth * 5);
+                origYs.push(elementWidth * 6);
+                origXs.push(elementWidth * 6);
+                origYs.push(elementWidth * 6);
+                origXs.push(elementWidth * 7);
+                origYs.push(elementWidth * 6);
+                origXs.push(elementWidth * 8);
+                origYs.push(elementWidth * 6);
+                origXs.push(elementWidth * 9);
+                origYs.push(elementWidth * 6);
+                origXs.push(elementWidth * 10);
+                origYs.push(elementWidth * 6);
+                origXs.push(elementWidth * 11);
+                origYs.push(elementWidth * 6);
+                origXs.push(elementWidth * 12);
+                origYs.push(elementWidth * 6);
+                origXs.push(elementWidth * 13);
+                origYs.push(elementWidth * 6);
+                origXs.push(elementWidth * 14);
+                origYs.push(elementWidth * 6);
+                origXs.push(elementWidth * 15);
+                origYs.push(elementWidth * 6);
+                origXs.push(elementWidth * 16);
+                origYs.push(elementWidth * 6);
+                origXs.push(elementWidth * 17);
+                origYs.push(elementWidth * 6);
+
+                makeShapes();
+                drawScreen();
+                theCanvas.addEventListener("mousedown", mouseDownListener, false);
+
+            }
+            var alkali;
+            var alkaline;
+            var transition;
+            var basic;
+            var metalloid;
+            var nonmetal;
+            var halogen;
+            var nobelGas;
+            var lanthanide;
+            var actinide;
+            function makeShapes() {
+                alkali = [2, 10, 18, 36, 54, 86];
+                alkaline = [3, 11, 19, 37, 55, 87];
+                transition = [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 71,
+                72, 73, 74, 75, 76, 77, 78, 79, 103, 104, 105, 106, 107, 108, 109, 110, 111];
+                basic = [12, 30, 48, 49, 80, 81, 82, 112, 113, 114, 115];
+                metalloid = [4, 13, 31, 32, 50, 51, 83];
+                nonmetal = [0, 5, 6, 7, 14, 15, 33];
+                halogen = [8, 16, 34, 52, 84, 116];
+                nobelGas = [1, 9, 17, 35, 53, 85, 117];
+                lanthanide = [56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70];
+                actinide = [88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102];
+                var i;
+                var tempX;
+                var tempY;
+                var tempRad;
+                var tempR;
+                var tempG;
+                var tempB;
+                var tempColor;
+                for (i = 0; i < origXs.length; i++) {
+                    tempX = origXs[i];
+                    tempY = origYs[i];
+
+                    if (i == basic[0] ||
+                        i == basic[1] ||
+                        i == basic[2] ||
+                        i == basic[3] ||
+                        i == basic[4] ||
+                        i == basic[5] ||
+                        i == basic[6] ||
+                        i == basic[7] ||
+                        i == basic[8] ||
+                        i == basic[9] ||
+                        i == basic[10]
+                        ) {
+                        tempColor = "rgb(" + 255 + "," + 255 + "," + 0 + ")";
+                    } else if (i == alkali[0] ||
+                         i == alkali[1] ||
+                         i == alkali[2] ||
+                         i == alkali[3] ||
+                         i == alkali[4] ||
+                         i == alkali[5]
+                         ) {
+                        tempColor = "rgb(" + 255 + "," + 0 + "," + 0 + ")";
+                    } else if (i == alkaline[0] ||
+                         i == alkaline[1] ||
+                         i == alkaline[2] ||
+                         i == alkaline[3] ||
+                         i == alkaline[4] ||
+                         i == alkaline[5]
+                         ) {
+                        tempColor = "rgb(" + 255 + "," + 125 + "," + 0 + ")";
+                    } else if (i == metalloid[0] ||
+                         i == metalloid[1] ||
+                         i == metalloid[2] ||
+                         i == metalloid[3] ||
+                         i == metalloid[4] ||
+                         i == metalloid[5] ||
+                         i == metalloid[6]
+                         ) {
+                        tempColor = "rgb(" + 125 + "," + 255 + "," + 0 + ")";
+                    } else if (i == nonmetal[0] ||
+                         i == nonmetal[1] ||
+                         i == nonmetal[2] ||
+                         i == nonmetal[3] ||
+                         i == nonmetal[4] ||
+                         i == nonmetal[5] ||
+                         i == nonmetal[6]
+                         ) {
+                        tempColor = "rgb(" + 0 + "," + 255 + "," + 0 + ")";
+                    } else if (i == halogen[0] ||
+                         i == halogen[1] ||
+                         i == halogen[2] ||
+                         i == halogen[3] ||
+                         i == halogen[4] ||
+                         i == halogen[5]
+                         ) {
+                        tempColor = "rgb(" + 0 + "," + 255 + "," + 125 + ")";
+                    } else if (i == nobelGas[0] ||
+                         i == nobelGas[1] ||
+                         i == nobelGas[2] ||
+                         i == nobelGas[3] ||
+                         i == nobelGas[4] ||
+                         i == nobelGas[5] ||
+                         i == nobelGas[6]
+                         ) {
+                        tempColor = "rgb(" + 0 + "," + 255 + "," + 255 + ")";
+                    } else if (i == lanthanide[0] ||
+                         i == lanthanide[1] ||
+                         i == lanthanide[2] ||
+                         i == lanthanide[3] ||
+                         i == lanthanide[4] ||
+                         i == lanthanide[5] ||
+                         i == lanthanide[6] ||
+                         i == lanthanide[7] ||
+                         i == lanthanide[8] ||
+                         i == lanthanide[9] ||
+                         i == lanthanide[10] ||
+                        i == lanthanide[11] ||
+                        i == lanthanide[12] ||
+                        i == lanthanide[13] ||
+                        i == lanthanide[14]
+                         ) {
+                        tempColor = "rgb(" + 0 + "," + 125 + "," + 255 + ")";
+                    } else if (i == actinide[0] ||
+                         i == actinide[1] ||
+                         i == actinide[2] ||
+                         i == actinide[3] ||
+                         i == actinide[4] ||
+                         i == actinide[5] ||
+                         i == actinide[6] ||
+                         i == actinide[7] ||
+                         i == actinide[8] ||
+                         i == actinide[9] ||
+                         i == actinide[10] ||
+                         i == actinide[11] ||
+                         i == actinide[12] ||
+                         i == actinide[13] ||
+                         i == actinide[14]
+                         ) {
+                        tempColor = "rgb(" + 125 + "," + 0 + "," + 255 + ")";
+                    } else if (i == transition[0] ||
+                         i == transition[1] ||
+                         i == transition[2] ||
+                         i == transition[3] ||
+                         i == transition[4] ||
+                         i == transition[5] ||
+                         i == transition[6] ||
+                         i == transition[7] ||
+                         i == transition[8] ||
+                         i == transition[9] ||
+                         i == transition[10] ||
+                         i == transition[11] ||
+                         i == transition[12] ||
+                         i == transition[13] ||
+                         i == transition[14] ||
+                         i == transition[15] ||
+                         i == transition[16] ||
+                         i == transition[17] ||
+                         i == transition[18] ||
+                         i == transition[19] ||
+                         i == transition[20] ||
+                         i == transition[11] ||
+                         i == transition[12] ||
+                         i == transition[13] ||
+                         i == transition[14] ||
+                         i == transition[15] ||
+                         i == transition[16] ||
+                         i == transition[17] ||
+                         i == transition[18] ||
+                         i == transition[19] ||
+                         i == transition[20] ||
+                         i == transition[21] ||
+                         i == transition[22] ||
+                         i == transition[23] ||
+                         i == transition[24] ||
+                         i == transition[25] ||
+                         i == transition[26] ||
+                         i == transition[27] ||
+                         i == transition[28] ||
+                         i == transition[29] ||
+                         i == transition[30] ||
+                         i == transition[31] ||
+                         i == transition[32] ||
+                         i == transition[33] ||
+                         i == transition[34] ||
+                         i == transition[35] ||
+                         i == transition[36] ||
+                         i == transition[37]
+                         ) {
+                        tempColor = "rgb(" + 0 + "," + 0 + "," + 255 + ")";
+                    } else {
+                        tempColor = "rgb(" + 100 + "," + 0 + "," + 0 + ")";
+                    }
+
+
+                    tempShape = { x: tempX, y: tempY, size: elementWidth, color: tempColor };
+                    shapes.push(tempShape);
+                }
+            }
+            function containing(arr, num) {
+                for (j = 0; j < arr.length; i++) {
+                    if (arr[j] == num) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            function drawShapes() {
+                var i;
+                for (i = 0; i < shapes.length; i++) {
+                    context.fillStyle = shapes[i].color;
+                    context.beginPath();
+                    context.rect(shapes[i].x, shapes[i].y, shapes[i].size, shapes[i].size);
+                    context.closePath();
+                    context.fill();
+                    context.font = "30px Arial";
+                    context.strokeText("H", shapes[i].x, shapes[i].y + elementWidth);
+                }
+            }
+
+            function drawScreen() {
+                //bg
+                context.fillStyle = "#000000";
+                context.fillRect(0, 0, theCanvas.width, theCanvas.height);
+
+
+                drawShapes();
+
+            }
+        }
+
+
+
+
+    </script>
+
+
+
+
+</head>
+<body>
+    <div style="top: 50px; bottom: 50px; text-align:center">
+        <canvas id="canvasOne" height="400" width="750">
+            This text is displayed if your browser does not support HTML5 Canvas.
+        </canvas>
+
+    </div>
+    <u><h2 align="center">You gon Learn!</h2></u>
+    <h3 align="center">You are currently level: @Model.Item1.CurrentLevel</h3>
+    <h3 align="center">You currently have: @Model.Item1.CurrentPoints Point(s)!</h3>
+
+    <h2>Spoiler Alert: @Model.Item2.Formula</h2>
+    <h2>Solve this compound: @Model.Item2.Name</h2>
+    <h2>This compound is difficulty level: @Model.Item2.CompoundDifficulty</h2>
+    <h3>You will earn 10x the difficulty level towards points! Difficulty Level: @Model.Item2.CompoundDifficulty</h3>
+
+    <form method="post" action="@Url.Content("~/Home/CheckAnswer")">
+        <input type="text" name="answerText" />
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
