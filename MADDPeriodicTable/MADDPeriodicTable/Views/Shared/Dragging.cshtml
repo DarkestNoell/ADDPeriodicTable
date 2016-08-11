@@ -5,16 +5,16 @@
 
 @*<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Dragging</title>
-</head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>*@
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Dragging</title>
+    </head>
+    <body>
+        <div>
+        </div>
+    </body>
+    </html>*@
 
 <!doctype html>
 <html lang="en">
@@ -66,13 +66,17 @@ function canvasApp() {
     var theCanvas2 = document.getElementById("canvasTwo");
     var context = theCanvas.getContext("2d");
     var context2 = theCanvas2.getContext("2d");
+    var theCanvas3 = document.getElementById("canvasThree");
+    var context3 = theCanvas3.getContext("2d");
+    var theCanvas4 = document.getElementById("canvasFour");
+    var context4 = theCanvas4.getContext("2d");
 
     init();
 
     var numShapes;
     var numShapes2;
     var shapes;
-   
+
     var origXs;
     var origYs;
     var positionsX;
@@ -94,7 +98,7 @@ function canvasApp() {
         origYs = [];
         positionsX = [];
         positionsY = [];
-      
+
         positionsX.push(50);
         positionsY.push(250);
         positionsX.push(100);
@@ -224,7 +228,7 @@ function canvasApp() {
         origYs.push(elementWidth * 4);
 
         origXs.push(0);
-        origYs.push(elementWidth * 5); 
+        origYs.push(elementWidth * 5);
         origXs.push(elementWidth);
         origYs.push(elementWidth * 5);
 
@@ -275,7 +279,7 @@ function canvasApp() {
         origXs.push(elementWidth * 8);
         origYs.push(elementWidth * 5);
         origXs.push(elementWidth * 9);
-        origYs.push(elementWidth * 5); 
+        origYs.push(elementWidth * 5);
         origXs.push(elementWidth * 10);
         origYs.push(elementWidth * 5);
         origXs.push(elementWidth * 11);
@@ -365,7 +369,7 @@ function canvasApp() {
         makeShapes();
         drawScreen();
         theCanvas.addEventListener("mousedown", mouseDownListener, false);
-      
+
     }
     var alkali;
     var alkaline;
@@ -445,7 +449,7 @@ function canvasApp() {
                  i == nonmetal[3] ||
                  i == nonmetal[4] ||
                  i == nonmetal[5] ||
-                 i == nonmetal[6] 
+                 i == nonmetal[6]
                  ) {
                 tempColor = "rgb(" + 0 + "," + 255 + "," + 0 + ")";
             } else if (i == halogen[0] ||
@@ -552,8 +556,8 @@ function canvasApp() {
             } else {
                 tempColor = "rgb(" + 100 + "," + 0 + "," + 0 + ")";
             }
-            
-            
+
+
             tempShape = { x: tempX, y: tempY, size: elementWidth, color: tempColor };
             shapes.push(tempShape);
         }
@@ -577,35 +581,35 @@ function canvasApp() {
         var bRect = theCanvas.getBoundingClientRect();
         mouseX = (evt.clientX - bRect.left) * (theCanvas.width / bRect.width);
         mouseY = (evt.clientY - bRect.top) * (theCanvas.height / bRect.height);
-       
+
 
 
         //find which shape was clicked
         for (i = 0; i < shapes.length; i++) {
             if (hitTest(shapes[i], mouseX, mouseY)) {
                 dragging = true;
-          
 
-       
+
+
                 if (i > highestIndex) {
                     //We will pay attention to the point on the object where the mouse is "holding" the object:
                     dragHoldX = mouseX - shapes[i].x;
                     dragHoldY = mouseY - shapes[i].y;
                     highestIndex = i;
                     dragIndex = i;
-                  
+
                 }
             }
         }
 
         if (dragging) {
-          
-               
+
+
             window.addEventListener("mousemove", mouseMoveListener, false);
         }
 
         theCanvas.removeEventListener("mousedown", mouseDownListener, false);
-       
+
         window.addEventListener("mouseup", mouseUpListener, false);
 
         //code below prevents the mouse down from having an effect on the main browser window:
@@ -619,38 +623,38 @@ function canvasApp() {
     }
 
     function mouseUpListener(evt) {
-       
+
         theCanvas.addEventListener("mousedown", mouseDownListener, false);
         window.removeEventListener("mouseup", mouseUpListener, false);
-    
+
         if (dragging) {
 
-          
+
             for (i = 0; i < shapes.length; i++) {
                 shapes[i].x = origXs[i];
                 shapes[i].y = origYs[i];
-    
+
             }
-           
+
           //  for (i = 0; i < shapes2.length; i++) {
 
                 shapes2[shapes2.length - 1].x = Math.random() * (theCanvas.height);
                 shapes2[shapes2.length - 1].y = Math.random() * (theCanvas.height);
           //  }
             drawScreen();
-           
-          
+
+
             dragging = false;
-           
-        
+
+
             window.removeEventListener("mousemove", mouseMoveListener, false);
-           
+
         }
         else {
-        
+
         }
-      
-       
+
+
     }
 
     function mouseMoveListener(evt) {
@@ -662,7 +666,7 @@ function canvasApp() {
                 var tempColor = shapes[i].color;
                 var tempShape2 = { x: tempX, y: tempY, size: tempRad, color: tempColor };
                 shapes2.push(tempShape2);
-               
+
             }
 
         }
@@ -688,15 +692,15 @@ function canvasApp() {
         shapes[dragIndex].y = posY;
         drawScreen();
 
-      
+
     }
 
     function hitTest(shape, mx, my) {
 
         var dx;
         var dy;
-        dx = mx - shape.x - 10;
-        dy = my - shape.y;
+        dx = mx - shape.x - shape.size;
+        dy = my - shape.y - shape.size / 2;
 
         //a "hit" will be registered if the distance away from the center is less than the radius of the circular object
         return (dx * dx + dy * dy < shape.size * shape.size);
@@ -718,15 +722,15 @@ function canvasApp() {
     function drawShapesTwo() {
         var i;
         for (i = 0; i < shapes2.length; i++) {
-            
-            context2.fillStyle = shapes2[i].color;
-            context2.beginPath();
-            context2.rect(shapes2[i].x, shapes2[i].y, shapes2[i].size, shapes2[i].size);
-            context2.closePath();
-            context2.fill();
-            context2.font = "30px Arial";
-            context2.strokeText("H", shapes2[i].x, shapes2[i].y + elementWidth);
-      
+
+            context3.fillStyle = shapes2[i].color;
+            context3.beginPath();
+            context3.rect(shapes2[i].x, shapes2[i].y, shapes2[i].size, shapes2[i].size);
+            context3.closePath();
+            context3.fill();
+            context3.font = "30px Arial";
+            context3.strokeText("H", shapes2[i].x, shapes2[i].y + elementWidth);
+
         }
     }
 
@@ -734,41 +738,48 @@ function canvasApp() {
         //bg
         context.fillStyle = "#000000";
         context.fillRect(0, 0, theCanvas.width, theCanvas.height);
+
+
         context2.fillStyle = "#000000";
         context2.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
+        context3.fillStyle = "#000000";
+        context3.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
+        context4.fillStyle = "#000000";
+        context4.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
 
         drawShapes();
         drawShapesTwo();
     }
 }
 
-        
-        
+
+
 
     </script>
 
 </head>
 
 <body>
-    <div style="top: 50px; text-align:center">
+    <div style="top: 50px; bottom: 50px; text-align:center">
         <canvas id="canvasOne" height="400" width="750">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
 
     </div>
+
     <div style="bottom: 50px; text-align:center">
-        <canvas id="canvasTwo" height="300" width="500">
+        <canvas id="canvasTwo" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
 
-    </div>
-    <div style="bottom: 50px; text-align:left">
-        <canvas id="canvasThree" height="300" width="500">
+        @*</div>*@
+        @*<div style="bottom: 50px; text-align:left">*@
+        <canvas id="canvasThree" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
-        </div>
-    <div style="bottom: 50px; text-align:right">
-        <canvas id="canvasFour" height="300" width="500">
+        @*</div>*@
+        @*<div style="bottom: 50px; text-align:right">*@
+        <canvas id="canvasFour" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
     </div>
