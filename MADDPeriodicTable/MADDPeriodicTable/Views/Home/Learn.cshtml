@@ -44,21 +44,9 @@
          
 
             init();
-
-            var numShapes;
-            var numShapes2;
             var shapes;
-
             var origXs;
             var origYs;
-            var positionsX;
-            var positionsY;
-            var dragIndex;
-            var dragging;
-            var mouseX;
-            var mouseY;
-            var dragHoldX;
-            var dragHoldY;
             var elementWidth;
             var elementPlace;
 
@@ -68,23 +56,8 @@
                 elementPlace = canvasOne.width / 36;
                 origXs = [];
                 origYs = [];
-                positionsX = [];
-                positionsY = [];
-
-                positionsX.push(50);
-                positionsY.push(250);
-                positionsX.push(100);
-                positionsY.push(300);
-                positionsX.push(150);
-                positionsY.push(350);
-                positionsX.push(200);
-                positionsY.push(350);
-                positionsX.push(250);
-                positionsY.push(300);
-                positionsX.push(300);
-                positionsY.push(250);
+             
                 shapes = [];
-                shapes2 = [];
 
                 origXs.push(0);
                 origYs.push(0);
@@ -340,7 +313,6 @@
 
                 makeShapes();
                 drawScreen();
-                theCanvas.addEventListener("mousedown", mouseDownListener, false);
 
             }
             var alkali;
@@ -565,15 +537,7 @@
 
             }
         }
-
-
-
-
     </script>
-
-
-
-
 </head>
 <body>
     <div style="top: 50px; bottom: 50px; text-align:center">
