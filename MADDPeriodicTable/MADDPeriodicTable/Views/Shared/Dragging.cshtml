@@ -3,19 +3,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<!DOCTYPE html>
-
-    <html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>Dragging</title>
-    </head>
-    <body>
-        <div>
-        </div>
-    </body>
-    </html>*@
-
 <!doctype html>
 <html lang="en">
 
@@ -29,15 +16,6 @@
 
     <script type="text/javascript">
 
-
-
-//Checking for browser compatibility is accomplished with the Modernizr JavaScript library.
-//The latest version of the library is available at www.modernizr.com.
-
-//The code below establishes a way to send debug messages to the browser JavaScript Console,
-//but in such a way as to ignore errors when the browser doesn't support the JavaScript Console.
-//To log a messages to the console within this code, insert into the code:
-//Debugger.log("my message");
 window.addEventListener("load", windowLoadHandler, false);
 var Debugger = function() { };
 Debugger.log = function(message) {
@@ -573,11 +551,7 @@ function canvasApp() {
     function mouseDownListener(evt) {
 
         var i;
-        //We are going to pay attention to the layering order of the objects so that if a mouse down occurs over more than object,
-        //only the topmost one will be dragged.
         var highestIndex = -1;
-
-        //getting mouse position correctly, being mindful of resizing that may have occured in the browser:
         var bRect = theCanvas.getBoundingClientRect();
         mouseX = (evt.clientX - bRect.left) * (theCanvas.width / bRect.width);
         mouseY = (evt.clientY - bRect.top) * (theCanvas.height / bRect.height);
@@ -636,11 +610,8 @@ function canvasApp() {
 
             }
 
-          //  for (i = 0; i < shapes2.length; i++) {
-
-                shapes2[shapes2.length - 1].x = Math.random() * (theCanvas.height);
-                shapes2[shapes2.length - 1].y = Math.random() * (theCanvas.height);
-          //  }
+            shapes2[shapes2.length - 1].x = Math.random() * (theCanvas2.height - shapes2[shapes2.length - 1].size);
+            shapes2[shapes2.length - 1].y = Math.random() * (theCanvas2.height - shapes2[shapes2.length - 1].size);
             drawScreen();
 
 
@@ -701,8 +672,6 @@ function canvasApp() {
         var dy;
         dx = mx - shape.x - shape.size;
         dy = my - shape.y - shape.size / 2;
-
-        //a "hit" will be registered if the distance away from the center is less than the radius of the circular object
         return (dx * dx + dy * dy < shape.size * shape.size);
     }
 
@@ -714,7 +683,6 @@ function canvasApp() {
             context.rect(shapes[i].x, shapes[i].y, shapes[i].size, shapes[i].size);
             context.closePath();
             context.fill();
-            //context.fillStyle = white;
             context.font = "30px Arial";
             context.strokeText("H", shapes[i].x, shapes[i].y + elementWidth);
         }
@@ -738,8 +706,6 @@ function canvasApp() {
         //bg
         context.fillStyle = "#000000";
         context.fillRect(0, 0, theCanvas.width, theCanvas.height);
-
-
         context2.fillStyle = "#000000";
         context2.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
         context3.fillStyle = "#000000";
