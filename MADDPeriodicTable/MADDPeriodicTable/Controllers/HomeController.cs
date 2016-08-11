@@ -140,6 +140,7 @@ namespace MADDPeriodicTable.Controllers
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ContactUs(EmailFormModel model)
