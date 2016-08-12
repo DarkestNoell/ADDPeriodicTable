@@ -129,12 +129,9 @@ namespace MADDPeriodicTable.Controllers
 
         public ActionResult Index()
         {
-            //Random randy = new Random();
-            //PeriodicTableEntities1 pte = new PeriodicTableEntities1();
-            //int id = randy.Next(39) + 1;
-
-            //Compound selectedCompound = pte.Compounds.Where(compound => compound.ID == id).First();
-            //Console.WriteLine(selectedCompound.Compound_Name);
+            PeriodicTableEntities pte = new PeriodicTableEntities();
+            var data = pte.sp_s_Ele().ToList();
+            ViewBag.userdetails = data;
             return View("Dragging"/*selectedCompound*/);
         }
         public ActionResult Elements()

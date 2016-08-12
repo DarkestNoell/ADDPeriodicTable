@@ -11,10 +11,10 @@
     <title>Dragging</title>
 
 
-    <script src="http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.0.6-development-only.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.0.6-development-only.js" ></script>
 
 
-    <script type="text/javascript">
+    <script type="text/javascript" @*onload="InitMyScript('@ViewBag.userdetails')"*@>
 
 window.addEventListener("load", windowLoadHandler, false);
 var Debugger = function() { };
@@ -39,6 +39,8 @@ function canvasApp() {
     if (!canvasSupport()) {
         return;
     }
+    var elementsInTrialCompound;
+    var elementTitle;
 
     var theCanvas = document.getElementById("canvasOne");
     var theCanvas2 = document.getElementById("canvasTwo");
@@ -69,6 +71,7 @@ function canvasApp() {
     var elementPlace;
 
     function init() {
+        elementsInTrialCompound = [];
         numShapes2 = 0;
         elementWidth = canvasOne.width / 18;
         elementPlace = canvasOne.width / 36;
@@ -534,8 +537,6 @@ function canvasApp() {
             } else {
                 tempColor = "rgb(" + 100 + "," + 0 + "," + 0 + ")";
             }
-
-
             tempShape = { x: tempX, y: tempY, size: elementWidth, color: tempColor };
             shapes.push(tempShape);
         }
@@ -620,6 +621,11 @@ function canvasApp() {
 
             window.removeEventListener("mousemove", mouseMoveListener, false);
 
+            elementsInTrialCompound.push(elementTitle[shapes2[shapes2.length - 1].elementID]);
+            for (i = 0; i < elementsInTrialCompound.length; i++) {
+                context.strokeText(elementsInTrialCompound[i], i * 30, 395);
+            }
+
         }
         else {
 
@@ -635,7 +641,7 @@ function canvasApp() {
                var tempY = shapes[i].y;
                 var tempRad = shapes[i].size;
                 var tempColor = shapes[i].color;
-                var tempShape2 = { x: tempX, y: tempY, size: tempRad, color: tempColor };
+                var tempShape2 = { x: tempX, y: tempY, size: tempRad, color: tempColor, elementID: i};
                 shapes2.push(tempShape2);
 
             }
@@ -673,9 +679,131 @@ function canvasApp() {
         dx = mx - shape.x - shape.size;
         dy = my - shape.y - shape.size / 2;
         return (dx * dx + dy * dy < shape.size * shape.size);
+        //return (mx  > shape.x);
     }
-
+    function createElementList() {
+        elementTitle = [];
+        elementTitle.push("H");
+        elementTitle.push("He");
+        elementTitle.push("Li");
+        elementTitle.push("Be");
+        elementTitle.push("B");
+        elementTitle.push("C");
+        elementTitle.push("N");
+        elementTitle.push("O");
+        elementTitle.push("F");
+        elementTitle.push("Ne");
+        elementTitle.push("Na");
+        elementTitle.push("Mg");
+        elementTitle.push("Al");
+        elementTitle.push("Si");
+        elementTitle.push("P");
+        elementTitle.push("S");
+        elementTitle.push("Cl");
+        elementTitle.push("Ar");
+        elementTitle.push("K");
+        elementTitle.push("Ca");
+        elementTitle.push("Sc");
+        elementTitle.push("Ti");
+        elementTitle.push("V");
+        elementTitle.push("Cr");
+        elementTitle.push("Mn");
+        elementTitle.push("Fe");
+        elementTitle.push("Co");
+        elementTitle.push("Ni");
+        elementTitle.push("Cu");
+        elementTitle.push("Zn");
+        elementTitle.push("Ga");
+        elementTitle.push("Ge");
+        elementTitle.push("As");
+        elementTitle.push("Se");
+        elementTitle.push("Br");
+        elementTitle.push("Kr");
+        elementTitle.push("Rb");
+        elementTitle.push("Sr");
+        elementTitle.push("Y");
+        elementTitle.push("Zr");
+        elementTitle.push("Nb");
+        elementTitle.push("Mo");
+        elementTitle.push("Tc");
+        elementTitle.push("Ru");
+        elementTitle.push("Rh");
+        elementTitle.push("Pd");
+        elementTitle.push("Ag");
+        elementTitle.push("Cd");
+        elementTitle.push("In");
+        elementTitle.push("Sn");
+        elementTitle.push("Sb");
+        elementTitle.push("Te");
+        elementTitle.push("In");
+        elementTitle.push("Xe");
+        elementTitle.push("Cs");
+        elementTitle.push("Ba");
+        elementTitle.push("La");
+        elementTitle.push("Ce");
+        elementTitle.push("Pr");
+        elementTitle.push("Nd");
+        elementTitle.push("Pm");
+        elementTitle.push("Sm");
+        elementTitle.push("Eu");
+        elementTitle.push("Gd");
+        elementTitle.push("Tb");
+        elementTitle.push("Dy");
+        elementTitle.push("Ho");
+        elementTitle.push("Er");
+        elementTitle.push("Tm");
+        elementTitle.push("Yb");
+        elementTitle.push("Lu");
+        elementTitle.push("Hf");
+        elementTitle.push("Ta");
+        elementTitle.push("W");
+        elementTitle.push("Re");
+        elementTitle.push("Os");
+        elementTitle.push("Ir");
+        elementTitle.push("Pt");
+        elementTitle.push("Au");
+        elementTitle.push("Hg");
+        elementTitle.push("Ti");
+        elementTitle.push("Pb");
+        elementTitle.push("Bi");
+        elementTitle.push("Po");
+        elementTitle.push("At");
+        elementTitle.push("Rn");
+        elementTitle.push("Fr");
+        elementTitle.push("Ra");
+        elementTitle.push("Ac");
+        elementTitle.push("Th");
+        elementTitle.push("Pa");
+        elementTitle.push("U");
+        elementTitle.push("Np");
+        elementTitle.push("Pu");
+        elementTitle.push("Am");
+        elementTitle.push("Cm");
+        elementTitle.push("Bk");
+        elementTitle.push("Cf");
+        elementTitle.push("Es");
+        elementTitle.push("Fm");
+        elementTitle.push("Md");
+        elementTitle.push("No");
+        elementTitle.push("Lr");
+        elementTitle.push("Rf");
+        elementTitle.push("Db");
+        elementTitle.push("Sg");
+        elementTitle.push("Bh");
+        elementTitle.push("Hs");
+        elementTitle.push("Mt");
+        elementTitle.push("Ds");
+        elementTitle.push("Rg");
+        elementTitle.push("Uub");
+        elementTitle.push("Uut");
+        elementTitle.push("Uuq");
+        elementTitle.push("Uup");
+        elementTitle.push("Uuh");
+        elementTitle.push("Uus");
+        elementTitle.push("Uuo");
+    }
     function drawShapes() {
+        createElementList();
         var i;
         for (i = 0; i < shapes.length; i++) {
             context.fillStyle = shapes[i].color;
@@ -683,31 +811,32 @@ function canvasApp() {
             context.rect(shapes[i].x, shapes[i].y, shapes[i].size, shapes[i].size);
             context.closePath();
             context.fill();
-            context.font = "30px Arial";
-            context.strokeText("H", shapes[i].x, shapes[i].y + elementWidth);
+            context.stroke();
+            context.font = "18px Arial";
+            context.strokeText(elementTitle[i], shapes[i].x +5, shapes[i].y + elementWidth/2);
         }
     }
     function drawShapesTwo() {
         var i;
         for (i = 0; i < shapes2.length; i++) {
-
             context3.fillStyle = shapes2[i].color;
             context3.beginPath();
             context3.rect(shapes2[i].x, shapes2[i].y, shapes2[i].size, shapes2[i].size);
             context3.closePath();
             context3.fill();
-            context3.font = "30px Arial";
-            context3.strokeText("H", shapes2[i].x, shapes2[i].y + elementWidth);
-
+            context3.font = "18px Arial";
+            context3.strokeText(elementTitle[shapes2[i].elementID], shapes2[i].x + 5, shapes2[i].y + elementWidth / 2);
+            //elementsInTrialCompound.push(elementTitle[shapes2[i].elementID]+1);
         }
     }
 
     function drawScreen() {
         //bg
-        context.fillStyle = "#000000";
+        context.fillStyle = "#ffffff";
         context.fillRect(0, 0, theCanvas.width, theCanvas.height);
         context2.fillStyle = "#000000";
         context2.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
+        context.stroke();
         context3.fillStyle = "#000000";
         context3.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
         context4.fillStyle = "#000000";
@@ -749,7 +878,29 @@ function canvasApp() {
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
     </div>
-
+    @*<div>
+        <table id="t01">
+            <thead>
+            <th>ID</th>
+            <th>Element Name</th>
+            <th>Element Abbreviation</th>
+            </thead>
+            @foreach (var item in ViewBag.userdetails)
+            {
+                <tr>
+                    <td>
+                        @item.ID
+                    </td>
+                    <td>
+                        @item.Element_Name
+                    </td>
+                    <td>
+                        @item.Element_Abbreviation
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>*@
 
 </body>
 </html>
