@@ -7,6 +7,7 @@ using MADDPeriodicTable.Models;
 using System.Net.Mail;
 using System.Net;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace MADDPeriodicTable.Controllers
 {
@@ -17,17 +18,38 @@ namespace MADDPeriodicTable.Controllers
         [HttpPost]
         public ActionResult CheckAnswer(string answerText)
         {
+            answerText = Regex.Replace(answerText, @"\s+", " ");
             PeriodicTableEntities pte = new PeriodicTableEntities();
             String currUser = User.Identity.Name;
             UserProgress up = pte.UserProgresses.Where(progress => progress.Id.Equals(currUser)).FirstOrDefault();
+
+            if (up.HotStreakBadge)
+            {
+                ViewBag.HotStreakBadge = "";
+            }
+            else if (up.NoviceChemistBadge)
+            {
+                ViewBag.NoviceChemistBadge = "";
+            } else if (up.ChemistsExplosionBadge)
+            {
+                ViewBag.ChemistsExplosionBadge = "";
+            }
 
             if (string.IsNullOrEmpty(Request.Form["answerText"]))
             {
                 answerText = Request.Form["answerText"];
             }
-
-            if (pte.Compounds.Where(compound => compound.Formula.Equals(answerText)).FirstOrDefault() == null)
+            var matchesCompound = pte.Compounds.Where(compound => compound.Formula.Equals(answerText)).FirstOrDefault();
+            if (matchesCompound == null)
             {
+                ViewBag.ResultMessage = "Sorry! You answered incorrectly :'(";
+                Tuple<UserProgress, Compound> tuple = new Tuple<UserProgress, Compound>(up, CompoundToPick);
+                return View("PointsEarned", tuple);
+            }
+
+            if (!matchesCompound.Formula.Equals(answerText))
+            {
+                ViewBag.ResultMessage = "Sorry! You answered incorrectly :'(";
                 //No Match, no Points
                 up = pte.UserProgresses.Where(progress => progress.Id.Equals(currUser)).FirstOrDefault();
                 up.CompoundsInARow = 0;
@@ -35,33 +57,26 @@ namespace MADDPeriodicTable.Controllers
                 {
                     ViewBag.ChemistsExplosionBadge = "";
                 }
-                if(up.ChemistsExplosionBadge == false)
-                {
-                    ViewBag.ChemistsExplosionBadge = "Congratulations! You have earned the Hot Streak badge!";
-                    up.ChemistsExplosionBadge = true;
-                }
+               
 
                 Tuple<UserProgress, Compound> tuple = new Tuple<UserProgress, Compound>(up, CompoundToPick);
-                return View("Learn", tuple);
+                return View("PointsEarned", tuple);
             }
 
-             var matchesCompound = pte.Compounds.Where(compound => compound.Formula.Equals(answerText)).First();
+             var matchesCompound2 = pte.Compounds.Where(compound => compound.Formula.Equals(answerText)).FirstOrDefault();
 
-            if (matchesCompound.Formula.Equals(CompoundToPick.Formula))
+            
+
+            if (matchesCompound.Formula.Equals(answerText))
             {
                 //Earn Points
+                ViewBag.ResultMessage = "Congratulations! You have successfully earned: " + (CompoundToPick.CompoundDifficulty * 10) + " points!";
                 up = pte.UserProgresses.Where(progress => progress.Id.Equals(currUser)).FirstOrDefault();
                 up.CurrentPoints += 10 * matchesCompound.CompoundDifficulty;
                 up.CompoundsInARow += 1;
                 up.CompoundsCorrect += 1;
 
-                if (up.HotStreakBadge)
-                {
-                    ViewBag.HotStreakBadge = "";
-                }else if(up.NoviceChemistBadge)
-                {
-                    ViewBag.NoviceChemistBadge = "";
-                }
+                
         
 
                 if(up.CompoundsCorrect >= 1 && up.NoviceChemistBadge == false)
@@ -75,7 +90,7 @@ namespace MADDPeriodicTable.Controllers
                     up.HotStreakBadge = true;
                     ViewBag.HotStreakBadge = "Congratulations! You have earned the Hot Streak badge!";
                 }
-
+                
                 //Level up?
                 int level = up.CurrentPoints / 100;
                 if(level == 0)
@@ -98,11 +113,12 @@ namespace MADDPeriodicTable.Controllers
             UserProgress up = pte.UserProgresses.Where(progress => progress.Id.Equals(currUser)).First();
             int levelRange = up.CurrentLevel * 10;
             Random Randy = new Random();
-            int RandyNum = Randy.Next(levelRange + 1);
+            int RandyNum = Randy.Next(levelRange + 2);
 
             CompoundToPick = pte.Compounds.Where(Compound => Compound.ID == RandyNum).FirstOrDefault();
             while(CompoundToPick == null)
             {
+                RandyNum = Randy.Next(levelRange + 2);
                 CompoundToPick = pte.Compounds.Where(Compound => Compound.ID == RandyNum).FirstOrDefault();
             }
 
