@@ -610,9 +610,17 @@ function canvasApp() {
                 shapes[i].y = origYs[i];
 
             }
+            var bRect = theCanvas3.getBoundingClientRect();
+            mouseX = (evt.clientX - bRect.left) * (theCanvas3.width / bRect.width);
+            mouseY = (evt.clientY - bRect.top) * (theCanvas3.height / bRect.height);
+  
+            //shapes2[shapes2.length - 1].x = Math.random() * (theCanvas2.height - shapes2[shapes2.length - 1].size);
+            //shapes2[shapes2.length - 1].y = Math.random() * (theCanvas2.height - shapes2[shapes2.length - 1].size);
+            shapes2[shapes2.length - 1].x = mouseX;
+            shapes2[shapes2.length - 1].y = mouseY;
 
-            shapes2[shapes2.length - 1].x = Math.random() * (theCanvas2.height - shapes2[shapes2.length - 1].size);
-            shapes2[shapes2.length - 1].y = Math.random() * (theCanvas2.height - shapes2[shapes2.length - 1].size);
+       
+           
             drawScreen();
 
 
@@ -635,8 +643,9 @@ function canvasApp() {
     }
 
     function mouseMoveListener(evt) {
+    
         for (i = 0; i < shapes.length; i++) {
-            if (shapes[i].y > theCanvas.height) {
+            if (shapes[i].y > theCanvas.height ) {
                var tempX = shapes[i].x;
                var tempY = shapes[i].y;
                 var tempRad = shapes[i].size;
