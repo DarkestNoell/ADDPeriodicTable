@@ -48,7 +48,9 @@ function canvasApp() {
     var theCanvas2 = document.getElementById("canvasTwo");
     var context = theCanvas.getContext("2d");
     var context2 = theCanvas2.getContext("2d");
-  
+    var theCanvas3 = document.getElementById("canvasThree");
+    var context3 = theCanvas3.getContext("2d");
+
 
     init();
 
@@ -815,19 +817,19 @@ function canvasApp() {
             context.strokeText(elementTitle[i], shapes[i].x +5, shapes[i].y + elementWidth/2);
         }
     }
-    //function drawShapesTwo() {
-    //    var i;
-    //    for (i = 0; i < shapes2.length; i++) {
-    //        context3.fillStyle = shapes2[i].color;
-    //        context3.beginPath();
-    //        context3.rect(shapes2[i].x, shapes2[i].y, shapes2[i].size, shapes2[i].size);
-    //        context3.closePath();
-    //        context3.fill();
-    //        context3.font = "18px Arial";
-    //        context3.strokeText(elementTitle[shapes2[i].elementID], shapes2[i].x + 5, shapes2[i].y + elementWidth / 2);
-    //       // elementsInTrialCompound.push(elementTitle[shapes2[i].elementID]+1);
-    //    }
-    //}
+    function drawShapesTwo() {
+        var i;
+        for (i = 0; i < shapes2.length; i++) {
+            context3.fillStyle = shapes2[i].color;
+            context3.beginPath();
+            context3.rect(shapes2[i].x, shapes2[i].y, shapes2[i].size, shapes2[i].size);
+            context3.closePath();
+            context3.fill();
+            context3.font = "18px Arial";
+            context3.strokeText(elementTitle[shapes2[i].elementID], shapes2[i].x + 5, shapes2[i].y + elementWidth / 2);
+            //elementsInTrialCompound.push(elementTitle[shapes2[i].elementID]+1);
+        }
+    }
 
     function drawScreen() {
         //bg
@@ -835,8 +837,10 @@ function canvasApp() {
         context.fillRect(0, 0, theCanvas.width, theCanvas.height);
         context2.fillStyle = "#000000";
         context2.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
+        context.stroke();
+        context3.fillStyle = "#000000";
+        context3.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
      
-       
 
         drawShapes();
         drawShapesTwo();
@@ -858,11 +862,16 @@ function canvasApp() {
     </div>
 
     <div style="bottom: 50px; text-align:center">
-        <canvas id="canvasTwo" height="200" width="300">
+        <canvas id="canvasTwo" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
 
-       
+        @*</div>*@
+        @*<div style="bottom: 50px; text-align:left">*@
+        <canvas id="canvasThree" height="250" width="350">
+            This text is displayed if your browser does not support HTML5 Canvas.
+        </canvas>
+
     </div>
     <u><h2 align="center">You gon Learn!</h2></u>
     <h3 align="center">You are currently level: @Model.Item1.CurrentLevel</h3>

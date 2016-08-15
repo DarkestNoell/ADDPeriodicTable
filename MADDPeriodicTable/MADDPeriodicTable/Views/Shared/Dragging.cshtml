@@ -616,15 +616,12 @@ function canvasApp() {
             mouseX = (evt.clientX - bRect.left) * (theCanvas3.width / bRect.width);
             mouseY = (evt.clientY - bRect.top) * (theCanvas3.height / bRect.height);
             
-          
-           
-
-
             window.removeEventListener("mousemove", mouseMoveListener, false);
            
            
             dragging = false;
             if (mouseY < theCanvas.height / 12) {
+                
                 drawScreen();
                
             }
@@ -639,16 +636,8 @@ function canvasApp() {
                 DrawBottomCanvas();
                
                
-            }
-          
-
-           
-           
-
+            }       
         }
-      
-
-
     }
 
     function mouseMoveListener(evt) {
