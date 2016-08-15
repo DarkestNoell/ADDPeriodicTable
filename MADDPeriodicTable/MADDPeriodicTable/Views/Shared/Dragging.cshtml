@@ -350,6 +350,7 @@ function canvasApp() {
 
         makeShapes();
         drawScreen();
+        DrawBottomCanvas();
         theCanvas.addEventListener("mousedown", mouseDownListener, false);
 
     }
@@ -614,31 +615,38 @@ function canvasApp() {
             var bRect = theCanvas3.getBoundingClientRect();
             mouseX = (evt.clientX - bRect.left) * (theCanvas3.width / bRect.width);
             mouseY = (evt.clientY - bRect.top) * (theCanvas3.height / bRect.height);
-  
-            //shapes2[shapes2.length - 1].x = Math.random() * (theCanvas2.height - shapes2[shapes2.length - 1].size);
-            //shapes2[shapes2.length - 1].y = Math.random() * (theCanvas2.height - shapes2[shapes2.length - 1].size);
-            shapes2[shapes2.length - 1].x = mouseX;
-            shapes2[shapes2.length - 1].y = mouseY;
-
-       
+            
+          
            
-            drawScreen();
-
-
-            dragging = false;
 
 
             window.removeEventListener("mousemove", mouseMoveListener, false);
-
-            elementsInTrialCompound.push(elementTitle[shapes2[shapes2.length - 1].elementID]);
-            for (i = 0; i < elementsInTrialCompound.length; i++) {
-                context.strokeText(elementsInTrialCompound[i], i * 30, 395);
+           
+           
+            dragging = false;
+            if (mouseY < theCanvas.height / 12) {
+                drawScreen();
+               
             }
+            else {
+                shapes2[shapes2.length - 1].x = mouseX;
+                shapes2[shapes2.length - 1].y = mouseY;
+                drawScreen();
+                elementsInTrialCompound.push(elementTitle[shapes2[shapes2.length - 1].elementID]);
+                for (i = 0; i < elementsInTrialCompound.length; i++) {
+                    context.strokeText(elementsInTrialCompound[i], i * 30, 395);
+                }
+                DrawBottomCanvas();
+               
+               
+            }
+          
+
+           
+           
 
         }
-        else {
-
-        }
+      
 
 
     }
@@ -847,12 +855,16 @@ function canvasApp() {
         context2.fillStyle = "#000000";
         context2.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
         context.stroke();
-        context3.fillStyle = "#000000";
-        context3.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
+       
         context4.fillStyle = "#000000";
         context4.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
 
         drawShapes();
+        
+    }
+    function DrawBottomCanvas() {
+        context3.fillStyle = "#000000";
+        context3.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
         drawShapesTwo();
     }
 }
