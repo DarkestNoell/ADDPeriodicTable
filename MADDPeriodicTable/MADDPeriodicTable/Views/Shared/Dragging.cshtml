@@ -616,15 +616,12 @@ function canvasApp() {
             mouseX = (evt.clientX - bRect.left) * (theCanvas3.width / bRect.width);
             mouseY = (evt.clientY - bRect.top) * (theCanvas3.height / bRect.height);
             
-          
-           
-
-
             window.removeEventListener("mousemove", mouseMoveListener, false);
            
            
             dragging = false;
             if (mouseY < theCanvas.height / 12) {
+                
                 drawScreen();
                
             }
@@ -639,16 +636,8 @@ function canvasApp() {
                 DrawBottomCanvas();
                
                
-            }
-          
-
-           
-           
-
+            }       
         }
-      
-
-
     }
 
     function mouseMoveListener(evt) {
@@ -812,13 +801,13 @@ function canvasApp() {
         elementTitle.push("Mt");
         elementTitle.push("Ds");
         elementTitle.push("Rg");
-        elementTitle.push("Uub");
-        elementTitle.push("Uut");
-        elementTitle.push("Uuq");
-        elementTitle.push("Uup");
-        elementTitle.push("Uuh");
-        elementTitle.push("Uus");
-        elementTitle.push("Uuo");
+        elementTitle.push("Cn");
+        elementTitle.push("Nh");
+        elementTitle.push("Fl");
+        elementTitle.push("Mc");
+        elementTitle.push("Lv");
+        elementTitle.push("Ts");
+        elementTitle.push("Og");
     }
     function drawShapes() {
         createElementList();
