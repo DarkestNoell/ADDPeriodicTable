@@ -12,6 +12,7 @@
             <th>Atomic Number</th>
             <th>Element Name</th>
             <th>Element Abbreviation</th>
+            <th>Atomic Weight</th>
         </thead>
         @foreach (var item in ViewBag.userdetails)
         {
@@ -24,6 +25,9 @@
                 </td>
                 <td>
                     @item.Element_Abbreviation
+                </td>
+                <td>
+                    @item.Atomic_Weight
                 </td>
             </tr>
         }

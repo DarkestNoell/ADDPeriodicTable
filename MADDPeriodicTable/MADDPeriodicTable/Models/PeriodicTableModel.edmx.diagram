@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3de6e52995c0426a81cb3f04cbe16ded" Name="Diagram1">
+      <Diagram DiagramId="e93bccd0c9f444f9a47e86f7bc2c90b5" Name="Diagram1">
         <EntityTypeShape EntityType="PeriodicTableModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PeriodicTableModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PeriodicTableModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
