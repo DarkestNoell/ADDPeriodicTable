@@ -70,6 +70,8 @@ function canvasApp() {
     var dragHoldY;
     var elementWidth;
     var elementPlace;
+    var lineX;
+    var lineY;
 
     function init() {
         elementsInTrialCompound = [];
@@ -80,6 +82,10 @@ function canvasApp() {
         origYs = [];
         positionsX = [];
         positionsY = [];
+        lineX = [];
+        lineY = [];
+
+       
 
         positionsX.push(50);
         positionsY.push(250);
@@ -552,7 +558,7 @@ function canvasApp() {
         return false;
     }
     function mouseDownListener(evt) {
-
+        numShapes2 = 0;
         var i;
         var highestIndex = -1;
         var bRect = theCanvas.getBoundingClientRect();
@@ -600,10 +606,11 @@ function canvasApp() {
     }
 
     function mouseUpListener(evt) {
-
+       
         theCanvas.addEventListener("mousedown", mouseDownListener, false);
+       
         window.removeEventListener("mouseup", mouseUpListener, false);
-
+      
         if (dragging) {
 
 
@@ -620,21 +627,43 @@ function canvasApp() {
            
            
             dragging = false;
+          
             if (mouseY < theCanvas.height / 12) {
                 
                 drawScreen();
                
             }
             else {
-                shapes2[shapes2.length - 1].x = mouseX;
+                
+                shapes2[shapes2.length- 1].x = mouseX;
                 shapes2[shapes2.length - 1].y = mouseY;
+               
+               
                 drawScreen();
                 elementsInTrialCompound.push(elementTitle[shapes2[shapes2.length - 1].elementID]);
                 for (i = 0; i < elementsInTrialCompound.length; i++) {
                     context.strokeText(elementsInTrialCompound[i], i * 30, 395);
                 }
-                DrawBottomCanvas();
+                
                
+                DrawBottomCanvas();
+                context3.beginPath();
+                context3.moveTo(shapes2[0].x, shapes2[0].y);
+                for (i = 1; i < shapes2.length; i++) {
+                    context3.lineTo(shapes2[i].x, shapes2[i].y);
+                }
+                context3.strokeStyle = '#00FF00';
+                context3.stroke();
+               // if (shapes2.length >= 2) {
+                   
+                    //context3.beginPath();
+                    //context3.moveTo(shapes2[shapes2.length - 1].x - [shapes2.length - 1].length, shapes2[shapes2.length - 1].y - [shapes2.length - 1].length);
+                    //context3.lineTo(shapes2[shapes2.length - 2].x - [shapes2.length - 2].length, shapes2[shapes2.length - 2].y - [shapes2.length - 2].length);
+                    //context3.lineWidth = 2;
+                    //context3.strokeStyle = '#00FF00';
+                    //context3.stroke();
+              //  }
+          
                
             }       
         }
@@ -642,14 +671,23 @@ function canvasApp() {
 
     function mouseMoveListener(evt) {
     
+        var tempShape2;
         for (i = 0; i < shapes.length; i++) {
-            if (shapes[i].y > theCanvas.height ) {
+            if (shapes[i].y > theCanvas.height && numShapes2 == 0) {
+               
+              
                var tempX = shapes[i].x;
                var tempY = shapes[i].y;
                 var tempRad = shapes[i].size;
                 var tempColor = shapes[i].color;
-                var tempShape2 = { x: tempX, y: tempY, size: tempRad, color: tempColor, elementID: i};
+                tempShape2 = { x: tempX, y: tempY, size: tempRad, color: tempColor, elementID: i };
                 shapes2.push(tempShape2);
+                lineX.push(tempX);
+                lineY.push(tempY);
+                numShapes2 = 1;
+               
+
+               
 
             }
 
@@ -824,17 +862,25 @@ function canvasApp() {
         }
     }
     function drawShapesTwo() {
+       
         var i;
+       
+           
+        
         for (i = 0; i < shapes2.length; i++) {
             context3.fillStyle = shapes2[i].color;
             context3.beginPath();
             context3.rect(shapes2[i].x, shapes2[i].y, shapes2[i].size, shapes2[i].size);
             context3.closePath();
             context3.fill();
+           
             context3.font = "18px Arial";
             context3.strokeText(elementTitle[shapes2[i].elementID], shapes2[i].x + 5, shapes2[i].y + elementWidth / 2);
+          
             //elementsInTrialCompound.push(elementTitle[shapes2[i].elementID]+1);
         }
+       
+       
     }
 
     function drawScreen() {
@@ -843,7 +889,6 @@ function canvasApp() {
         context.fillRect(0, 0, theCanvas.width, theCanvas.height);
         context2.fillStyle = "#000000";
         context2.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
-        context.stroke();
        
         context4.fillStyle = "#000000";
         context4.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
@@ -852,14 +897,13 @@ function canvasApp() {
         
     }
     function DrawBottomCanvas() {
+       // context3.clearRect(0, 0, theCanvas3.width, theCanvas3.height);
         context3.fillStyle = "#000000";
         context3.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
         drawShapesTwo();
+   
     }
 }
-
-
-
 
     </script>
 
@@ -878,40 +922,15 @@ function canvasApp() {
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
 
-        @*</div>*@
-        @*<div style="bottom: 50px; text-align:left">*@
+       
         <canvas id="canvasThree" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
-        @*</div>*@
-        @*<div style="bottom: 50px; text-align:right">*@
+      
         <canvas id="canvasFour" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
     </div>
-    @*<div>
-        <table id="t01">
-            <thead>
-            <th>ID</th>
-            <th>Element Name</th>
-            <th>Element Abbreviation</th>
-            </thead>
-            @foreach (var item in ViewBag.userdetails)
-            {
-                <tr>
-                    <td>
-                        @item.ID
-                    </td>
-                    <td>
-                        @item.Element_Name
-                    </td>
-                    <td>
-                        @item.Element_Abbreviation
-                    </td>
-                </tr>
-            }
-        </table>
-    </div>*@
 
 </body>
 </html>
