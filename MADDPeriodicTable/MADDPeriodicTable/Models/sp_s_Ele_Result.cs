@@ -16,5 +16,6 @@ namespace MADDPeriodicTable.Models
         public int ID { get; set; }
         public string Element_Abbreviation { get; set; }
         public string Element_Name { get; set; }
+        public decimal Atomic_Weight { get; set; }
     }
 }
