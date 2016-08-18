@@ -165,8 +165,15 @@ namespace MADDPeriodicTable.Controllers
                         NoviceChemistBadge = false,
                         ChemistsExplosionBadge = false,
                         HotStreakBadge = false                       
-                    }
-                    );
+                    });
+
+                pte.UserProfileInfoes.Add(
+                    new UserProfileInfo()
+                    {
+                        Id = user.UserName,
+                        UserBio = "This user has not created a bio yet",
+                        UserProfileImage = "http://wowsk.org/images/khan_academy_leaf.jpg"
+                    });
 
                 pte.SaveChanges();
 

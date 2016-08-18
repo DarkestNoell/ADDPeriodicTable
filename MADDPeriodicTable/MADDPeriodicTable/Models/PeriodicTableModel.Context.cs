@@ -34,6 +34,7 @@ namespace MADDPeriodicTable.Models
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Compound> Compounds { get; set; }
         public virtual DbSet<Element> Elements { get; set; }
+        public virtual DbSet<UserProfileInfo> UserProfileInfoes { get; set; }
         public virtual DbSet<UserProgress> UserProgresses { get; set; }
     
         public virtual ObjectResult<sp_s_Com_Result> sp_s_Com()
