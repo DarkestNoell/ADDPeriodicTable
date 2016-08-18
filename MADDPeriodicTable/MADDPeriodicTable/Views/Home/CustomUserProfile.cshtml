@@ -1,0 +1,31 @@
+﻿@using MADDPeriodicTable.Models
+@model Tuple< UserProgress, UserProfileInfo>
+
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "User Profile";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CustomUserProfile</title>
+</head>
+<body>
+    <a href="~/Home/EditUserProfileInfo">Edit User Profile</a>
+    <div>
+        <h2>User Information: @Model.Item1.Id</h2>
+        <h3>Bio:</h3>
+        <h3>@Model.Item2.UserBio</h3>
+        <img src="@Model.Item2.UserProfileImage" />
+    </div>
+    <div>
+        <h2>Current Progress:</h2>
+        <h3>Current Level: @Model.Item1.CurrentLevel</h3>
+        <h3>Current Points: @Model.Item1.CurrentPoints</h3>
+    </div>
+</body>
+</html>
