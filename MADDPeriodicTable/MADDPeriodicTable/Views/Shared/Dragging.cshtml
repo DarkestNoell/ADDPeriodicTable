@@ -921,6 +921,15 @@ function canvasApp() {
 
 
     }
+    $(document).ready(function () {
+        $("#clear").click(function () {
+
+            shapes2 = [];
+
+            DrawBottomCanvas();
+
+        });
+    });
 
     function drawScreen() {
         //bg
@@ -942,7 +951,10 @@ function canvasApp() {
         drawShapesTwo();
 
     }
+  
+
 }
+
 
     </script>
 
@@ -1001,6 +1013,7 @@ function canvasApp() {
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
     </div>
+    <div style="text-align:center"><p><input type="submit" value="Clear" id="clear"/> </p></div>
 
 </body>
 </html>
@@ -1021,4 +1034,15 @@ function canvasApp() {
         color: #d15423;
         text-decoration: none;
     }
+    #clear{
+         background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 64px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    }
+
 </style>
