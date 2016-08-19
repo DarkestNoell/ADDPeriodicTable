@@ -3,7 +3,7 @@
 @model Tuple<UserProgress, Compound>
 @{
     ViewBag.Title = "Learn";
-   // Layout = "~/Views/Shared/Dragging";
+    // Layout = "~/Views/Shared/Dragging";
 }
 <!doctype html>
 <html lang="en">
@@ -14,6 +14,7 @@
 
 
     <script src="http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.0.6-development-only.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
 
 
     <script type="text/javascript" @*onload="InitMyScript('@ViewBag.userdetails')"*@>
@@ -349,6 +350,7 @@ function canvasApp() {
 
         makeShapes();
         drawScreen();
+        DrawBottomCanvas();
         theCanvas.addEventListener("mousedown", mouseDownListener, false);
 
     }
@@ -605,30 +607,53 @@ function canvasApp() {
         if (dragging) {
 
 
+
             for (i = 0; i < shapes.length; i++) {
                 shapes[i].x = origXs[i];
                 shapes[i].y = origYs[i];
 
             }
+            var bRect = theCanvas3.getBoundingClientRect();
+            mouseX = (evt.clientX - bRect.left) * (theCanvas3.width / bRect.width);
+            mouseY = (evt.clientY - bRect.top) * (theCanvas3.height / bRect.height);
 
-            shapes2[shapes2.length - 1].x = Math.random() * (theCanvas2.height - shapes2[shapes2.length - 1].size);
-            shapes2[shapes2.length - 1].y = Math.random() * (theCanvas2.height - shapes2[shapes2.length - 1].size);
-            drawScreen();
+            window.removeEventListener("mousemove", mouseMoveListener, false);
 
 
             dragging = false;
 
+            if (mouseY < theCanvas.height / 12) {
 
-            window.removeEventListener("mousemove", mouseMoveListener, false);
+                drawScreen();
 
-            elementsInTrialCompound.push(elementTitle[shapes2[shapes2.length - 1].elementID]);
-            for (i = 0; i < elementsInTrialCompound.length; i++) {
-                context.strokeText(elementsInTrialCompound[i], i * 30, 395);
             }
+            else {
 
-        }
-        else {
+                shapes2[shapes2.length - 1].x = mouseX;
+                shapes2[shapes2.length - 1].y = mouseY;
 
+
+                drawScreen();
+                elementsInTrialCompound.push(elementTitle[shapes2[shapes2.length - 1].elementID]);
+                for (i = 0; i < elementsInTrialCompound.length; i++) {
+                    context.strokeText(elementsInTrialCompound[i], i * 30, 395);
+                }
+
+
+                DrawBottomCanvas();
+
+
+
+
+
+                window.removeEventListener("mousemove", mouseMoveListener, false);
+
+                elementsInTrialCompound.push(elementTitle[shapes2[shapes2.length - 1].elementID]);
+                for (i = 0; i < elementsInTrialCompound.length; i++) {
+                    context.strokeText(elementsInTrialCompound[i], i * 30, 395);
+                }
+
+            }
         }
 
 
@@ -636,13 +661,17 @@ function canvasApp() {
 
     function mouseMoveListener(evt) {
         for (i = 0; i < shapes.length; i++) {
-            if (shapes[i].y > theCanvas.height) {
-               var tempX = shapes[i].x;
-               var tempY = shapes[i].y;
+            if (shapes[i].y > theCanvas.height && numShapes2 == 0) {
+
+                var tempX = shapes[i].x;
+                var tempY = shapes[i].y;
                 var tempRad = shapes[i].size;
                 var tempColor = shapes[i].color;
-                var tempShape2 = { x: tempX, y: tempY, size: tempRad, color: tempColor, elementID: i};
+                tempShape2 = { x: tempX, y: tempY, size: tempRad, color: tempColor, elementID: i };
                 shapes2.push(tempShape2);
+                lineX.push(tempX);
+                lineY.push(tempY);
+                numShapes2 = 1;
 
             }
 
@@ -837,16 +866,49 @@ function canvasApp() {
         context2.fillStyle = "#000000";
         context2.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
         context.stroke();
-        context3.fillStyle = "#000000";
-        context3.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
+
      
 
         drawShapes();
-        drawShapesTwo();
+    
     }
+    function DrawBottomCanvas() {
+
+        context3.fillStyle = "#000000";
+        context3.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
+        drawShapesTwo();
+
+    }
+    $(document).ready(function () {
+        $("#clear").click(function () {
+
+            shapes2 = [];
+            DrawBottomCanvas();
+
+        });
+        $("#check").click(function () {
+
+            $('.words').html("check function");
+
+        });
+        $("#hint").click(function () {
+
+            $('.words').html("hint function");
+
+        });
+        $("#solve").click(function () {
+
+            $('.words').html("solve function");
+
+        });
+        $("#next").click(function () {
+
+            $('.words').html("next function");
+          
+
+        });
+    });
 }
-
-
 
 
     </script>
@@ -864,14 +926,22 @@ function canvasApp() {
         <canvas id="canvasTwo" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
-
-        @*</div>*@
-        @*<div style="bottom: 50px; text-align:left">*@
         <canvas id="canvasThree" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
-
+     
+           
     </div>
+    <div style="text-align:center">
+
+        <input type="button" value="Clear" id="clear"/>
+        <input type="button" value="Check" id="check" />
+        <input type="button" value="Hint" id="hint"/>
+        <input type="button" value="Solve" id="solve"/>
+        <input type="button" value="Next"id="next" />
+    </div>
+    <h2 align="center"><u>You gon Learn!</u></h2>
+    <div class="words"></div>
     <u><h2 align="center">You gon Learn!</h2></u>
     <h3 align="center">You are currently level: @Model.Item1.CurrentLevel</h3>
     <h3 align="center">You currently have: <b>@Model.Item1.CurrentPoints Point(s)!</b></h3>

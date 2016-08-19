@@ -13,9 +13,10 @@
 
 
     <script src="http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.0.6-development-only.js" ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
 
-
-    <script type="text/javascript" @*onload="InitMyScript('@ViewBag.userdetails')"*@>
+    <script type="text/javascript">        @*onload="InitMyScript('@ViewBag.userdetails')"*@
+     
 
 window.addEventListener("load", windowLoadHandler, false);
 var Debugger = function() { };
@@ -631,6 +632,7 @@ function canvasApp() {
         theCanvas.removeEventListener("mousedown", mouseDownListener, false);
 
         window.addEventListener("mouseup", mouseUpListener, false);
+       
 
         //code below prevents the mouse down from having an effect on the main browser window:
         if (evt.preventDefault) {
@@ -691,15 +693,7 @@ function canvasApp() {
                 }
                 context3.strokeStyle = '#00FF00';
                 context3.stroke();
-               // if (shapes2.length >= 2) {
-                   
-                    //context3.beginPath();
-                    //context3.moveTo(shapes2[shapes2.length - 1].x - [shapes2.length - 1].length, shapes2[shapes2.length - 1].y - [shapes2.length - 1].length);
-                    //context3.lineTo(shapes2[shapes2.length - 2].x - [shapes2.length - 2].length, shapes2[shapes2.length - 2].y - [shapes2.length - 2].length);
-                    //context3.lineWidth = 2;
-                    //context3.strokeStyle = '#00FF00';
-                    //context3.stroke();
-              //  }
+             
           
                
             }       
@@ -712,7 +706,6 @@ function canvasApp() {
         for (i = 0; i < shapes.length; i++) {
             if (shapes[i].y > theCanvas.height && numShapes2 == 0) {
                
-              
                var tempX = shapes[i].x;
                var tempY = shapes[i].y;
                 var tempRad = shapes[i].size;
@@ -722,10 +715,7 @@ function canvasApp() {
                 lineX.push(tempX);
                 lineY.push(tempY);
                 numShapes2 = 1;
-               
-
-               
-
+           
             }
 
         }
@@ -900,10 +890,7 @@ function canvasApp() {
     }
     function drawShapesTwo() {
        
-        var i;
-       
-           
-        
+        var i;   
         for (i = 0; i < shapes2.length; i++) {
             context3.fillStyle = shapes2[i].color;
             context3.beginPath();
@@ -916,6 +903,7 @@ function canvasApp() {
           
             //elementsInTrialCompound.push(elementTitle[shapes2[i].elementID]+1);
         }
+
        
        
     }
@@ -930,16 +918,27 @@ function canvasApp() {
         context4.fillStyle = "#000000";
         context4.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
 
-        drawShapes();
-        
+        drawShapes();      
     }
     function DrawBottomCanvas() {
-       // context3.clearRect(0, 0, theCanvas3.width, theCanvas3.height);
+    
         context3.fillStyle = "#000000";
         context3.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
         drawShapesTwo();
    
     }
+    $(document).ready(function () {
+        $("input").click(function () {
+         
+            shapes2 = [];
+            DrawBottomCanvas();
+
+        });
+    });
+
+  
+
+ 
 }
 
     </script>
@@ -968,8 +967,11 @@ function canvasApp() {
         <canvas id="canvasOne" height="400" width="750">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
-
-    </div>
+     
+        <p align="center">
+            <input type="button" value="Click to clear canvas" />
+            </p>
+</div>
 
     <div style="bottom: 50px; text-align:center">
         <canvas id="canvasTwo" height="250" width="350">
@@ -978,13 +980,18 @@ function canvasApp() {
 
        
         <canvas id="canvasThree" height="250" width="350">
+
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
+       
       
         <canvas id="canvasFour" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
     </div>
+    
+    <div id="words"></div>
+
 
 </body>
 </html>
