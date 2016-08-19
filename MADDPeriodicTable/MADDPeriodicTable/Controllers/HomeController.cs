@@ -87,12 +87,14 @@ namespace MADDPeriodicTable.Controllers
                 {
                     up.NoviceChemistBadge = true;
                     ViewBag.NoviceChemistBadge = "Congratulations! You have earned the novice chemist badge!";
+                    ViewBag.image = "/Content/Images/chemistry.gif";
                 }
 
                 if(up.CompoundsInARow == 3 && up.HotStreakBadge == false)
                 {
                     up.HotStreakBadge = true;
                     ViewBag.HotStreakBadge = "Congratulations! You have earned the Hot Streak badge!";
+                    ViewBag.image = "/Content/Images/onfire.gif";
                 }
                 
                 //Level up?
