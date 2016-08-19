@@ -186,15 +186,37 @@ namespace MADDPeriodicTable.Controllers
                                where  Compound.ID != 0
                                select Compound;
 
+            var AllElements = from Element in pte.Elements
+                              where Element.ID != 0
+                              select Element;
+
+
+
             //List we pass into dragging, contains all compound formulas
-            List<String> CompoundFormulas = new List<String>();
+            List <String> CompoundFormulas = new List<String>();
+
+            foreach (Compound c in AllCompounds)
+            {
+                CompoundFormulas.Add(c.Formula);
+            }
+
             foreach(Compound c in AllCompounds)
             {
                 CompoundFormulas.Add(c.Formula);
             }
 
-           // String[] CompoundFormulaArray = CompoundFormulas.ToArray();
-            //data = data.ToArray();
+
+            String[] CompoundFormulaArray = CompoundFormulas.ToArray();
+
+            List<Element> Elements = new List<Element>();
+            Elements = AllElements.ToList();
+            Element[] ElementArray = Elements.ToArray();
+
+            //String[] - Contains all Compound Names
+            //Element - Contains all Elements in the database
+            Tuple<String[], Element[]> tuple = new Tuple<String[], Element[]>(CompoundFormulaArray, ElementArray);
+
+
             return View("Dragging", CompoundFormulas);
         }
         public ActionResult Elements()
