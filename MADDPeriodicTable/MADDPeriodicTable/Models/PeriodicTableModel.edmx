@@ -84,6 +84,14 @@
           <Property Name="Element Name" Type="varchar(max)" Nullable="false" />
           <Property Name="Atomic Weight" Type="decimal" Precision="18" Scale="6" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserProfileInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UserBio" Type="varchar(max)" />
+          <Property Name="UserProfileImage" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="UserProgress">
           <Key>
             <PropertyRef Name="Id" />
@@ -164,6 +172,7 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Compounds" EntityType="Self.Compounds" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Elements" EntityType="Self.Elements" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserProfileInfo" EntityType="Self.UserProfileInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProgress" EntityType="Self.UserProgress" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -264,6 +273,14 @@
           <Property Name="Element_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Atomic_Weight" Type="Decimal" Precision="18" Scale="6" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserProfileInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserBio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UserProfileImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="UserProgress">
           <Key>
             <PropertyRef Name="Id" />
@@ -317,6 +334,7 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
           <EntitySet Name="Compounds" EntityType="Self.Compound" />
           <EntitySet Name="Elements" EntityType="Self.Element" />
+          <EntitySet Name="UserProfileInfoes" EntityType="Self.UserProfileInfo" />
           <EntitySet Name="UserProgresses" EntityType="Self.UserProgress" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -422,6 +440,15 @@
                 <ScalarProperty Name="Element_Abbreviation" ColumnName="Element Abbreviation" />
                 <ScalarProperty Name="Element_Name" ColumnName="Element Name" />
                 <ScalarProperty Name="Atomic_Weight" ColumnName="Atomic Weight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserProfileInfoes">
+            <EntityTypeMapping TypeName="PeriodicTableModel.UserProfileInfo">
+              <MappingFragment StoreEntitySet="UserProfileInfo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserBio" ColumnName="UserBio" />
+                <ScalarProperty Name="UserProfileImage" ColumnName="UserProfileImage" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

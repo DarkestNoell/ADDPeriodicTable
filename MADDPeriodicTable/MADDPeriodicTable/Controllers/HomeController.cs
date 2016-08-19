@@ -131,12 +131,71 @@ namespace MADDPeriodicTable.Controllers
             return View(tuple);
         }
 
-        public ActionResult Index()
+        public ActionResult EditUserProfileInfo()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditUserProfile(UserProfileInfo upi)
         {
             PeriodicTableEntities pte = new PeriodicTableEntities();
-            var data = pte.sp_s_Ele().ToList();
-            ViewBag.userdetails = data;
-            return View("Dragging"/*selectedCompound*/);
+            String currUser = User.Identity.Name;
+            UserProfileInfo upiToEdit = pte.UserProfileInfoes.Where(progress => progress.Id.Equals(currUser)).First();
+            UserProgress up = pte.UserProgresses.Where(progress => progress.Id.Equals(currUser)).First();
+
+
+            if (upi.UserBio != null)
+            {
+                upiToEdit.UserBio = upi.UserBio;
+            }
+
+            if(upi.UserProfileImage != null)
+            {
+                upiToEdit.UserProfileImage = upi.UserProfileImage;
+            }
+
+            pte.SaveChanges();
+
+            Tuple<UserProgress, UserProfileInfo> tuple = new Tuple<UserProgress, UserProfileInfo>(up, upiToEdit);
+
+            return View("CustomUserProfile", tuple);
+        }
+
+
+        public ActionResult CustomUserProfile()
+        {
+            String currUser = User.Identity.Name;
+            PeriodicTableEntities pte = new PeriodicTableEntities();
+            UserProgress up = pte.UserProgresses.Where(progress => progress.Id.Equals(currUser)).First();
+            UserProfileInfo upi = pte.UserProfileInfoes.Where(profileInfo => profileInfo.Id.Equals(currUser)).First();
+
+            Tuple<UserProgress, UserProfileInfo> tuple = new Tuple<UserProgress, UserProfileInfo>(up, upi);
+            return View(tuple);
+        }
+
+        public ActionResult Index()
+        {
+            //var data = pte.sp_s_Com().ToList();
+            //ViewBag.details = data;
+
+
+            PeriodicTableEntities pte = new PeriodicTableEntities();
+
+            var AllCompounds = from Compound in pte.Compounds
+                               where  Compound.ID != 0
+                               select Compound;
+
+            //List we pass into dragging, contains all compound formulas
+            List<String> CompoundFormulas = new List<String>();
+            foreach(Compound c in AllCompounds)
+            {
+                CompoundFormulas.Add(c.Formula);
+            }
+
+           // String[] CompoundFormulaArray = CompoundFormulas.ToArray();
+            //data = data.ToArray();
+            return View("Dragging", CompoundFormulas);
         }
         public ActionResult Elements()
         {

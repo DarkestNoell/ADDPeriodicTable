@@ -1,4 +1,6 @@
-﻿
+﻿@*@model List<MADDPeriodicTable.Models.sp_s_Com_Result>*@
+@model List<String>
+
 @{
     ViewBag.Title = "MADD Periodic Table";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -36,6 +38,44 @@ function canvasSupport() {
 	return Modernizr.canvas;
 }
 
+
+
+function GetCompanies() {
+    
+    //"<div style='text-align:center; background-color:yellow; border:1px solid red; padding:3px; width:200px'>Please Wait...</div>");
+                                                                                                                        //$.ajax({
+                                                                                                                        //    type: "POST",
+                                                                                                                        //    url: "default",
+                                                                                                                        //    data: "{}",
+                                                                                                                        //    dataType: "json",
+                                                                                                                        //    contentType: "application/json; charset=utf-8",
+                                                                                                                        //    success: OnSuccess,
+                                                                                                                        //    error: OnError
+                                                                                                                        //});
+    }
+function OnSuccess(data) {
+    var TableContent = "<?php foreach ($item in ViewBag.userdetails){<tr><td>item.ID</td><td>item.Element_Name</td><td>item.Element_Abbreviation</td><td>item.Atomic_Weight</td></tr>}";
+    //for (var i = 0; i < data.d.length; i++) {
+    //    TableContent += "<tr>" +
+    //                            "<td>" + data.d[i].elementID + "</td>" +
+    //                        "</tr>";
+    //}
+    $("#UpdatePanel").html(TableContent);
+}
+function OnError(data) {
+    var TableContent = "<table border='0'>" +
+                            "<tr>" +
+                                "<td>Rank</td>" +
+                            "</tr>" +
+        "</table>";
+    $("#UpdatePanel").html(TableContent);
+}
+
+
+
+
+
+
 function canvasApp() {
     if (!canvasSupport()) {
         return;
@@ -70,6 +110,8 @@ function canvasApp() {
     var dragHoldY;
     var elementWidth;
     var elementPlace;
+    var lineX;
+    var lineY;
 
     function init() {
         elementsInTrialCompound = [];
@@ -80,6 +122,10 @@ function canvasApp() {
         origYs = [];
         positionsX = [];
         positionsY = [];
+        lineX = [];
+        lineY = [];
+
+
 
         positionsX.push(50);
         positionsY.push(250);
@@ -552,7 +598,7 @@ function canvasApp() {
         return false;
     }
     function mouseDownListener(evt) {
-
+        numShapes2 = 0;
         var i;
         var highestIndex = -1;
         var bRect = theCanvas.getBoundingClientRect();
@@ -602,6 +648,7 @@ function canvasApp() {
     function mouseUpListener(evt) {
 
         theCanvas.addEventListener("mousedown", mouseDownListener, false);
+
         window.removeEventListener("mouseup", mouseUpListener, false);
 
         if (dragging) {
@@ -615,41 +662,72 @@ function canvasApp() {
             var bRect = theCanvas3.getBoundingClientRect();
             mouseX = (evt.clientX - bRect.left) * (theCanvas3.width / bRect.width);
             mouseY = (evt.clientY - bRect.top) * (theCanvas3.height / bRect.height);
-            
+
             window.removeEventListener("mousemove", mouseMoveListener, false);
-           
-           
+
+
             dragging = false;
+
             if (mouseY < theCanvas.height / 12) {
-                
+
                 drawScreen();
-               
+
             }
             else {
-                shapes2[shapes2.length - 1].x = mouseX;
+
+                shapes2[shapes2.length- 1].x = mouseX;
                 shapes2[shapes2.length - 1].y = mouseY;
+
+
                 drawScreen();
                 elementsInTrialCompound.push(elementTitle[shapes2[shapes2.length - 1].elementID]);
                 for (i = 0; i < elementsInTrialCompound.length; i++) {
                     context.strokeText(elementsInTrialCompound[i], i * 30, 395);
                 }
+
+
                 DrawBottomCanvas();
-               
-               
-            }       
+                context3.beginPath();
+                context3.moveTo(shapes2[0].x, shapes2[0].y);
+                for (i = 1; i < shapes2.length; i++) {
+                    context3.lineTo(shapes2[i].x, shapes2[i].y);
+                }
+                context3.strokeStyle = '#00FF00';
+                context3.stroke();
+               // if (shapes2.length >= 2) {
+
+                    //context3.beginPath();
+                    //context3.moveTo(shapes2[shapes2.length - 1].x - [shapes2.length - 1].length, shapes2[shapes2.length - 1].y - [shapes2.length - 1].length);
+                    //context3.lineTo(shapes2[shapes2.length - 2].x - [shapes2.length - 2].length, shapes2[shapes2.length - 2].y - [shapes2.length - 2].length);
+                    //context3.lineWidth = 2;
+                    //context3.strokeStyle = '#00FF00';
+                    //context3.stroke();
+              //  }
+
+
+            }
         }
     }
 
     function mouseMoveListener(evt) {
-    
+
+        var tempShape2;
         for (i = 0; i < shapes.length; i++) {
-            if (shapes[i].y > theCanvas.height ) {
+            if (shapes[i].y > theCanvas.height && numShapes2 == 0) {
+
+
                var tempX = shapes[i].x;
                var tempY = shapes[i].y;
                 var tempRad = shapes[i].size;
                 var tempColor = shapes[i].color;
-                var tempShape2 = { x: tempX, y: tempY, size: tempRad, color: tempColor, elementID: i};
+                tempShape2 = { x: tempX, y: tempY, size: tempRad, color: tempColor, elementID: i };
                 shapes2.push(tempShape2);
+                lineX.push(tempX);
+                lineY.push(tempY);
+                numShapes2 = 1;
+
+
+
 
             }
 
@@ -824,17 +902,25 @@ function canvasApp() {
         }
     }
     function drawShapesTwo() {
+
         var i;
+
+
+
         for (i = 0; i < shapes2.length; i++) {
             context3.fillStyle = shapes2[i].color;
             context3.beginPath();
             context3.rect(shapes2[i].x, shapes2[i].y, shapes2[i].size, shapes2[i].size);
             context3.closePath();
             context3.fill();
+
             context3.font = "18px Arial";
             context3.strokeText(elementTitle[shapes2[i].elementID], shapes2[i].x + 5, shapes2[i].y + elementWidth / 2);
+
             //elementsInTrialCompound.push(elementTitle[shapes2[i].elementID]+1);
         }
+
+
     }
 
     function drawScreen() {
@@ -843,29 +929,58 @@ function canvasApp() {
         context.fillRect(0, 0, theCanvas.width, theCanvas.height);
         context2.fillStyle = "#000000";
         context2.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
-        context.stroke();
-       
+
         context4.fillStyle = "#000000";
         context4.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
 
         drawShapes();
-        
+
     }
     function DrawBottomCanvas() {
+       // context3.clearRect(0, 0, theCanvas3.width, theCanvas3.height);
         context3.fillStyle = "#000000";
         context3.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
         drawShapesTwo();
+
     }
 }
-
-
-
 
     </script>
 
 </head>
 
 <body>
+    <h3>Test Database Load</h3>
+    <input id="btnLoadData" type="button" value="Load Database Data" onclick="GetCompanies()" />
+    <div id="UpdatePanel">
+
+    </div>
+
+    <form action="/Home/CategoryChosen" method="get">
+
+        <fieldset>
+            Movie Type <select id="MovieType" name="MovieType">
+
+                <option value=""></option>
+
+                <option value="0">Action</option>
+
+                <option value="1">Drama</option>
+
+                <option selected="selected" value="2">Comedy</option>
+
+                <option value="3">Science Fiction</option>
+
+            </select>
+
+            <p><input type="submit" value="Submit" /> </p>
+
+        </fieldset>
+
+    </form>
+
+
+
     <div style="top: 50px; bottom: 50px; text-align:center">
         <canvas id="canvasOne" height="400" width="750">
             This text is displayed if your browser does not support HTML5 Canvas.
@@ -878,40 +993,15 @@ function canvasApp() {
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
 
-        @*</div>*@
-        @*<div style="bottom: 50px; text-align:left">*@
+       
         <canvas id="canvasThree" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
-        @*</div>*@
-        @*<div style="bottom: 50px; text-align:right">*@
+      
         <canvas id="canvasFour" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
     </div>
-    @*<div>
-        <table id="t01">
-            <thead>
-            <th>ID</th>
-            <th>Element Name</th>
-            <th>Element Abbreviation</th>
-            </thead>
-            @foreach (var item in ViewBag.userdetails)
-            {
-                <tr>
-                    <td>
-                        @item.ID
-                    </td>
-                    <td>
-                        @item.Element_Name
-                    </td>
-                    <td>
-                        @item.Element_Abbreviation
-                    </td>
-                </tr>
-            }
-        </table>
-    </div>*@
 
 </body>
 </html>
