@@ -43,13 +43,17 @@ namespace MADDPeriodicTable.Controllers
             if (matchesCompound == null)
             {
                 ViewBag.ResultMessage = "Sorry! You answered incorrectly :'(";
+                ViewBag.image = "/Content/Images/sadface.gif";
                 Tuple<UserProgress, Compound> tuple = new Tuple<UserProgress, Compound>(up, CompoundToPick);
                 return View("PointsEarned", tuple);
             }
 
             if (!matchesCompound.Formula.Equals(answerText))
             {
+
                 ViewBag.ResultMessage = "Sorry! You answered incorrectly :'(";
+
+
                 //No Match, no Points
                 up = pte.UserProgresses.Where(progress => progress.Id.Equals(currUser)).FirstOrDefault();
                 up.CompoundsInARow = 0;
@@ -58,7 +62,7 @@ namespace MADDPeriodicTable.Controllers
                     ViewBag.ChemistsExplosionBadge = "";
                 }
                
-
+                
                 Tuple<UserProgress, Compound> tuple = new Tuple<UserProgress, Compound>(up, CompoundToPick);
                 return View("PointsEarned", tuple);
             }
@@ -75,11 +79,11 @@ namespace MADDPeriodicTable.Controllers
                 up.CurrentPoints += 10 * matchesCompound.CompoundDifficulty;
                 up.CompoundsInARow += 1;
                 up.CompoundsCorrect += 1;
+                ViewBag.image = "/Content/Images/Congrats.gif";
 
-                
-        
 
-                if(up.CompoundsCorrect >= 1 && up.NoviceChemistBadge == false)
+
+                if (up.CompoundsCorrect >= 1 && up.NoviceChemistBadge == false)
                 {
                     up.NoviceChemistBadge = true;
                     ViewBag.NoviceChemistBadge = "Congratulations! You have earned the novice chemist badge!";
