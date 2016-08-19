@@ -70,7 +70,7 @@ function OnError(data) {
         "</table>";
     $("#UpdatePanel").html(TableContent);
 }
-
+var compounds;
 
 
 
@@ -97,7 +97,7 @@ function canvasApp() {
     var numShapes;
     var numShapes2;
     var shapes;
-
+  
     var origXs;
     var origYs;
     var positionsX;
@@ -124,6 +124,7 @@ function canvasApp() {
         positionsY = [];
         lineX = [];
         lineY = [];
+        compounds = @Model;
 
 
 
@@ -1015,6 +1016,7 @@ function canvasApp() {
         </canvas>
     </div>
     <div style="text-align:center"><p><input type="submit" value="Clear" id="clear"/> </p></div>
+    <div>@Model.ElementAt(0) </div>
 
 </body>
 </html>
