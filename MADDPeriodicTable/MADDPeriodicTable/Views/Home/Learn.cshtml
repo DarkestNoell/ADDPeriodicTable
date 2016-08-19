@@ -38,12 +38,13 @@ function canvasSupport() {
 	return Modernizr.canvas;
 }
 
+var elementsInTrialCompound;
+var elementTitle;
+
 function canvasApp() {
     if (!canvasSupport()) {
         return;
     }
-    var elementsInTrialCompound;
-    var elementTitle;
 
     var theCanvas = document.getElementById("canvasOne");
     var theCanvas2 = document.getElementById("canvasTwo");
@@ -400,7 +401,7 @@ function canvasApp() {
                 i == basic[9] ||
                 i == basic[10]
                 ) {
-                tempColor = "rgb(" + 255 + "," + 255 + "," + 0 + ")";
+                tempColor = "rgb(" + 100 + "," + 255 + "," + 0 + ")";
             } else if (i == alkali[0] ||
                  i == alkali[1] ||
                  i == alkali[2] ||
@@ -425,7 +426,7 @@ function canvasApp() {
                  i == metalloid[5] ||
                  i == metalloid[6]
                  ) {
-                tempColor = "rgb(" + 125 + "," + 255 + "," + 0 + ")";
+                tempColor = "rgb(" + 0 + "," + 225 + "," + 0 + ")";
             } else if (i == nonmetal[0] ||
                  i == nonmetal[1] ||
                  i == nonmetal[2] ||
@@ -434,7 +435,7 @@ function canvasApp() {
                  i == nonmetal[5] ||
                  i == nonmetal[6]
                  ) {
-                tempColor = "rgb(" + 0 + "," + 255 + "," + 0 + ")";
+                tempColor = "rgb(" + 0 + "," + 235 + "," + 175 + ")";
             } else if (i == halogen[0] ||
                  i == halogen[1] ||
                  i == halogen[2] ||
@@ -442,7 +443,7 @@ function canvasApp() {
                  i == halogen[4] ||
                  i == halogen[5]
                  ) {
-                tempColor = "rgb(" + 0 + "," + 255 + "," + 125 + ")";
+                tempColor = "rgb(" + 0 + "," + 255 + "," + 255 + ")";
             } else if (i == nobelGas[0] ||
                  i == nobelGas[1] ||
                  i == nobelGas[2] ||
@@ -451,7 +452,7 @@ function canvasApp() {
                  i == nobelGas[5] ||
                  i == nobelGas[6]
                  ) {
-                tempColor = "rgb(" + 0 + "," + 255 + "," + 255 + ")";
+                tempColor = "rgb(" + 0 + "," + 175 + "," + 255 + ")";
             } else if (i == lanthanide[0] ||
                  i == lanthanide[1] ||
                  i == lanthanide[2] ||
@@ -468,7 +469,7 @@ function canvasApp() {
                 i == lanthanide[13] ||
                 i == lanthanide[14]
                  ) {
-                tempColor = "rgb(" + 0 + "," + 125 + "," + 255 + ")";
+                tempColor = "rgb(" + 255 + "," + 100 + "," + 255 + ")";
             } else if (i == actinide[0] ||
                  i == actinide[1] ||
                  i == actinide[2] ||
@@ -485,7 +486,7 @@ function canvasApp() {
                  i == actinide[13] ||
                  i == actinide[14]
                  ) {
-                tempColor = "rgb(" + 125 + "," + 0 + "," + 255 + ")";
+                tempColor = "rgb(" + 125 + "," + 100 + "," + 255 + ")";
             } else if (i == transition[0] ||
                  i == transition[1] ||
                  i == transition[2] ||
@@ -535,7 +536,7 @@ function canvasApp() {
                  i == transition[36] ||
                  i == transition[37]
                  ) {
-                tempColor = "rgb(" + 0 + "," + 0 + "," + 255 + ")";
+                tempColor = "rgb(" + 255 + "," + 255 + "," + 0 + ")";
             } else {
                 tempColor = "rgb(" + 100 + "," + 0 + "," + 0 + ")";
             }
@@ -635,10 +636,11 @@ function canvasApp() {
 
                 drawScreen();
                 elementsInTrialCompound.push(elementTitle[shapes2[shapes2.length - 1].elementID]);
-                for (i = 0; i < elementsInTrialCompound.length; i++) {
-                    context.strokeText(elementsInTrialCompound[i], i * 30, 395);
-                }
-
+                //for (i = 0; i < elementsInTrialCompound.length; i++) {
+                //    context.strokeText(elementsInTrialCompound[i], i * 30, 395);
+                //}
+                var holdCompoundString = CreateCompound(elementsInTrialCompound);
+                context.fillText(holdCompoundString, 30, 395);
 
                 DrawBottomCanvas();
 
@@ -648,10 +650,10 @@ function canvasApp() {
 
                 window.removeEventListener("mousemove", mouseMoveListener, false);
 
-                elementsInTrialCompound.push(elementTitle[shapes2[shapes2.length - 1].elementID]);
-                for (i = 0; i < elementsInTrialCompound.length; i++) {
-                    context.strokeText(elementsInTrialCompound[i], i * 30, 395);
-                }
+                //elementsInTrialCompound.push(elementTitle[shapes2[shapes2.length - 1].elementID]);
+                //for (i = 0; i < elementsInTrialCompound.length; i++) {
+                //    context.strokeText(elementsInTrialCompound[i], i * 30, 395);
+                //}
 
             }
         }
@@ -870,7 +872,134 @@ function canvasApp() {
      
 
         drawShapes();
-    
+        drawKey();
+    }
+    function drawKey() {
+        //context.fillStyle = "rgb(" + 255 + "," + 0 + "," + 0 + ")";
+        //context.beginPath();
+        //context.rect(100,10,375,100);
+        //context.closePath();
+        //context.fill();
+        //context.stroke();
+
+        //context.fillStyle = "rgb(" + 255 + "," + 255 + "," + 0 + ")";
+        //context.beginPath();
+        //context.rect(105, 15, 365, 90);
+        //context.closePath();
+        //context.fill();
+        //context.stroke();
+
+
+
+
+        context.fillStyle = "rgb(" + 255 + "," + 0 + "," + 0 + ")";
+        context.beginPath();
+        context.rect(105, 15, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Alkali Metal", 130, 30);
+
+        context.fillStyle = "rgb(" + 255 + "," + 125 + "," + 0 + ")";
+        context.beginPath();
+        context.rect(105, 50, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Alkaline Earth", 130, 65);
+
+        context.fillStyle = "rgb(" + 255 + "," + 255 + "," + 0 + ")";
+        context.beginPath();
+        context.rect(105, 85, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Transition Metal", 130, 100);
+
+
+
+        context.fillStyle = "rgb(" + 100 + "," + 255 + "," + 0 + ")";
+        context.beginPath();
+        context.rect(225, 15, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Basic Metal", 255, 30);
+
+        context.fillStyle = "rgb(" + 0 + "," + 225 + "," + 0 + ")";
+        context.beginPath();
+        context.rect(225, 50, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Semi Metal", 255, 65);
+
+        context.fillStyle = "rgb(" + 0 + "," + 200 + "," + 175 + ")";
+        context.beginPath();
+        context.rect(225, 85, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Non Metal", 255, 100);
+
+
+
+        context.fillStyle = "rgb(" + 0 + "," + 255 + "," + 255 + ")";
+        context.beginPath();
+        context.rect(345, 15, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Halogen", 375, 30);
+
+        context.fillStyle = "rgb(" + 0 + "," + 175 + "," + 255 + ")";
+        context.beginPath();
+        context.rect(345, 50, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Noble Gas", 375, 65);
+
+        context.fillStyle = "rgb(" + 255 + "," + 100 + "," + 255 + ")";
+        context.beginPath();
+        context.rect(345, 85, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Lanthanides", 375, 100);
+
+
+
+        context.fillStyle = "rgb(" + 125 + "," + 100 + "," + 255 + ")";
+        context.beginPath();
+        context.rect(465, 15, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Actinides", 495, 30);
+        //context.stroke();
+        //context.font = "18px Arial";
+        //context.strokeText(elementTitle[i], shapes[i].x + 5, shapes[i].y + elementWidth / 2);
     }
     function DrawBottomCanvas() {
 
@@ -883,6 +1012,7 @@ function canvasApp() {
         $("#clear").click(function () {
 
             shapes2 = [];
+            elementsInTrialCompound = [];
             DrawBottomCanvas();
 
         });
@@ -890,6 +1020,7 @@ function canvasApp() {
 
             $('.words').html("check function");
 
+            document.getElementById("SubmissionBox").value = CreateCompound(elementsInTrialCompound);//holdInfo;
         });
         $("#hint").click(function () {
 
@@ -904,12 +1035,60 @@ function canvasApp() {
         $("#next").click(function () {
 
             $('.words').html("next function");
-          
 
         });
     });
 }
+function CreateCompound(value) {
+    //var holdKey = [];
+    //var holdValue = [];
+    var holdString = "";
+    var holdCompare = ["default"];
+    var holdElementCount = 1;
+    for (i = 0; i < value.length; i++) {
+        holdCompare += value[i];
+        holdString += value[i];
 
+        for (j = i+1; j < value.length; j++) {
+            if (value[i] == value[j]) {
+                holdElementCount++;
+                if (j == value.length - 1) {
+                    i = j;
+                }
+            } else {
+                i = j - 1;
+                j = value.length;
+            }
+        }
+        if (holdElementCount > 1) {
+            holdString += holdElementCount;
+            holdElementCount = 1;
+        }
+    }
+    //for (i = 0; i < value.length; i++) {
+    //    if(holdKey.length < 1){
+    //        holdKey.push(1);
+    //        holdValue.push(value[i]);
+    //    } else {
+    //        for (j = 0; j < holdValue.length; j++) {
+    //            if (holdValue[j] == value[i]) {
+    //                holdKey[j]++;
+    //                //return "SHIT";
+    //            } else {
+    //                holdKey.push(1);
+    //                holdValue.push(value[i]);
+    //            }
+    //        };
+    //    }
+    //}
+    //for (i = 0; i < holdKey.length; i++) {
+    //    holdString += holdValue[i];
+    //    if (holdKey[i] > 1) {
+    //        holdString += holdKey[i];
+    //    }
+    //}
+    return holdString;
+}
 
     </script>
 </head>
@@ -952,7 +1131,7 @@ function canvasApp() {
     <h3>You will earn 10x the difficulty level towards points! Difficulty Level: @Model.Item2.CompoundDifficulty</h3>
 
     <form method="post" action="@Url.Content("~/Home/CheckAnswer")">
-        <input type="text" name="answerText" />
+        <input type="text" name="answerText" id="SubmissionBox"/>
         <input type="submit" value="Submit">
     </form>
 </body>
