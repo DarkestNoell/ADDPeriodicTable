@@ -173,9 +173,9 @@ namespace MADDPeriodicTable.Controllers
         public ActionResult Index()
         {
             PeriodicTableEntities pte = new PeriodicTableEntities();
-            var data = pte.sp_s_Ele().ToList();
-            ViewBag.userdetails = data;
-            return View("Dragging"/*selectedCompound*/);
+            var data = pte.sp_s_Com().ToList();
+            ViewBag.details = data;
+            return View("Dragging", data/*selectedCompound*/);
         }
         public ActionResult Elements()
         {
