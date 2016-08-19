@@ -36,6 +36,43 @@ function canvasSupport() {
 	return Modernizr.canvas;
 }
 
+
+
+function GetCompanies() {
+    $("#UpdatePanel").html("<div style='text-align:center; background-color:yellow; border:1px solid red; padding:3px; width:200px'>Please Wait...</div>");
+    $.ajax({
+        //type: "POST",
+        //url: "Dragging",
+        //data: "{}",
+        //dataType: "json",
+        //contentType: "application/json; charset=utf-8",
+        success: OnSuccess,
+        error: OnError
+    });
+}
+function OnSuccess(data) {
+    var TableContent = "<?php foreach ($item in ViewBag.userdetails){<tr><td>item.ID</td><td>item.Element_Name</td><td>item.Element_Abbreviation</td><td>item.Atomic_Weight</td></tr>}";
+    //for (var i = 0; i < data.d.length; i++) {
+    //    TableContent += "<tr>" +
+    //                            "<td>" + data.d[i].elementID + "</td>" +
+    //                        "</tr>";
+    //}
+    $("#UpdatePanel").html(TableContent);
+}
+function OnError(data) {
+    var TableContent = "<table border='0'>" +
+                            "<tr>" +
+                                "<td>Rank</td>" +
+                            "</tr>" +
+        "</table>";
+    $("#UpdatePanel").html(TableContent);
+}
+
+
+
+
+
+
 function canvasApp() {
     if (!canvasSupport()) {
         return;
@@ -910,6 +947,23 @@ function canvasApp() {
 </head>
 
 <body>
+    <table>
+        <?php foreach($array as $key): ?>
+        <tr>
+            <td><?php echo $key; ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+    <h3>Test Database Load</h3>
+    <input id="btnLoadData" type="button" value="Load Database Data" onclick="GetCompanies()" />
+    <div id="UpdatePanel">
+
+    </div>
+
+
+
+
+
     <div style="top: 50px; bottom: 50px; text-align:center">
         <canvas id="canvasOne" height="400" width="750">
             This text is displayed if your browser does not support HTML5 Canvas.
