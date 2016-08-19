@@ -1,0 +1,38 @@
+﻿img {
+    height: 250px;
+    width: 250px;
+    background-color: powderblue;
+    border: 10PX dashed;
+    float:left;
+}
+
+#Progress
+{
+    border:7px solid;
+    background-color:aqua;
+    font-family:'Lucida Sans';
+    width: 22%;
+}
+
+#BadgesDisplay{
+    border: 7px ridge;
+    align-content:center;
+    background-position:center center;
+}
+
+table{
+    font-family:'Lucida Sans';
+}
+
+tr{
+    border:3px solid;
+}
+
+#Introduction{
+    border:3px groove;
+    font-family:'Lucida Sans';
+}
+
+#Profile{
+    border: 10px solid blue;
+}

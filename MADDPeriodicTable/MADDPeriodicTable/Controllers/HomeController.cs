@@ -172,10 +172,26 @@ namespace MADDPeriodicTable.Controllers
 
         public ActionResult Index()
         {
+            //var data = pte.sp_s_Com().ToList();
+            //ViewBag.details = data;
+
+
             PeriodicTableEntities pte = new PeriodicTableEntities();
-            var data = pte.sp_s_Com().ToList();
-            ViewBag.details = data;
-            return View("Dragging", data/*selectedCompound*/);
+
+            var AllCompounds = from Compound in pte.Compounds
+                               where  Compound.ID != 0
+                               select Compound;
+
+            //List we pass into dragging, contains all compound formulas
+            List<String> CompoundFormulas = new List<String>();
+            foreach(Compound c in AllCompounds)
+            {
+                CompoundFormulas.Add(c.Formula);
+            }
+
+           // String[] CompoundFormulaArray = CompoundFormulas.ToArray();
+            //data = data.ToArray();
+            return View("Dragging", CompoundFormulas);
         }
         public ActionResult Elements()
         {
