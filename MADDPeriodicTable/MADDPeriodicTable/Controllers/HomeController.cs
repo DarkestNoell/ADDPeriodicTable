@@ -219,7 +219,7 @@ namespace MADDPeriodicTable.Controllers
             Tuple<String[], Element[]> tuple = new Tuple<String[], Element[]>(CompoundFormulaArray, ElementArray);
 
 
-            return View("Dragging", CompoundFormulas);
+            return View("Dragging", tuple);
         }
         public ActionResult Elements()
         {

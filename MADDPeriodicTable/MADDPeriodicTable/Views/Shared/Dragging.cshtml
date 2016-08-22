@@ -1,7 +1,6 @@
 ﻿@*@model List<MADDPeriodicTable.Models.sp_s_Com_Result>*@
 @using MADDPeriodicTable.Models
 @model Tuple<String[], Element[]>
-@model List<String>
 
 @{
     ViewBag.Title = "MADD Periodic Table";
@@ -9,7 +8,10 @@
 }
 
 <!doctype html>
+
+
 <html lang="en">
+
 
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -43,7 +45,7 @@ function canvasSupport() {
 
 
 function GetCompanies() {
-    
+
     //"<div style='text-align:center; background-color:yellow; border:1px solid red; padding:3px; width:200px'>Please Wait...</div>");
                                                                                                                         //$.ajax({
                                                                                                                         //    type: "POST",
@@ -72,7 +74,7 @@ function OnError(data) {
         "</table>";
     $("#UpdatePanel").html(TableContent);
 }
-var compounds;
+
 
 
 
@@ -93,13 +95,13 @@ function canvasApp() {
     var context3 = theCanvas3.getContext("2d");
     var theCanvas4 = document.getElementById("canvasFour");
     var context4 = theCanvas4.getContext("2d");
-
+    var testArray;
     init();
 
     var numShapes;
     var numShapes2;
     var shapes;
-  
+   
     var origXs;
     var origYs;
     var positionsX;
@@ -115,7 +117,11 @@ function canvasApp() {
     var lineX;
     var lineY;
 
+
     function init() {
+        testArray = [];
+      
+      
         elementsInTrialCompound = [];
         numShapes2 = 0;
         elementWidth = canvasOne.width / 18;
@@ -126,7 +132,7 @@ function canvasApp() {
         positionsY = [];
         lineX = [];
         lineY = [];
-        compounds = @Model;
+       
 
 
 
@@ -680,23 +686,34 @@ function canvasApp() {
 
                 shapes2[shapes2.length- 1].x = mouseX;
                 shapes2[shapes2.length - 1].y = mouseY;
-
+                
 
                 drawScreen();
                 elementsInTrialCompound.push(elementTitle[shapes2[shapes2.length - 1].elementID]);
                 for (i = 0; i < elementsInTrialCompound.length; i++) {
                     context.strokeText(elementsInTrialCompound[i], i * 30, 395);
+                 
+
                 }
+               
 
 
                 DrawBottomCanvas();
                 context3.beginPath();
                 context3.moveTo(shapes2[0].x, shapes2[0].y);
                 for (i = 1; i < shapes2.length; i++) {
+
                     context3.lineTo(shapes2[i].x, shapes2[i].y);
                 }
+              
+             
+              
                 context3.strokeStyle = '#00FF00';
                 context3.stroke();
+                   //   for(var s in @Model.Item1){
+                context2.strokeStyle = '#00FF00';
+                    context2.strokeText(@Model.Item1[1].ToString(), i * 30, 395);
+              //  }
                // if (shapes2.length >= 2) {
 
                     //context3.beginPath();
@@ -955,7 +972,7 @@ function canvasApp() {
         drawShapesTwo();
 
     }
-  
+
 
 }
 
@@ -1018,7 +1035,7 @@ function canvasApp() {
         </canvas>
     </div>
     <div style="text-align:center"><p><input type="submit" value="Clear" id="clear"/> </p></div>
-    <div>@Model.ElementAt(0) </div>
+
 
 </body>
 </html>
