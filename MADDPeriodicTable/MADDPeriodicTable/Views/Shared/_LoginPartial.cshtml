@@ -13,7 +13,7 @@
             @Html.ActionLink("Let's get learning, " + User.Identity.GetUserName().Substring(0, User.Identity.GetUserName().LastIndexOf('@')) + "!", "Index", "Home/Learn")
         </li>
         <li>
-            @Html.ActionLink("Your Profile", "CustomUserProfile")
+            @Html.ActionLink("Your Profile", actionName:"CustomUserProfile", controllerName:"Home")
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>

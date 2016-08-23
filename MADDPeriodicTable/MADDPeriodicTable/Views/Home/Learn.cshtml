@@ -640,7 +640,7 @@ function canvasApp() {
                 //    context.strokeText(elementsInTrialCompound[i], i * 30, 395);
                 //}
                 var holdCompoundString = CreateCompound(elementsInTrialCompound);
-                context.fillText(holdCompoundString, 30, 395);
+                //context.fillText(holdCompoundString, 30, 395);
 
                 DrawBottomCanvas();
 
@@ -1094,46 +1094,60 @@ function CreateCompound(value) {
 </head>
 <body>
 
-    <div style="top: 50px; bottom: 50px; text-align:center">
-        <canvas id="canvasOne" height="400" width="750">
+    <div style="top: 50px; bottom: 50px; text-align:center; padding-top:5px">
+        <canvas id="canvasOne" height="380" width="750">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
 
     </div>
-
-    <div style="bottom: 50px; text-align:center">
+    <div align="center" style="padding-bottom:10px">
+        <form method="post" action="@Url.Content("~/Home/CheckAnswer")">
+            <input type="text" name="answerText" id="SubmissionBox" />
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <table style="bottom: 50px; text-align:center">
+        <tr>
+            <td>
         <canvas id="canvasTwo" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
+                </td>
+            <td style="margin-left:2px">
         <canvas id="canvasThree" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
-     
-           
-    </div>
+                </td>
+            <td>
+         <span height="250" width="400" style="text-align:left">
+            <h3>Solve this compound: @Model.Item2.Name</h3>
+            <h3>This compound is difficulty level: @Model.Item2.CompoundDifficulty</h3>
+            <br />
+            <h4>Points are 10x difficulty level! Difficulty Level: @Model.Item2.CompoundDifficulty</h4>
+        </span>
+     </td>
+           </tr>
+    </table>
     <div style="text-align:center">
 
-        <input type="button" value="Clear" id="clear"/>
-        <input type="button" value="Check" id="check" />
-        <input type="button" value="Hint" id="hint"/>
-        <input type="button" value="Solve" id="solve"/>
-        <input type="button" value="Next"id="next" />
+        <input type="button" value="Clear" id="buttons"/>
+        <input type="button" value="Check" id="buttons" />
+        <input type="button" value="Hint" id="buttons"/>
+        <input type="button" value="Solve" id="buttons"/>
+        <input type="button" value="Next"id="buttons" />
     </div>
-    <h2 align="center"><u>You gon Learn!</u></h2>
     <div class="words"></div>
     <h2 align="center"><u>You gon Learn!</u></h2>
     <h3 align="center">You are currently level: @Model.Item1.CurrentLevel</h3>
     <h3 align="center">You currently have: <b>@Model.Item1.CurrentPoints Point(s)!</b></h3>
 
-    <h2>Spoiler Alert: @Model.Item2.Formula</h2>
-    <h2>Solve this compound: @Model.Item2.Name</h2>
-    <h2>This compound is difficulty level: @Model.Item2.CompoundDifficulty</h2>
-    <h3>You will earn 10x the difficulty level towards points! Difficulty Level: @Model.Item2.CompoundDifficulty</h3>
+    @*<h2>Spoiler Alert: @Model.Item2.Formula</h2>*@
 
-    <form method="post" action="@Url.Content("~/Home/CheckAnswer")">
+
+    @*<form method="post" action="@Url.Content("~/Home/CheckAnswer")">
         <input type="text" name="answerText" id="SubmissionBox"/>
         <input type="submit" value="Submit">
-    </form>
+    </form>*@
 </body>
 </html>
 <meta charset="UTF-8">
@@ -1141,47 +1155,7 @@ function CreateCompound(value) {
 <style type="text/css">
     
 
-    #next {
-        background-color: #4CAF50; /* Green */
-        border: none;
-        color: white;
-        padding: 15px 42px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-    }
-     #clear {
-        background-color: #4CAF50; /* Green */
-        border: none;
-        color: white;
-        padding: 15px 42px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-    }
-      #check {
-        background-color: #4CAF50; /* Green */
-        border: none;
-        color: white;
-        padding: 15px 42px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-    }
-       #hint {
-        background-color: #4CAF50; /* Green */
-        border: none;
-        color: white;
-        padding: 15px 42px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-    }
-        #solve {
+    #buttons {
         background-color: #4CAF50; /* Green */
         border: none;
         color: white;
