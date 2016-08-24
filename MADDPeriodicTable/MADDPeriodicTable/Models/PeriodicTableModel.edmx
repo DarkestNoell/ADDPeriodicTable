@@ -104,6 +104,8 @@
           <Property Name="NoviceChemistBadge" Type="bit" Nullable="false" />
           <Property Name="ChemistsExplosionBadge" Type="bit" Nullable="false" />
           <Property Name="HotStreakBadge" Type="bit" Nullable="false" />
+          <Property Name="SenpaiNoticeMeBadge" Type="bit" Nullable="false" />
+          <Property Name="VideosWatched" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -293,6 +295,8 @@
           <Property Name="NoviceChemistBadge" Type="Boolean" Nullable="false" />
           <Property Name="ChemistsExplosionBadge" Type="Boolean" Nullable="false" />
           <Property Name="HotStreakBadge" Type="Boolean" Nullable="false" />
+          <Property Name="SenpaiNoticeMeBadge" Type="Boolean" Nullable="false" />
+          <Property Name="VideosWatched" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -463,6 +467,8 @@
                 <ScalarProperty Name="NoviceChemistBadge" ColumnName="NoviceChemistBadge" />
                 <ScalarProperty Name="ChemistsExplosionBadge" ColumnName="ChemistsExplosionBadge" />
                 <ScalarProperty Name="HotStreakBadge" ColumnName="HotStreakBadge" />
+                <ScalarProperty Name="SenpaiNoticeMeBadge" ColumnName="SenpaiNoticeMeBadge" />
+                <ScalarProperty Name="VideosWatched" ColumnName="VideosWatched" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

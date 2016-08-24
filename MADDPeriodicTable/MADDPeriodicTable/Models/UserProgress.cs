@@ -22,5 +22,7 @@ namespace MADDPeriodicTable.Models
         public bool NoviceChemistBadge { get; set; }
         public bool ChemistsExplosionBadge { get; set; }
         public bool HotStreakBadge { get; set; }
+        public bool SenpaiNoticeMeBadge { get; set; }
+        public int VideosWatched { get; set; }
     }
 }

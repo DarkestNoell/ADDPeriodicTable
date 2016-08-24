@@ -41,7 +41,7 @@
                     <th>Complete?</th>
                 </tr>
                 <tr>
-                    <td>Chemist's Explosion badge</td>
+                    <td>Chemist's Explosion Badge</td>
                     @if (Model.Item1.ChemistsExplosionBadge == true)
             {
                         <td>User has successfully earned this badge</td>
@@ -63,10 +63,21 @@
                     }
                 </tr>
                 <tr>
-                    <td>Chemists Explosion badge</td>
-                    @if (Model.Item1.ChemistsExplosionBadge == true)
+                    <td>Hot Streak Badge</td>
+                    @if (Model.Item1.HotStreakBadge == true)
                     {
                         <td>User has successfully earned this badge</td>
+                    }
+                    else
+                    {
+                        <td>Incomplete</td>
+                    }
+                </tr>
+                <tr>
+                    <td>Senpai Notice Me Badge</td>
+                    @if (Model.Item1.SenpaiNoticeMeBadge == true)
+                    {
+                        <td>User has successfully earned this badge *blushes intensely*</td>
                     }
                     else
                     {

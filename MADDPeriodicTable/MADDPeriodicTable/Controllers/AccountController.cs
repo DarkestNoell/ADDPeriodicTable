@@ -164,7 +164,9 @@ namespace MADDPeriodicTable.Controllers
                         CompoundsInARow = 0,
                         NoviceChemistBadge = false,
                         ChemistsExplosionBadge = false,
-                        HotStreakBadge = false                       
+                        HotStreakBadge = false,   
+                        SenpaiNoticeMeBadge = false,          
+                        VideosWatched = 0
                     });
 
                 pte.UserProfileInfoes.Add(
