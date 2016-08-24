@@ -30,34 +30,39 @@
             function onPlayerStateChange(event) {
                 switch (event.data) {
                     //Video has been played
-                    case 1:                     
-                        @if(true)
-                        {
-                            String currUser = User.Identity.Name;
-                            PeriodicTableEntities pte = new PeriodicTableEntities();
-                            UserProgress up = pte.UserProgresses.Where(progress => progress.Id.Equals(currUser)).First();
-
-                            //10 points for comic relief ftw :)
-                            up.CurrentPoints += 70;
-                            if (up.SenpaiNoticeMeBadge == false)
-                            {
-                                up.SenpaiNoticeMeBadge = true;
-                            }
-                            int level = up.CurrentPoints / 100;
-                            if (level == 0)
-                            {
-                                //If the user has less than 100 points, don't want to break things: )
-                                level = 1;
-                            }
-
-                            up.CurrentLevel = level;
-                            pte.SaveChanges();
-
-                        }
-                            break;
-                        }
+                    case 1:             
+                        GetTriggered();
+                    break;
+                    }
             }
 
+            function GetTriggered() {
+                @if(true)
+                {
+                    String currUser = User.Identity.Name;
+                    PeriodicTableEntities pte = new PeriodicTableEntities();
+                    UserProgress up = pte.UserProgresses.Where(progress => progress.Id.Equals(currUser)).First();
+
+                    //10 points for comic relief ftw :)
+                    up.CurrentPoints += 10;
+                    up.VideosWatched++;
+                    if (up.SenpaiNoticeMeBadge == false)
+                    {
+                        up.SenpaiNoticeMeBadge = true;
+                    }
+                    int level = up.CurrentPoints / 100;
+                    if (level == 0)
+                    {
+                        //If the user has less than 100 points, don't want to break things: )
+                        level = 1;
+
+                    }
+
+                    up.CurrentLevel = level;
+                    pte.SaveChanges();
+
+                }
+            }
         </script>
         <script src="https://www.youtube.com/iframe_api"></script>
     </div>
