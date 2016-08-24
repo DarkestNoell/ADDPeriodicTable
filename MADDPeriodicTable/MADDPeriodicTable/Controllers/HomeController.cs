@@ -272,5 +272,10 @@ namespace MADDPeriodicTable.Controllers
         {
             return View();
         }
+
+        public ActionResult LearningVideos()
+        {
+            return View();
+        }
     }
 }
