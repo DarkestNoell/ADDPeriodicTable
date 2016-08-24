@@ -1,4 +1,5 @@
-﻿
+﻿@using MADDPeriodicTable.Models
+@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Some Comic Relief";
 }
@@ -24,7 +25,39 @@
         <iframe width="420" height="315" src="https://www.youtube.com/embed/FnblmZdTbYs" frameborder="0" allowfullscreen></iframe>
         <iframe width="420" height="315" src="https://www.youtube.com/embed/yQj2NP25TIo" frameborder="0" allowfullscreen></iframe>
         <iframe width="420" height="315" src="https://www.youtube.com/embed/Mggl7cC8iys" frameborder="0" allowfullscreen></iframe>
-        <iframe width="420" height="315" src="https://www.youtube.com/embed/lTC2Ihnsrf0" frameborder="0" allowfullscreen></iframe>
+        
+        <!--BEAKER HAS COFFEE-->
+        <iframe id ="player" width="420" height="315" src="https://www.youtube.com/embed/lTC2Ihnsrf0" frameborder="0" allowfullscreen></iframe>
+        <script>
+            var player;
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('player', {
+                    events: { 'onStateChange': onPlayerStateChange }
+                });
+            }
+
+            function onPlayerStateChange(event) {
+                switch (event.data) {
+                    //Video has ended and the user earns points
+                    case 0:
+                        @if(true)
+                        {
+                            String currUser = User.Identity.Name;
+                            PeriodicTableEntities pte = new PeriodicTableEntities();
+                            UserProgress up = pte.UserProgresses.Where(progress => progress.Id.Equals(currUser)).First();
+
+                            //10 points for comic relief ftw :)
+                            up.CurrentPoints = up.CurrentPoints + 10;
+                            pte.SaveChanges();
+
+                        }
+                        break;
+                }
+            }
+
+        </script>
+        <script src="https://www.youtube.com/iframe_api"></script>
+
         <iframe width="420" height="315" src="https://www.youtube.com/embed/PEHcHcneFFc" frameborder="0" allowfullscreen></iframe>
         <iframe width="420" height="315" src="https://www.youtube.com/embed/0Bt6RPP2ANI" frameborder="0" allowfullscreen></iframe>
     </div>
