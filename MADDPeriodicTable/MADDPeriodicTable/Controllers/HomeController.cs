@@ -63,6 +63,10 @@ namespace MADDPeriodicTable.Controllers
                 if(up.ChemistsExplosionBadge)
                 {
                     ViewBag.ChemistsExplosionBadge = "";
+                }else
+                {
+                    ViewBag.ChemistsExplosionBadge = "Congratulations! You have earned the chemists explosion badge";
+                    up.ChemistsExplosionBadge = true;
                 }
                
                 
