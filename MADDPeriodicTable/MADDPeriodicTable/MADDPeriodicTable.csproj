@@ -266,6 +266,7 @@
     <Content Include="Content\Images\Congrats.gif" />
     <Content Include="Content\Images\onfire.gif" />
     <Content Include="Content\Images\sadface.gif" />
+    <Content Include="Content\Images\scienceaction.jpg" />
     <Content Include="Content\LightsOnOff.css" />
     <Content Include="Content\PTableStyle.css" />
     <Content Include="Content\UserProfileStyle.css" />
