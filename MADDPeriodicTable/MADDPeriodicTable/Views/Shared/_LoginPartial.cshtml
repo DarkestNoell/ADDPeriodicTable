@@ -11,10 +11,10 @@
             @Html.ActionLink("Let's get learning, " + User.Identity.GetUserName().Substring(0, User.Identity.GetUserName().LastIndexOf('@')) + "!", "Index", "Home/Learn")
         </li>
         <li>
-            @Html.ActionLink("Need Some Relief?", "Relief")
+            @Html.ActionLink("Need Some Relief?", actionName:"Relief", controllerName:"Home")
         </li>
         <li>
-            @Html.ActionLink("Need some help?", "LearningVideos")
+            @Html.ActionLink("Need some help?", actionName:"LearningVideos", controllerName:"Home")
         </li>
         <li>
             @Html.ActionLink("Your Profile", actionName:"CustomUserProfile", controllerName:"Home")
