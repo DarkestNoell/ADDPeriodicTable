@@ -1,0 +1,70 @@
+﻿@using MADDPeriodicTable.Models
+@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LearningVideos</title>
+</head>
+<body>
+    <div> 
+        <iframe id="player" width="240" height="315" src="https://www.youtube.com/embed/4SbyQ9eVP7Q" frameborder="0" allowfullscreen></iframe>
+        <iframe id="player" width="240" height="315" src="https://www.youtube.com/embed/Gj6weMW6Dfc" frameborder="0" allowfullscreen></iframe>
+        <iframe id="player" width="240" height="315" src="https://www.youtube.com/embed/Sy-sMp8jdPk?list=PL6413EA90F33BFA45" frameborder="0" allowfullscreen></iframe>
+        <iframe id="player" width="240" height="315" src="https://www.youtube.com/embed/ciVCBeqpiyw?list=PL6413EA90F33BFA45" frameborder="0" allowfullscreen></iframe>
+        <iframe id="player" width="240" height="315" src="https://www.youtube.com/embed/AneNEWH32TY?list=PL6413EA90F33BFA45" frameborder="0" allowfullscreen></iframe>
+        <iframe id="player" width="240" height="315" src="https://www.youtube.com/embed/8U33HKEZ6jk?list=PL6413EA90F33BFA45" frameborder="0" allowfullscreen></iframe>
+        <iframe id="player" width="240" height="315" src="https://www.youtube.com/embed/CRNhJn4XIbk?list=PL6413EA90F33BFA45" frameborder="0" allowfullscreen></iframe>
+        <iframe id="player" width="240" height="315" src="https://www.youtube.com/embed/STCrjxxRf-g?list=PL6413EA90F33BFA45" frameborder="0" allowfullscreen></iframe>
+    
+        <script>
+            var player;
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('player', {
+                    events: { 'onStateChange': onPlayerStateChange }
+                });
+            }
+
+            function onPlayerStateChange(event) {
+                switch (event.data) {
+                    //Video has been played
+                    case 1:             
+                        GetTriggered();
+                    break;
+                    }
+            }
+
+            function GetTriggered() {
+                @if(true)
+                {
+                    String currUser = User.Identity.Name;
+                    PeriodicTableEntities pte = new PeriodicTableEntities();
+                    UserProgress up = pte.UserProgresses.Where(progress => progress.Id.Equals(currUser)).First();
+
+                    //10 points for comic relief ftw :)
+                    up.CurrentPoints += 10;
+                    up.VideosWatched++;
+                    if (up.SenpaiNoticeMeBadge == false)
+                    {
+                        up.SenpaiNoticeMeBadge = true;
+                    }
+                    int level = up.CurrentPoints / 100;
+                    if (level == 0)
+                    {
+                        //If the user has less than 100 points, don't want to break things: )
+                        level = 1;
+
+                    }
+
+                    up.CurrentLevel = level;
+                    pte.SaveChanges();
+
+                }
+            }
+        </script>
+        <script src="https://www.youtube.com/iframe_api"></script>
+    </div>
+</body>
+</html>

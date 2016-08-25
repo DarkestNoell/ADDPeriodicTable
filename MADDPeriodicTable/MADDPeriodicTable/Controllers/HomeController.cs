@@ -224,6 +224,7 @@ namespace MADDPeriodicTable.Controllers
 
             return View("Dragging", tuple);
         }
+
         public ActionResult Elements()
         {
             PeriodicTableEntities pte = new PeriodicTableEntities();
@@ -266,6 +267,16 @@ namespace MADDPeriodicTable.Controllers
             return View(model);
         }
         public ActionResult Sent()
+        {
+            return View();
+        }
+
+        public ActionResult Relief()
+        {
+            return View();
+        }
+
+        public ActionResult LearningVideos()
         {
             return View();
         }
