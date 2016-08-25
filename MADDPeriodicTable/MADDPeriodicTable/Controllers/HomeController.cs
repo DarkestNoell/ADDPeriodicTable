@@ -8,6 +8,7 @@ using System.Net.Mail;
 using System.Net;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Web.Script.Serialization;
 
 namespace MADDPeriodicTable.Controllers
 {
@@ -15,9 +16,11 @@ namespace MADDPeriodicTable.Controllers
     {
         static Compound CompoundToPick;
 
+      
         [HttpPost]
         public ActionResult CheckAnswer(string answerText)
         {
+           
             answerText = Regex.Replace(answerText, @"\s+", " ");
             PeriodicTableEntities pte = new PeriodicTableEntities();
             String currUser = User.Identity.Name;
@@ -265,6 +268,20 @@ namespace MADDPeriodicTable.Controllers
         public ActionResult Sent()
         {
             return View();
+        }
+        public bool CheckCompound(string[] s)
+        {
+
+
+            return true;
+        }
+
+    }
+    public static class HtmlExtensions
+    {
+        public static string JsonSerialize(this HtmlHelper htmlHelper, object value)
+        {
+            return new JavaScriptSerializer().Serialize(value);
         }
     }
 }
