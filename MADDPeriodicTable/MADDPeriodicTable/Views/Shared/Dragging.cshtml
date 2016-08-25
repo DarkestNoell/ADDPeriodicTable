@@ -5,7 +5,6 @@
 
 @model Tuple<String[], Element[]>
 
-
 @{
     ViewBag.Title = "MADD Periodic Table";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -83,8 +82,8 @@ function canvasApp() {
     var context2 = theCanvas2.getContext("2d");
     var theCanvas3 = document.getElementById("canvasThree");
     var context3 = theCanvas3.getContext("2d");
-    var theCanvas4 = document.getElementById("canvasFour");
-    var context4 = theCanvas4.getContext("2d");
+    //var theCanvas4 = document.getElementById("canvasFour");
+    //var context4 = theCanvas4.getContext("2d");
     var testArray;
     init();
 
@@ -615,8 +614,6 @@ function canvasApp() {
             if (hitTest(shapes[i], mouseX, mouseY)) {
                 dragging = true;
 
-
-
                 if (i > highestIndex) {
                     //We will pay attention to the point on the object where the mouse is "holding" the object:
                     dragHoldX = mouseX - shapes[i].x;
@@ -647,8 +644,11 @@ function canvasApp() {
         } //older IE
         return false;
     }
-
+    var holdCompoundString = "";
     function mouseUpListener(evt) {
+
+        var model = @Html.Raw(Json.Encode(Model.Item2));
+        //Atomic_Weight Element_Name Element_Abbreviation ID
 
         theCanvas.addEventListener("mousedown", mouseDownListener, false);
 
@@ -675,36 +675,20 @@ function canvasApp() {
 
                 drawScreen();
 
+
             }
             else {
 
                 shapes2[shapes2.length- 1].x = mouseX;
                 shapes2[shapes2.length - 1].y = mouseY;
 
-
-
                 drawScreen();
 
                 elementsInTrialCompound.push(elementTitle[shapes2[shapes2.length - 1].elementID]);
 
-
-                for (i = 0; i < elementsInTrialCompound.length; i++) {
-                    context.strokeText(elementsInTrialCompound[i], i * 30, 395);
-
-
-
-                }
-
-
-
-                //for (i = 0; i < elementsInTrialCompound.length; i++) {
-                //    context.strokeText(elementsInTrialCompound[i], i * 30, 395);
-                 
-
-                //}
-               
-                var holdCompoundString = CreateCompound(elementsInTrialCompound);
-                context.fillText(holdCompoundString, 30, 395);
+                holdCompoundString = CreateCompound(elementsInTrialCompound);
+                
+                drawCompoundList();
 
                 DrawBottomCanvas();
                 context3.beginPath();
@@ -713,9 +697,9 @@ function canvasApp() {
 
                     context3.lineTo(shapes2[i].x, shapes2[i].y);
                 }
-
-                @Html.Action("CheckCompound", new { s = "elementsInTrialCompound" });
-
+               
+                context3.strokeStyle = '#00FF00';
+                context3.stroke();
 
 
 
@@ -731,12 +715,13 @@ function canvasApp() {
                     //context3.strokeStyle = '#00FF00';
                     //context3.stroke();
               //  }
-
-
             }
         }
-    }
 
+        //context.fillText(model[dragIndex].Element_Name, 30, 395);
+    }
+    function createElementDiv(){
+    }
     function mouseMoveListener(evt) {
 
         var tempShape2;
@@ -958,9 +943,15 @@ function canvasApp() {
             shapes2 = [];
             drawScreen();
             DrawBottomCanvas();
-
+            elementsInTrialCompound = [];
+            holdCompoundString = "";
+            drawCompoundList();
+            
+            context.fillText(" ", 30, 395);
         });
     });
+
+
     function CreateCompound(value) {
         //var holdKey = [];
         //var holdValue = [];
@@ -989,6 +980,22 @@ function canvasApp() {
         }
         return holdString;
     }
+
+
+
+    function drawCompoundList(){
+        var model = [];
+        model = @Html.Raw(Json.Encode(Model.Item1));
+        var tableData = "";
+        for(var i = 0; i < model.length/2; i++){
+            if(model[i].indexOf(holdCompoundString) != -1){
+                tableData += "<tr>" + model[i] + "</tr>";
+            }
+        }      
+        document.getElementById('PotentialCompoundsBody').innerHTML = tableData;
+        context.fillText(holdCompoundString, 30, 395);
+    }
+
     function drawScreen() {
         //bg
 
@@ -997,11 +1004,12 @@ function canvasApp() {
         context2.fillStyle = "#000000";
         context2.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
 
-        context4.fillStyle = "#000000";
-        context4.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
+        //context4.fillStyle = "#eeeeee";
+        //context4.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
 
         drawShapes();
         drawKey();
+
     }
 
 
@@ -1149,17 +1157,28 @@ function canvasApp() {
         <canvas id="canvasTwo" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
-
        
         <canvas id="canvasThree" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
       
-        <canvas id="canvasFour" height="250" width="350">
+        @*<canvas id="canvasFour" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
-        </canvas>
+        </canvas>*@
+
+        <table height="250" width="350" id="PotnCompTable">
+            <thead class="fixedHeader">
+                <tr class="alternateRow">
+                    <th>Possible Compounds</th>
+                </tr>
+            </thead>
+            <tbody id="PotentialCompoundsBody">
+            </tbody>
+        </table>
+
     </div>
     <div style="text-align:center"><p><input type="submit" value="Clear" id="clear"/> </p></div>
+
     <span> @elementNames[0] </span>
     <br />
     @*@for (int i = 0; i < @Model.Item1.Length; i++)
@@ -1169,7 +1188,6 @@ function canvasApp() {
         <span> @Model.Item1[i] </span>
         <br />
     }*@
-
 </body>
 </html>
 
@@ -1199,5 +1217,8 @@ function canvasApp() {
     display: inline-block;
     font-size: 16px;
     }
+
+table tbody { height:300px; overflow-y:scroll; display:block; }
+table thead { display:block; }
 
 </style>
