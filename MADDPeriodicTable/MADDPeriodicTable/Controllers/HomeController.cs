@@ -284,11 +284,11 @@ namespace MADDPeriodicTable.Controllers
         {
             return View();
         }
-        public bool CheckCompound(string[] s)
+        public ActionResult CheckCompound(string[] s)
         {
 
 
-            return true;
+            return Content("'#00FF00'");
         }
 
     }
@@ -297,6 +297,14 @@ namespace MADDPeriodicTable.Controllers
         public static string JsonSerialize(this HtmlHelper htmlHelper, object value)
         {
             return new JavaScriptSerializer().Serialize(value);
+        }
+    }
+    public static class HtmlHelperExtensions
+    {
+        public static MvcHtmlString CurrencyFormat()
+        {
+            var result = "'#00FF00'";
+            return new MvcHtmlString(result);
         }
     }
 }
