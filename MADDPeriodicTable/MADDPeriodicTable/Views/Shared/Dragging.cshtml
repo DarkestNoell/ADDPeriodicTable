@@ -66,39 +66,6 @@ function canvasSupport() {
 
 
 
-function GetCompanies() {
-
-    //"<div style='text-align:center; background-color:yellow; border:1px solid red; padding:3px; width:200px'>Please Wait...</div>");
-                                                                                                                        //$.ajax({
-                                                                                                                        //    type: "POST",
-                                                                                                                        //    url: "default",
-                                                                                                                        //    data: "{}",
-                                                                                                                        //    dataType: "json",
-                                                                                                                        //    contentType: "application/json; charset=utf-8",
-                                                                                                                        //    success: OnSuccess,
-                                                                                                                        //    error: OnError
-                                                                                                                        //});
-    }
-function OnSuccess(data) {
-    var TableContent = "<?php foreach ($item in ViewBag.userdetails){<tr><td>item.ID</td><td>item.Element_Name</td><td>item.Element_Abbreviation</td><td>item.Atomic_Weight</td></tr>}";
-    //for (var i = 0; i < data.d.length; i++) {
-    //    TableContent += "<tr>" +
-    //                            "<td>" + data.d[i].elementID + "</td>" +
-    //                        "</tr>";
-    //}
-    $("#UpdatePanel").html(TableContent);
-}
-function OnError(data) {
-    var TableContent = "<table border='0'>" +
-                            "<tr>" +
-                                "<td>Rank</td>" +
-                            "</tr>" +
-        "</table>";
-    $("#UpdatePanel").html(TableContent);
-}
-
-
-
 
 
 
@@ -115,8 +82,8 @@ function canvasApp() {
     var context2 = theCanvas2.getContext("2d");
     var theCanvas3 = document.getElementById("canvasThree");
     var context3 = theCanvas3.getContext("2d");
-    var theCanvas4 = document.getElementById("canvasFour");
-    var context4 = theCanvas4.getContext("2d");
+    //var theCanvas4 = document.getElementById("canvasFour");
+    //var context4 = theCanvas4.getContext("2d");
     var testArray;
     init();
 
@@ -481,7 +448,7 @@ function canvasApp() {
                 i == basic[9] ||
                 i == basic[10]
                 ) {
-                tempColor = "rgb(" + 255 + "," + 255 + "," + 0 + ")";
+                tempColor = "rgb(" + 100 + "," + 255 + "," + 0 + ")";
             } else if (i == alkali[0] ||
                  i == alkali[1] ||
                  i == alkali[2] ||
@@ -506,7 +473,7 @@ function canvasApp() {
                  i == metalloid[5] ||
                  i == metalloid[6]
                  ) {
-                tempColor = "rgb(" + 125 + "," + 255 + "," + 0 + ")";
+                tempColor = "rgb(" + 0 + "," + 225 + "," + 0 + ")";
             } else if (i == nonmetal[0] ||
                  i == nonmetal[1] ||
                  i == nonmetal[2] ||
@@ -515,7 +482,7 @@ function canvasApp() {
                  i == nonmetal[5] ||
                  i == nonmetal[6]
                  ) {
-                tempColor = "rgb(" + 0 + "," + 255 + "," + 0 + ")";
+                tempColor = "rgb(" + 0 + "," + 235 + "," + 175 + ")";
             } else if (i == halogen[0] ||
                  i == halogen[1] ||
                  i == halogen[2] ||
@@ -523,7 +490,7 @@ function canvasApp() {
                  i == halogen[4] ||
                  i == halogen[5]
                  ) {
-                tempColor = "rgb(" + 0 + "," + 255 + "," + 125 + ")";
+                tempColor = "rgb(" + 0 + "," + 255 + "," + 255 + ")";
             } else if (i == nobelGas[0] ||
                  i == nobelGas[1] ||
                  i == nobelGas[2] ||
@@ -532,7 +499,7 @@ function canvasApp() {
                  i == nobelGas[5] ||
                  i == nobelGas[6]
                  ) {
-                tempColor = "rgb(" + 0 + "," + 255 + "," + 255 + ")";
+                tempColor = "rgb(" + 0 + "," + 175 + "," + 255 + ")";
             } else if (i == lanthanide[0] ||
                  i == lanthanide[1] ||
                  i == lanthanide[2] ||
@@ -549,7 +516,7 @@ function canvasApp() {
                 i == lanthanide[13] ||
                 i == lanthanide[14]
                  ) {
-                tempColor = "rgb(" + 0 + "," + 125 + "," + 255 + ")";
+                tempColor = "rgb(" + 255 + "," + 100 + "," + 255 + ")";
             } else if (i == actinide[0] ||
                  i == actinide[1] ||
                  i == actinide[2] ||
@@ -566,7 +533,7 @@ function canvasApp() {
                  i == actinide[13] ||
                  i == actinide[14]
                  ) {
-                tempColor = "rgb(" + 125 + "," + 0 + "," + 255 + ")";
+                tempColor = "rgb(" + 125 + "," + 100 + "," + 255 + ")";
             } else if (i == transition[0] ||
                  i == transition[1] ||
                  i == transition[2] ||
@@ -616,7 +583,7 @@ function canvasApp() {
                  i == transition[36] ||
                  i == transition[37]
                  ) {
-                tempColor = "rgb(" + 0 + "," + 0 + "," + 255 + ")";
+                tempColor = "rgb(" + 255 + "," + 255 + "," + 0 + ")";
             } else {
                 tempColor = "rgb(" + 100 + "," + 0 + "," + 0 + ")";
             }
@@ -646,8 +613,6 @@ function canvasApp() {
         for (i = 0; i < shapes.length; i++) {
             if (hitTest(shapes[i], mouseX, mouseY)) {
                 dragging = true;
-
-
 
                 if (i > highestIndex) {
                     //We will pay attention to the point on the object where the mouse is "holding" the object:
@@ -679,8 +644,11 @@ function canvasApp() {
         } //older IE
         return false;
     }
-
+    var holdCompoundString = "";
     function mouseUpListener(evt) {
+
+        var model = @Html.Raw(Json.Encode(Model.Item2));
+        //Atomic_Weight Element_Name Element_Abbreviation ID
 
         theCanvas.addEventListener("mousedown", mouseDownListener, false);
 
@@ -707,27 +675,20 @@ function canvasApp() {
 
                 drawScreen();
 
+
             }
             else {
 
                 shapes2[shapes2.length- 1].x = mouseX;
                 shapes2[shapes2.length - 1].y = mouseY;
 
-
-
                 drawScreen();
 
                 elementsInTrialCompound.push(elementTitle[shapes2[shapes2.length - 1].elementID]);
 
-
-                for (i = 0; i < elementsInTrialCompound.length; i++) {
-                    context.strokeText(elementsInTrialCompound[i], i * 30, 395);
-
-
-
-                }
-
-
+                holdCompoundString = CreateCompound(elementsInTrialCompound);
+                
+                drawCompoundList();
 
                 DrawBottomCanvas();
                 context3.beginPath();
@@ -736,7 +697,6 @@ function canvasApp() {
 
                     context3.lineTo(shapes2[i].x, shapes2[i].y);
                 }
-
                
                 context3.strokeStyle = '#00FF00';
                 context3.stroke();
@@ -755,12 +715,13 @@ function canvasApp() {
                     //context3.strokeStyle = '#00FF00';
                     //context3.stroke();
               //  }
-
-
             }
         }
-    }
 
+        //context.fillText(model[dragIndex].Element_Name, 30, 395);
+    }
+    function createElementDiv(){
+    }
     function mouseMoveListener(evt) {
 
         var tempShape2;
@@ -982,9 +943,58 @@ function canvasApp() {
             shapes2 = [];
             drawScreen();
             DrawBottomCanvas();
-
+            elementsInTrialCompound = [];
+            holdCompoundString = "";
+            drawCompoundList();
+            
+            context.fillText(" ", 30, 395);
         });
     });
+
+
+    function CreateCompound(value) {
+        //var holdKey = [];
+        //var holdValue = [];
+        var holdString = "";
+        var holdCompare = ["default"];
+        var holdElementCount = 1;
+        for (i = 0; i < value.length; i++) {
+            holdCompare += value[i];
+            holdString += value[i];
+
+            for (j = i+1; j < value.length; j++) {
+                if (value[i] == value[j]) {
+                    holdElementCount++;
+                    if (j == value.length - 1) {
+                        i = j;
+                    }
+                } else {
+                    i = j - 1;
+                    j = value.length;
+                }
+            }
+            if (holdElementCount > 1) {
+                holdString += holdElementCount;
+                holdElementCount = 1;
+            }
+        }
+        return holdString;
+    }
+
+
+
+    function drawCompoundList(){
+        var model = [];
+        model = @Html.Raw(Json.Encode(Model.Item1));
+        var tableData = "";
+        for(var i = 0; i < model.length/2; i++){
+            if(model[i].indexOf(holdCompoundString) != -1){
+                tableData += "<tr>" + model[i] + "</tr>";
+            }
+        }      
+        document.getElementById('PotentialCompoundsBody').innerHTML = tableData;
+        context.fillText(holdCompoundString, 30, 395);
+    }
 
     function drawScreen() {
         //bg
@@ -994,12 +1004,128 @@ function canvasApp() {
         context2.fillStyle = "#000000";
         context2.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
 
-        context4.fillStyle = "#000000";
-        context4.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
+        //context4.fillStyle = "#eeeeee";
+        //context4.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
 
         drawShapes();
+        drawKey();
 
     }
+
+
+    function drawKey() {
+
+        context.fillStyle = "rgb(" + 255 + "," + 0 + "," + 0 + ")";
+        context.beginPath();
+        context.rect(105, 15, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Alkali Metal", 130, 30);
+
+        context.fillStyle = "rgb(" + 255 + "," + 125 + "," + 0 + ")";
+        context.beginPath();
+        context.rect(105, 50, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Alkaline Earth", 130, 65);
+
+        context.fillStyle = "rgb(" + 255 + "," + 255 + "," + 0 + ")";
+        context.beginPath();
+        context.rect(105, 85, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Transition Metal", 130, 100);
+
+
+
+        context.fillStyle = "rgb(" + 100 + "," + 255 + "," + 0 + ")";
+        context.beginPath();
+        context.rect(225, 15, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Basic Metal", 255, 30);
+
+        context.fillStyle = "rgb(" + 0 + "," + 225 + "," + 0 + ")";
+        context.beginPath();
+        context.rect(225, 50, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Semi Metal", 255, 65);
+
+        context.fillStyle = "rgb(" + 0 + "," + 200 + "," + 175 + ")";
+        context.beginPath();
+        context.rect(225, 85, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Non Metal", 255, 100);
+
+
+
+        context.fillStyle = "rgb(" + 0 + "," + 255 + "," + 255 + ")";
+        context.beginPath();
+        context.rect(345, 15, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Halogen", 375, 30);
+
+        context.fillStyle = "rgb(" + 0 + "," + 175 + "," + 255 + ")";
+        context.beginPath();
+        context.rect(345, 50, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Noble Gas", 375, 65);
+
+        context.fillStyle = "rgb(" + 255 + "," + 100 + "," + 255 + ")";
+        context.beginPath();
+        context.rect(345, 85, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Lanthanides", 375, 100);
+
+
+
+        context.fillStyle = "rgb(" + 125 + "," + 100 + "," + 255 + ")";
+        context.beginPath();
+        context.rect(465, 15, 20, 20);
+        context.closePath();
+        context.fill();
+        context.stroke();
+        context.fillStyle = "rgb(" + 0 + "," + 0 + "," + 0 + ")";
+        context.font = "13px Arial";
+        context.fillText("Actinides", 495, 30);
+        //context.stroke();
+        //context.font = "18px Arial";
+        //context.strokeText(elementTitle[i], shapes[i].x + 5, shapes[i].y + elementWidth / 2);
+    }
+
+
     function DrawBottomCanvas() {
        // context3.clearRect(0, 0, theCanvas3.width, theCanvas3.height);
         context3.fillStyle = "#000000";
@@ -1017,34 +1143,6 @@ function canvasApp() {
 </head>
 
 <body>
-    <h3>Test Database Load</h3>
-    <input id="btnLoadData" type="button" value="Load Database Data" onclick="GetCompanies()" />
-    <div id="UpdatePanel">
-
-    </div>
-
-    <form action="/Home/CategoryChosen" method="get">
-
-        <fieldset>
-            Movie Type <select id="MovieType" name="MovieType">
-
-                <option value=""></option>
-
-                <option value="0">Action</option>
-
-                <option value="1">Drama</option>
-
-                <option selected="selected" value="2">Comedy</option>
-
-                <option value="3">Science Fiction</option>
-
-            </select>
-
-            <p><input type="submit" value="Submit" /> </p>
-
-        </fieldset>
-
-    </form>
 
 
 
@@ -1059,17 +1157,28 @@ function canvasApp() {
         <canvas id="canvasTwo" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
-
        
         <canvas id="canvasThree" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
       
-        <canvas id="canvasFour" height="250" width="350">
+        @*<canvas id="canvasFour" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
-        </canvas>
+        </canvas>*@
+
+        <table height="250" width="350" id="PotnCompTable">
+            <thead class="fixedHeader">
+                <tr class="alternateRow">
+                    <th>Possible Compounds</th>
+                </tr>
+            </thead>
+            <tbody id="PotentialCompoundsBody">
+            </tbody>
+        </table>
+
     </div>
     <div style="text-align:center"><p><input type="submit" value="Clear" id="clear"/> </p></div>
+
     <span> @elementNames[0] </span>
     <br />
     @*@for (int i = 0; i < @Model.Item1.Length; i++)
@@ -1079,7 +1188,6 @@ function canvasApp() {
         <span> @Model.Item1[i] </span>
         <br />
     }*@
-
 </body>
 </html>
 
@@ -1109,5 +1217,8 @@ function canvasApp() {
     display: inline-block;
     font-size: 16px;
     }
+
+table tbody { height:300px; overflow-y:scroll; display:block; }
+table thead { display:block; }
 
 </style>
