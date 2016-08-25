@@ -729,15 +729,6 @@ function canvasApp() {
 
 
 
-                //for (i = 0; i < elementsInTrialCompound.length; i++) {
-                //    context.strokeText(elementsInTrialCompound[i], i * 30, 395);
-                 
-
-                //}
-               
-                var holdCompoundString = CreateCompound(elementsInTrialCompound);
-                context.fillText(holdCompoundString, 30, 395);
-
                 DrawBottomCanvas();
                 context3.beginPath();
                 context3.moveTo(shapes2[0].x, shapes2[0].y);
@@ -747,7 +738,8 @@ function canvasApp() {
                 }
 
                
-
+                context3.strokeStyle = '#00FF00';
+                context3.stroke();
 
 
 
