@@ -1087,11 +1087,11 @@ function CreateCompound(value) {
         </canvas>
                 </td>
             <td>
-         <span height="250" width="400" style="text-align:center">
+         <div height="250" width="400" style="text-align:center; height:250px; padding-top:40px; margin-top:-20px; background-color:#d5d5d5;">
             <h3>Solve this compound: @Model.Item2.Name</h3>
             <h3>This compound is difficulty level: @Model.Item2.CompoundDifficulty</h3>
             <h3>Points are 10x difficulty level!</h3>
-        </span>
+        </div>
      </td>
            </tr>
     </table>
@@ -1102,9 +1102,9 @@ function CreateCompound(value) {
             <input type="submit" value="Submit">
         </form>
     </div>
-        @*<input type="button" value="Clear" id="buttons"/>
-        <input type="button" value="Check" id="buttons" />
-        <input type="button" value="Hint" id="buttons"/>*@
+        <input type="button" value="Clear" id="clear"/>
+        @*<input type="button" value="Check" id="buttons" />
+    <input type="button" value="Hint" id="buttons"/>*@
         <input type="button" value="Paste Compound" id="buttonSolve"/>
         @*<input type="button" value="Next"id="buttons" />*@
     </div>
@@ -1127,7 +1127,7 @@ function CreateCompound(value) {
 <style type="text/css">
     
 
-    #buttons {
+    #clear {
         background-color: #4CAF50; /* Green */
         border: none;
         color: white;
