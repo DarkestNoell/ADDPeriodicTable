@@ -1,11 +1,32 @@
 ﻿@*@model List<MADDPeriodicTable.Models.sp_s_Com_Result>*@
 @using MADDPeriodicTable.Models
+@using MADDPeriodicTable.Controllers;
+@using System.Web.Script.Serialization;
+
 @model Tuple<String[], Element[]>
 
 @{
     ViewBag.Title = "MADD Periodic Table";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    JavaScriptSerializer js = new JavaScriptSerializer();
+
+    var data = Model.Item1.Select(c => new
+    {
+
+        id = c
+
+    });
+
+
+    //serialize collection of anonymous objects
+    string arrStr = js.Serialize(data).Replace("[", "").Replace("{", "").Replace("}", "").Replace("id", "").Replace("\"", "").Replace(":", "").Replace("2","").Replace("3", "").Replace("4", "").ToUpper();
+    string arrStrFinal = arrStr.Remove(arrStr.IndexOf('\\'));
+
+    var elementNames = arrStrFinal.Split(',');
+
+
+
+    }
 
 <!doctype html>
 
@@ -17,6 +38,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Dragging</title>
 
+    
 
     <script src="http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.0.6-development-only.js" ></script>
 
@@ -83,6 +105,7 @@ function canvasApp() {
     var elementPlace;
     var lineX;
     var lineY;
+    var categories;
 
 
     function init() {
@@ -99,7 +122,7 @@ function canvasApp() {
         positionsY = [];
         lineX = [];
         lineY = [];
-
+        categories = [];
 
 
 
@@ -369,11 +392,14 @@ function canvasApp() {
         origYs.push(elementWidth * 6);
         origXs.push(elementWidth * 17);
         origYs.push(elementWidth * 6);
-
+        DrawBottomCanvas();
         makeShapes();
         drawScreen();
-        DrawBottomCanvas();
+
+
+
         theCanvas.addEventListener("mousedown", mouseDownListener, false);
+
 
     }
     var alkali;
@@ -656,8 +682,8 @@ function canvasApp() {
                 shapes2[shapes2.length- 1].x = mouseX;
                 shapes2[shapes2.length - 1].y = mouseY;
 
-
                 drawScreen();
+
                 elementsInTrialCompound.push(elementTitle[shapes2[shapes2.length - 1].elementID]);
 
                 holdCompoundString = CreateCompound(elementsInTrialCompound);
@@ -671,13 +697,24 @@ function canvasApp() {
 
                     context3.lineTo(shapes2[i].x, shapes2[i].y);
                 }
-
-
-
+               
                 context3.strokeStyle = '#00FF00';
                 context3.stroke();
-                context2.strokeStyle = '#00FF00';
-                    context2.strokeText(@Model.Item1[1].ToString(), i * 30, 395);
+
+
+
+
+
+
+               // if (shapes2.length >= 2) {
+
+                    //context3.beginPath();
+                    //context3.moveTo(shapes2[shapes2.length - 1].x - [shapes2.length - 1].length, shapes2[shapes2.length - 1].y - [shapes2.length - 1].length);
+                    //context3.lineTo(shapes2[shapes2.length - 2].x - [shapes2.length - 2].length, shapes2[shapes2.length - 2].y - [shapes2.length - 2].length);
+                    //context3.lineWidth = 2;
+                    //context3.strokeStyle = '#00FF00';
+                    //context3.stroke();
+              //  }
             }
         }
 
@@ -862,6 +899,8 @@ function canvasApp() {
         elementTitle.push("Lv");
         elementTitle.push("Ts");
         elementTitle.push("Og");
+
+
     }
     function drawShapes() {
         createElementList();
@@ -900,9 +939,9 @@ function canvasApp() {
     }
     $(document).ready(function () {
         $("#clear").click(function () {
-
+            elementsInTrialCompound = [];
             shapes2 = [];
-
+            drawScreen();
             DrawBottomCanvas();
             elementsInTrialCompound = [];
             holdCompoundString = "";
@@ -911,6 +950,8 @@ function canvasApp() {
             context.fillText(" ", 30, 395);
         });
     });
+
+
     function CreateCompound(value) {
         //var holdKey = [];
         //var holdValue = [];
@@ -955,10 +996,9 @@ function canvasApp() {
         context.fillText(holdCompoundString, 30, 395);
     }
 
-
-
     function drawScreen() {
         //bg
+
         context.fillStyle = "#ffffff";
         context.fillRect(0, 0, theCanvas.width, theCanvas.height);
         context2.fillStyle = "#000000";
@@ -1138,6 +1178,16 @@ function canvasApp() {
 
     </div>
     <div style="text-align:center"><p><input type="submit" value="Clear" id="clear"/> </p></div>
+
+    <span> @elementNames[0] </span>
+    <br />
+    @*@for (int i = 0; i < @Model.Item1.Length; i++)
+    {
+        
+        <input type="text" id="[@i]" name="Elements" />
+        <span> @Model.Item1[i] </span>
+        <br />
+    }*@
 </body>
 </html>
 

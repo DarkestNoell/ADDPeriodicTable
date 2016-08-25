@@ -6,17 +6,21 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
-        <!--<li>
-            Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })           
-        </li>-->
+        
         <li>
             @Html.ActionLink("Let's get learning, " + User.Identity.GetUserName().Substring(0, User.Identity.GetUserName().LastIndexOf('@')) + "!", "Index", "Home/Learn")
         </li>
         <li>
-            @Html.ActionLink("Need Some Relief?", "Relief")
+            @Html.ActionLink("Need Some Relief?", actionName:"Relief", controllerName:"Home")
         </li>
         <li>
-            @Html.ActionLink("Your Profile", "CustomUserProfile")
+            @Html.ActionLink("Need some help?", actionName:"LearningVideos", controllerName:"Home")
+        </li>
+        <li>
+            @Html.ActionLink("Your Profile", actionName:"CustomUserProfile", controllerName:"Home")
+        </li>
+        <li>
+            @Html.ActionLink("Account", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>

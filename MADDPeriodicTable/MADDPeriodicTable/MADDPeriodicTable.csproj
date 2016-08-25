@@ -266,6 +266,7 @@
     <Content Include="Content\Images\Congrats.gif" />
     <Content Include="Content\Images\onfire.gif" />
     <Content Include="Content\Images\sadface.gif" />
+    <Content Include="Content\LightsOnOff.css" />
     <Content Include="Content\PTableStyle.css" />
     <Content Include="Content\UserProfileStyle.css" />
     <Content Include="favicon.ico" />
@@ -304,6 +305,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\LightsOnOff.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -350,6 +352,7 @@
     <Content Include="Views\Home\CustomUserProfile.cshtml" />
     <Content Include="Views\Home\EditUserProfileInfo.cshtml" />
     <Content Include="Views\Home\Relief.cshtml" />
+    <Content Include="Views\Home\LearningVideos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

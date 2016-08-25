@@ -1,23 +1,65 @@
-﻿
+﻿@using MADDPeriodicTable.Models
+@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Some Comic Relief";
 }
 
 <!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="~/Content/LightsOnOff.css" />
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Relief</title>
+    <link rel="stylesheet" href="http://www.giuseppegerbino.com/css/glyphs.css" type="text/css" media="screen" />
+    <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/LightsOnOff.js" type="text/javascript"></script>
 </head>
-<body>
-    <div> 
+
+<body class="night">
+    <h2>Turn <span class="span-night">Off</span><span class="span-day">On</span> the lights</h2>
+
+    <button class="day-night" onclick="MyFunction">
+        <span class="btn-night glyph-moon-fill"></span>
+        <span class="btn-day glyph-sun-fill"></span>
+    </button>
+    <div>
         <iframe width="420" height="315" src="https://www.youtube.com/embed/FnblmZdTbYs" frameborder="0" allowfullscreen></iframe>
         <iframe width="420" height="315" src="https://www.youtube.com/embed/yQj2NP25TIo" frameborder="0" allowfullscreen></iframe>
         <iframe width="420" height="315" src="https://www.youtube.com/embed/Mggl7cC8iys" frameborder="0" allowfullscreen></iframe>
-        <iframe width="420" height="315" src="https://www.youtube.com/embed/lTC2Ihnsrf0" frameborder="0" allowfullscreen></iframe>
+        
+        <!--BEAKER HAS COFFEE-->
+        <iframe id ="player" width="420" height="315" src="https://www.youtube.com/embed/lTC2Ihnsrf0" frameborder="0" allowfullscreen></iframe>
+        <script>
+            var player;
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('player', {
+                    events: { 'onStateChange': onPlayerStateChange }
+                });
+            }
+
+            function onPlayerStateChange(event) {
+                switch (event.data) {
+                    //Video has ended and the user earns points
+                    case 0:
+                        @if(true)
+                        {
+                            String currUser = User.Identity.Name;
+                            PeriodicTableEntities pte = new PeriodicTableEntities();
+                            UserProgress up = pte.UserProgresses.Where(progress => progress.Id.Equals(currUser)).First();
+
+                            //10 points for comic relief ftw :)
+                            up.CurrentPoints = up.CurrentPoints + 10;
+                            pte.SaveChanges();
+
+                        }
+                        break;
+                }
+            }
+
+        </script>
+        <script src="https://www.youtube.com/iframe_api"></script>
+
         <iframe width="420" height="315" src="https://www.youtube.com/embed/PEHcHcneFFc" frameborder="0" allowfullscreen></iframe>
         <iframe width="420" height="315" src="https://www.youtube.com/embed/0Bt6RPP2ANI" frameborder="0" allowfullscreen></iframe>
-</div>
+    </div>
 </body>
 </html>
