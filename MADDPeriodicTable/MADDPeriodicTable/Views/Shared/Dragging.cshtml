@@ -110,9 +110,9 @@ function canvasApp() {
     var elementTitle;
 
     var theCanvas = document.getElementById("canvasOne");
-    var theCanvas2 = document.getElementById("canvasTwo");
     var context = theCanvas.getContext("2d");
-    var context2 = theCanvas2.getContext("2d");
+    //var theCanvas2 = document.getElementById("canvasTwo");
+    //var context2 = theCanvas2.getContext("2d");
     var theCanvas3 = document.getElementById("canvasThree");
     var context3 = theCanvas3.getContext("2d");
     var theCanvas4 = document.getElementById("canvasFour");
@@ -682,6 +682,7 @@ function canvasApp() {
 
     function mouseUpListener(evt) {
 
+
         theCanvas.addEventListener("mousedown", mouseDownListener, false);
 
         window.removeEventListener("mouseup", mouseUpListener, false);
@@ -719,6 +720,10 @@ function canvasApp() {
 
                 elementsInTrialCompound.push(elementTitle[shapes2[shapes2.length - 1].elementID]);
 
+                holdCompoundString = CreateCompound(elementsInTrialCompound);
+                context.fillText(holdCompoundString, 30, 395);
+
+                drawCompoundList();
 
                 for (i = 0; i < elementsInTrialCompound.length; i++) {
                     context.strokeText(elementsInTrialCompound[i], i * 30, 395);
@@ -736,9 +741,7 @@ function canvasApp() {
 
                     context3.lineTo(shapes2[i].x, shapes2[i].y);
                 }
-                
-            
-               
+
                 context3.strokeStyle = color;
                 context3.stroke();
 
@@ -760,8 +763,29 @@ function canvasApp() {
 
             }
         }
-    }
+            createElementDiv();
 
+        //context.fillText(model[dragIndex].Element_Name, 30, 395);
+    }
+    function createElementDiv(){
+        var model = @Html.Raw(Json.Encode(Model.Item2));
+        //Atomic_Weight Element_Name Element_Abbreviation ID
+        document.getElementById('ElementInfoDiv').innerHTML = 
+            "<div width='350' height='250' style='height:250px; background-color:"+ shapes[dragIndex].color +"'>"+ 
+                "<div style='font-size:20px; text-align:left; padding-left:10px; padding-top:10px; margin-right:-10px '>"+
+                    model[dragIndex].ID+
+                "</div>"+
+                "<div style='font-size:36px; padding-top:30px;'>" +
+                    model[dragIndex].Element_Abbreviation + 
+                "</div>"+
+                "<div>"+
+                    model[dragIndex].Atomic_Weight+
+                "</div>"+
+                "<div style='padding-top:10px; font-size:20px;'>"+
+                    model[dragIndex].Element_Name+
+                "</div>"+
+            "</div>";
+    }
     function mouseMoveListener(evt) {
 
         var tempShape2;
@@ -983,17 +1007,64 @@ function canvasApp() {
             shapes2 = [];
             drawScreen();
             DrawBottomCanvas();
-
+            elementsInTrialCompound = [];
+            holdCompoundString = "";
+            drawCompoundList();
         });
     });
+
+
+    function CreateCompound(value) {
+        //var holdKey = [];
+        //var holdValue = [];
+        var holdString = "";
+        var holdCompare = ["default"];
+        var holdElementCount = 1;
+        for (i = 0; i < value.length; i++) {
+            holdCompare += value[i];
+            holdString += value[i];
+
+            for (j = i+1; j < value.length; j++) {
+                if (value[i] == value[j]) {
+                    holdElementCount++;
+                    if (j == value.length - 1) {
+                        i = j;
+                    }
+                } else {
+                    i = j - 1;
+                    j = value.length;
+                }
+            }
+            if (holdElementCount > 1) {
+                holdString += holdElementCount;
+                holdElementCount = 1;
+            }
+        }
+        return holdString;
+    }
+
+
+
+    function drawCompoundList(){
+        var model = [];
+        model = @Html.Raw(Json.Encode(Model.Item1));
+        var tableData = "";
+        for(var i = 0; i < model.length/2; i++){
+            if(model[i].indexOf(holdCompoundString) != -1){
+                tableData += "<tr>" + model[i] + "</tr>";
+            }
+        }
+        document.getElementById('PotentialCompoundsBody').innerHTML = tableData;
+        //context3.fillText(holdCompoundString, 30, 10);
+    }
 
     function drawScreen() {
         //bg
 
         context.fillStyle = "#ffffff";
         context.fillRect(0, 0, theCanvas.width, theCanvas.height);
-        context2.fillStyle = "#000000";
-        context2.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
+        //context2.fillStyle = "#eeeeee";
+        //context2.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
 
         context4.fillStyle = "#000000";
         context4.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
@@ -1047,19 +1118,26 @@ function canvasApp() {
 
     </form>
 
+    function DrawBottomCanvas() {
+       // context3.clearRect(0, 0, theCanvas3.width, theCanvas3.height);
+        context3.fillStyle = "#d5d5d5";
+        context3.fillRect(0, 0, theCanvas3.width, theCanvas3.height);
+        drawShapesTwo();
 
 
-    <div style="top: 50px; bottom: 50px; text-align:center">
+    <div style="top: 50px; bottom: 50px; text-align:center;">
         <canvas id="canvasOne" height="400" width="750">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
 
     </div>
 
-    <div style="bottom: 50px; text-align:center">
-        <canvas id="canvasTwo" height="250" width="350">
+    <div style="bottom: 50px; text-align:center;">
+        <div id="ElementInfoDiv" style="vertical-align:top; display:inline-block; width:350px; height:250px; background-color:#d5d5d5">
+        </div>
+        @*<canvas id="canvasTwo" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
-        </canvas>
+        </canvas>*@
 
        
         <canvas id="canvasThree" height="250" width="350">
@@ -1068,11 +1146,22 @@ function canvasApp() {
       
         <canvas id="canvasFour" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
-        </canvas>
+        </canvas>*@
+
+        <table width="350" id="PotnCompTable" style="display:inline-block; vertical-align:top;">
+            <thead class="fixedHeader">
+                <tr class="alternateRow">
+                    <th>Possible Compounds</th>
+                </tr>
+            </thead>
+            <tbody id="PotentialCompoundsBody" style="max-height:240px; width:350px;">
+            </tbody>
+        </table>
+
     </div>
     <div style="text-align:center"><p><input type="submit" value="Clear" id="clear"/> </p></div>
-    <span> @elementNames[0] </span>
-    <br />
+    @*<span> @elementNames[0] </span>*@
+    @*<br />*@
     @*@for (int i = 0; i < @Model.Item1.Length; i++)
     {
         

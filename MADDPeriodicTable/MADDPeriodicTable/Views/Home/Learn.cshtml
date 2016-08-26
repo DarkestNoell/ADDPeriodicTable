@@ -1,6 +1,6 @@
 ﻿@using MADDPeriodicTable.Models
 <!--Item 1 = UserProgress, Item 2 = Compound-->
-@model Tuple<UserProgress, Compound>
+@model Tuple<UserProgress, Compound, Element[]>
 @{
     ViewBag.Title = "Learn";
     // Layout = "~/Views/Shared/Dragging";
@@ -47,9 +47,7 @@ function canvasApp() {
     }
 
     var theCanvas = document.getElementById("canvasOne");
-    var theCanvas2 = document.getElementById("canvasTwo");
     var context = theCanvas.getContext("2d");
-    var context2 = theCanvas2.getContext("2d");
     var theCanvas3 = document.getElementById("canvasThree");
     var context3 = theCanvas3.getContext("2d");
 
@@ -599,7 +597,7 @@ function canvasApp() {
         } //older IE
         return false;
     }
-
+    var holdCompoundString = "";
     function mouseUpListener(evt) {
 
         theCanvas.addEventListener("mousedown", mouseDownListener, false);
@@ -639,8 +637,8 @@ function canvasApp() {
                 //for (i = 0; i < elementsInTrialCompound.length; i++) {
                 //    context.strokeText(elementsInTrialCompound[i], i * 30, 395);
                 //}
-                var holdCompoundString = CreateCompound(elementsInTrialCompound);
-                //context.fillText(holdCompoundString, 30, 395);
+                holdCompoundString = CreateCompound(elementsInTrialCompound);
+                context.fillText(holdCompoundString, 0, 375);
 
                 DrawBottomCanvas();
 
@@ -648,7 +646,7 @@ function canvasApp() {
 
 
 
-                window.removeEventListener("mousemove", mouseMoveListener, false);
+                //window.removeEventListener("mousemove", mouseMoveListener, false);
 
                 //elementsInTrialCompound.push(elementTitle[shapes2[shapes2.length - 1].elementID]);
                 //for (i = 0; i < elementsInTrialCompound.length; i++) {
@@ -657,10 +655,29 @@ function canvasApp() {
 
             }
         }
-
+        createElementDiv();
 
     }
 
+    function createElementDiv(){
+        var model = @Html.Raw(Json.Encode(Model.Item3));
+        //Atomic_Weight Element_Name Element_Abbreviation ID
+        document.getElementById('ElementInfoDiv').innerHTML =
+            "<div width='350' height='250' style='height:250px; background-color:"+ shapes[dragIndex].color +"'>"+
+                "<div style='font-size:20px; text-align:left; padding-left:10px; padding-top:10px; margin-right:-10px '>"+
+                    model[dragIndex].ID+
+                "</div>"+
+                "<div style='font-size:36px; padding-top:30px;'>" +
+                    model[dragIndex].Element_Abbreviation + 
+                "</div>"+
+                "<div>"+
+                    model[dragIndex].Atomic_Weight+
+                "</div>"+
+                "<div style='padding-top:10px; font-size:20px;'>"+
+                    model[dragIndex].Element_Name+
+                "</div>"+
+            "</div>";
+    }
     function mouseMoveListener(evt) {
         for (i = 0; i < shapes.length; i++) {
             if (shapes[i].y > theCanvas.height && numShapes2 == 0) {
@@ -865,11 +882,9 @@ function canvasApp() {
         //bg
         context.fillStyle = "#ffffff";
         context.fillRect(0, 0, theCanvas.width, theCanvas.height);
-        context2.fillStyle = "#000000";
-        context2.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
-     
 
-     
+
+
 
         drawShapes();
         drawKey();
@@ -987,8 +1002,8 @@ function canvasApp() {
     }
     function DrawBottomCanvas() {
 
-        context3.fillStyle = "#000000";
-        context3.fillRect(0, 0, theCanvas2.width, theCanvas2.height);
+        context3.fillStyle = "#d5d5d5";
+        context3.fillRect(0, 0, theCanvas3.width, theCanvas3.height);
         drawShapesTwo();
 
     }
@@ -1003,21 +1018,20 @@ function canvasApp() {
         $("#check").click(function () {
 
 
-            document.getElementById("SubmissionBox").value = CreateCompound(elementsInTrialCompound);//holdInfo;
         });
         $("#hint").click(function () {
 
-         
+
 
         });
-        $("#solve").click(function () {
+        $("#buttonSolve").click(function () {
+            document.getElementById("SubmissionBox").value = holdCompoundString;//holdInfo;
 
-         
 
         });
         $("#next").click(function () {
 
-        
+
 
         });
     });
@@ -1061,40 +1075,38 @@ function CreateCompound(value) {
         </canvas>
 
     </div>
-    <div align="center" style="padding-bottom:10px">
-        <form method="post" action="@Url.Content("~/Home/CheckAnswer")">
-            <input type="text" style="border-color:black" name="answerText" id="SubmissionBox" />
-            @*<input type="submit" value="Submit">*@
-        </form>
-    </div>
     <table style="bottom: 50px; text-align:center">
         <tr>
             <td>
-        <canvas id="canvasTwo" height="250" width="350">
-            This text is displayed if your browser does not support HTML5 Canvas.
-        </canvas>
-                </td>
+                <div id="ElementInfoDiv" style="vertical-align:top; display:inline-block; width:350px; height:250px; background-color:#d5d5d5">
+                </div>
+            </td>
             <td style="margin-left:2px">
         <canvas id="canvasThree" height="250" width="350">
             This text is displayed if your browser does not support HTML5 Canvas.
         </canvas>
                 </td>
             <td>
-         <span height="250" width="400" style="text-align:center">
+         <div height="250" width="400" style="text-align:center; height:250px; padding-top:40px; background-color:#d5d5d5;">
             <h3>Solve this compound: @Model.Item2.Name</h3>
             <h3>This compound is difficulty level: @Model.Item2.CompoundDifficulty</h3>
             <h3>Points are 10x difficulty level!</h3>
-        </span>
+        </div>
      </td>
            </tr>
     </table>
     <div style="text-align:center">
-
-        <input type="button" value="Clear" id="buttons"/>
-        <input type="button" value="Check" id="buttons" />
-        <input type="button" value="Hint" id="buttons"/>
-        <input type="button" value="Solve" id="buttons"/>
-        <input type="button" value="Next"id="buttons" />
+    <div align="center" style="padding-bottom:10px">
+        <form method="post" action="@Url.Content("~/Home/CheckAnswer")">
+            <input type="text" style="border-color:black" name="answerText" id="SubmissionBox" />
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+        <input type="button" value="Clear" id="clear"/>
+        @*<input type="button" value="Check" id="buttons" />
+    <input type="button" value="Hint" id="buttons"/>*@
+        <input type="button" value="Paste Compound" id="buttonSolve"/>
+        @*<input type="button" value="Next"id="buttons" />*@
     </div>
     <div class="words"></div>
     <h2 align="center"><u>You gon Learn!</u></h2>
@@ -1115,7 +1127,17 @@ function CreateCompound(value) {
 <style type="text/css">
     
 
-    #buttons {
+    #clear {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 42px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+    #buttonSolve {
         background-color: #4CAF50; /* Green */
         border: none;
         color: white;

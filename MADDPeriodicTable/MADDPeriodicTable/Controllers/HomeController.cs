@@ -136,7 +136,15 @@ namespace MADDPeriodicTable.Controllers
             }
 
 
-            Tuple<UserProgress , Compound> tuple = new Tuple<UserProgress, Compound>(up, CompoundToPick);
+            var AllElements = from Element in pte.Elements
+                              where Element.ID != 0
+                              select Element;
+
+            List<Element> Elements = new List<Element>();
+            Elements = AllElements.ToList();
+            Element[] ElementArray = Elements.ToArray();
+
+            Tuple<UserProgress , Compound, Element[]> tuple = new Tuple<UserProgress, Compound, Element[]>(up, CompoundToPick, ElementArray);
             return View(tuple);
         }
 
