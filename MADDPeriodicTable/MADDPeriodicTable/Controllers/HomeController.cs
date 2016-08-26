@@ -301,7 +301,7 @@ namespace MADDPeriodicTable.Controllers
     }
     public static class HtmlHelperExtensions
     {
-        public static MvcHtmlString CurrencyFormat()
+        public static MvcHtmlString CurrencyFormat(string s)
         {
             var result = "'#00FF00'";
             return new MvcHtmlString(result);
